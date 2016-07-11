@@ -39,5 +39,8 @@ jspm_packages
 # Build directrory
 build
 
+# Distribution directrory
+dist
+
 # Release directrory
 releases
