@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+<body>
+  <app/>
+  <% if (process.env.NODE_ENV === 'development') { %>
+  <script>
+    require('module').globalPaths.push(require('path').resolve(require('electron').remote.app.getAppPath(), './node_modules'))
+  </script>
+  <% } %>
+  <!-- built files will be auto injected -->
+</body>
+</html>

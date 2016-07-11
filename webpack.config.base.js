@@ -1,0 +1,67 @@
+const fs = require('fs')
+const path = require('path')
+const webpack = require('webpack')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+
+// const pkg = require('./app/package.json')
+
+const nodeModules = (() => {
+  const nodeModules = {}
+  try {
+    fs.readdirSync(path.resolve(__dirname, './app/node_modules')).filter(x => x !== '.bin').forEach(mod => { nodeModules[mod] = 'commonjs2 ' + mod })
+    return nodeModules
+  } catch (e) {
+    return {}
+  }
+})()
+
+const config = module.exports = {
+  context: __dirname,
+  output: {
+    path: './build/',
+    filename: '[name].js',
+    libraryTarget: 'commonjs2'
+  },
+  module: {
+    preLoaders: [],
+    loaders: [
+      { test: /\.js$/, loader: 'babel', exclude: /node_modules/, query: { presets: ['es2015-loose'] } },
+      { test: /\.json$/, loader: 'json' }
+    ]
+  },
+  resolve: {
+    fallback: [path.resolve(__dirname, './node_modules')],
+    alias: { app: path.resolve(__dirname, './app') }
+  },
+  resolveLoader: {
+    fallback: [path.resolve(__dirname, './node_modules')]
+  },
+  // externals: nodeModules, // Object.keys(pkg.dependencies || {}),
+  devtool: '#eval-source-map',
+  node: {
+    __filename: false,
+    __dirname: false
+  },
+  plugins: [
+    new webpack.ExternalsPlugin('commonjs2', nodeModules),
+    new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV) } }),
+  ],
+  eslint: {
+    formatter: require('eslint-friendly-formatter')
+  }
+}
+
+if (process.env.NODE_ENV === 'production') {
+  module.exports.devtool = '#source-map'
+  config.plugins = (config.plugins || []).concat([
+    new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } }),
+    new webpack.optimize.OccurenceOrderPlugin()
+  ])
+} else {
+  config.module.preLoaders.push(
+    { test: /\.js$/, loader: 'eslint', exclude: /node_modules/ },
+    { test: /\.vue$/, loader: 'eslint' }
+  )
+}

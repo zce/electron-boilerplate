@@ -1,0 +1,11 @@
+{
+  "name": "electron-boilerplate",
+  "productName": "ElectronBoilerplate",
+  "version": "0.1.0",
+  "description": "A Bolierplate application for Electron runtime",
+  "main": "main.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0"
+  }
+}
