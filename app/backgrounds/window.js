@@ -9,20 +9,24 @@ const userData = jetpack.cwd(app.getPath('userData'))
 
 export default (name, options) => {
   const stateStoreFile = 'window-state-' + name + '.json'
+  const defaultSize = {
+    width: options.width,
+    height: options.height
+  }
   let state = {}
   let win
 
   const restore = () => {
     try {
-      return Object.assign({}, options, userData.read(stateStoreFile, 'json'))
+      return Object.assign({}, defaultSize, userData.read(stateStoreFile, 'json'))
     } catch (err) {
-      return Object.assign({}, options)
+      return Object.assign({}, defaultSize)
     }
   }
 
   const getCurrentState = () => {
     const position = win.getPosition()
-    const size = win.getSize()
+    const size = defaultSize.useContentSize ? win.getContentSize() : win.getSize()
     return { x: position[0], y: position[1], width: size[0], height: size[1] }
   }
 
@@ -35,9 +39,9 @@ export default (name, options) => {
 
   const resetToDefaults = (windowState) => {
     const bounds = screen.getPrimaryDisplay().bounds
-    return Object.assign({}, options, {
-      x: (bounds.width - options.width) / 2,
-      y: (bounds.height - options.height) / 2
+    return Object.assign({}, defaultSize, {
+      x: (bounds.width - defaultSize.width) / 2,
+      y: (bounds.height - defaultSize.height) / 2
     })
   }
 

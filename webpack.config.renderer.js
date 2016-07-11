@@ -1,6 +1,8 @@
+const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const base = require('./webpack.config.base')
 
 module.exports = merge(base, {
@@ -70,6 +72,9 @@ if (process.env.NODE_ENV === 'production') {
     })
   ])
 } else {
+  module.exports.module.preLoaders.push(
+    { test: /\.vue$/, loader: 'eslint' }
+  )
   module.exports.plugins = (module.exports.plugins || []).concat([
     new HtmlWebpackPlugin({
       template: './app/index.ejs',

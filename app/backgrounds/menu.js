@@ -1,31 +1,28 @@
-import { app, BrowserWindow, Menu } from 'electron'
+import { app, BrowserWindow, Menu, shell } from 'electron'
+import createWindow from './window'
 
-export const development = {
-  label: 'Dev',
-  submenu: [
-    {
-      label: 'Reload',
-      accelerator: 'CmdOrCtrl+R',
-      click: function () {
-        BrowserWindow.getFocusedWindow().webContents.reloadIgnoringCache()
-      }
-    },
-    {
-      label: 'Toggle DevTools',
-      accelerator: 'Alt+CmdOrCtrl+I',
-      click: function () {
-        BrowserWindow.getFocusedWindow().toggleDevTools()
-      }
-    },
-    {
-      label: 'Quit',
-      accelerator: 'CmdOrCtrl+Q',
-      click: function () {
-        app.quit()
-      }
+const aboutHtml = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About</title>
+  <style>
+    body {
+      margin: 0 auto;
+      background: #F0F0F0;
+      width: 400px;
+      height: 120px;
+      text-align: center;
     }
-  ]
-}
+  </style>
+</head>
+<body>
+  <h1>Electron Boilerplate</h1>
+  <p>A boilerplate application for Electron runtime</p>
+</body>
+</html>
+`
 
 export const edit = {
   label: 'Edit',
@@ -40,8 +37,47 @@ export const edit = {
   ]
 }
 
+export const about = {
+  label: 'About',
+  submenu: [
+    {
+      label: 'License',
+      click: () => shell.openExternal('https://github.com/zce/electron-boilerplate/tree/master/LICENSE')
+    },
+    {
+      label: 'About',
+      click: () => {
+        const aboutWindow = createWindow(about, { width: 420, height: 150, useContentSize: true, modal: true, parent: BrowserWindow.getFocusedWindow() })
+        aboutWindow.setMenu(null)
+        aboutWindow.loadURL(`data:text/html, ${aboutHtml}`)
+      }
+    }
+  ]
+}
+
+export const development = {
+  label: 'Dev',
+  submenu: [
+    {
+      label: 'Reload',
+      accelerator: 'CmdOrCtrl+R',
+      click: () => BrowserWindow.getFocusedWindow().webContents.reloadIgnoringCache()
+    },
+    {
+      label: 'Toggle DevTools',
+      accelerator: 'Alt+CmdOrCtrl+I',
+      click: () => BrowserWindow.getFocusedWindow().toggleDevTools()
+    },
+    {
+      label: 'Quit',
+      accelerator: 'CmdOrCtrl+Q',
+      click: () => app.quit()
+    }
+  ]
+}
+
 export default () => {
-  const menus = [edit]
+  const menus = [edit, about]
   if (process.env.NODE_ENV !== 'production') {
     menus.push(development)
   }

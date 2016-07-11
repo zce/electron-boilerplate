@@ -13,7 +13,7 @@
 //    <a href="http://bing.com">bing</a>
 // </p>
 
-const shell = require('electron').shell
+import { shell } from 'electron'
 
 const supportExternalLinks = e => {
   let href

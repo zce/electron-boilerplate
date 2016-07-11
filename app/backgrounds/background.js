@@ -11,12 +11,19 @@ let mainWindow
 
 app.on('ready', () => {
   setAppMenu()
-  mainWindow = createWindow('main', { width: 1920, height: 600, useContentSize: true })
+  mainWindow = createWindow('main', {
+    width: 1700,
+    height: 600,
+    useContentSize: true,
+    // frame: false,
+    // backgroundColor: 'transparent',
+    transparent: true
+  })
   if (process.env.NODE_ENV === 'production') {
     mainWindow.loadURL(`file://${__dirname}/index.html`)
   } else {
     mainWindow.loadURL('http://localhost:8080/index.html')
-    mainWindow.webContents.openDevTools({ detach: true1 })
+    mainWindow.webContents.openDevTools({ detach: false })
   }
 })
 

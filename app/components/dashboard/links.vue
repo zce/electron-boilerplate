@@ -15,9 +15,10 @@
 </style>
 
 <template>
-  <ul>
-    <li><a href="https://simulatedgreg.gitbooks.io/electron-vue/content/index.html">documentation</a></li> |
-    <li><a href="http://electron.atom.io/">electron</a></li> |
-    <li><a href="http://vuejs.org/">vue.js</a></li>
+  <ul class="js-external-link">
+    <li><a href="https://github.com/zce/electron-boilerplate">documentation</a> |</li>
+    <li><a href="http://electron.atom.io/">electron</a> |</li>
+    <li><a href="http://vuejs.org/">vue.js</a> |</li>
+    <li><a v-link="{name:'demo'}">hello</a></li>
   </ul>
 </template>

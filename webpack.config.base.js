@@ -1,9 +1,6 @@
 const fs = require('fs')
 const path = require('path')
 const webpack = require('webpack')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 // const pkg = require('./app/package.json')
 
@@ -32,18 +29,17 @@ const config = module.exports = {
     ]
   },
   resolve: {
+    root: [path.resolve(__dirname, './app/node_modules')],
+    modulesDirectories: ['node_modules'],
     fallback: [path.resolve(__dirname, './node_modules')],
-    alias: { app: path.resolve(__dirname, './app') }
+    extensions: ['', '.js', '.json']
   },
   resolveLoader: {
-    fallback: [path.resolve(__dirname, './node_modules')]
+    root: [path.resolve(__dirname, './node_modules')],
+    // fallback: [path.resolve(__dirname, './node_modules')]
   },
   // externals: nodeModules, // Object.keys(pkg.dependencies || {}),
   devtool: '#eval-source-map',
-  node: {
-    __filename: false,
-    __dirname: false
-  },
   plugins: [
     new webpack.ExternalsPlugin('commonjs2', nodeModules),
     new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV) } }),
@@ -61,7 +57,6 @@ if (process.env.NODE_ENV === 'production') {
   ])
 } else {
   config.module.preLoaders.push(
-    { test: /\.js$/, loader: 'eslint', exclude: /node_modules/ },
-    { test: /\.vue$/, loader: 'eslint' }
+    { test: /\.js$/, loader: 'eslint', exclude: /node_modules/ }
   )
 }

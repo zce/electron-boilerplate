@@ -8,6 +8,10 @@ module.exports = merge(base, {
     main: ['./app/main.js']
   },
   target: 'electron-main',
+  node: {
+    __filename: false,
+    __dirname: false
+  },
   plugins: [
     new CopyWebpackPlugin([
       { from: './app/package.json', to: '.' },
