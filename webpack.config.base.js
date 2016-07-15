@@ -36,7 +36,7 @@ const config = module.exports = {
   },
   resolveLoader: {
     root: [path.resolve(__dirname, './node_modules')],
-    // fallback: [path.resolve(__dirname, './node_modules')]
+    fallback: [path.resolve(__dirname, './node_modules')]
   },
   // externals: nodeModules, // Object.keys(pkg.dependencies || {}),
   devtool: '#eval-source-map',
@@ -50,7 +50,7 @@ const config = module.exports = {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
+  module.exports.devtool = '' // '#source-map'
   config.plugins = (config.plugins || []).concat([
     new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } }),
     new webpack.optimize.OccurenceOrderPlugin()

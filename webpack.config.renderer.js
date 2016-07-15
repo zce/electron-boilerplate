@@ -20,12 +20,7 @@ module.exports = merge(base, {
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.json', '.css', '.less', '.sass', '.scss', '.vue'],
-    fallback: [path.resolve(__dirname, './node_modules')],
-    alias: { app: path.resolve(__dirname, './app') }
-  },
-  resolveLoader: {
-    fallback: [path.resolve(__dirname, './node_modules')]
+    extensions: ['', '.js', '.json', '.css', '.less', '.sass', '.scss', '.vue']
   },
   target: 'electron-renderer',
   devServer: {
