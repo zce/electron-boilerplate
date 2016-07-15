@@ -1,19 +1,19 @@
 const exec = require('child_process').exec
 const packager = require('electron-packager')
-const options = require('../config').build
+const options = require('./config')
 
-pack()
+build()
 
-/**
- * Build webpack in production
- */
-function pack () {
-  console.log('\x1b[33mBuilding webpack in production mode...\n\x1b[0m')
-  let pack = exec('npm run build')
-  pack.stdout.on('data', data => console.log(data.toString()))
-  pack.stderr.on('data', data => console.error(data.toString()))
-  pack.on('exit', code => build())
-}
+// /**
+//  * Build webpack in production
+//  */
+// function pack () {
+//   console.log('\x1b[33mBuilding webpack in production mode...\n\x1b[0m')
+//   let pack = exec('npm run build')
+//   pack.stdout.on('data', data => console.log(data.toString()))
+//   pack.stderr.on('data', data => console.error(data.toString()))
+//   pack.on('exit', code => build())
+// }
 
 /**
  * Use electron-packager to build electron app

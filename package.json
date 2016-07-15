@@ -15,6 +15,7 @@
     "build": "npm run clean && cross-env NODE_ENV=production npm run build:main && cross-env NODE_ENV=production npm run build:renderer",
     "prestart": "npm run build",
     "start": "cross-env NODE_ENV=production electron build",
+    "prerelease": "npm run build",
     "release": "node tasks/release"
   },
   "dependencies": {
