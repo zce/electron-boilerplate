@@ -4,23 +4,17 @@
   "description": "A Bolierplate application for Electron runtime",
   "main": "build/main.js",
   "scripts": {
-    "postintall": "cd app && npm install && cd ..",
+    "postinstall": "cd app && npm install && cd ..",
     "clean": "rimraf build/*",
-
     "webpack": "webpack --progress --hide-modules",
-
     "watch": "cross-env NODE_ENV=development webpack-dev-server --config tasks/webpack.config.renderer.js --hot --inline --colors",
-
     "build:main": "npm run webpack -- --config tasks/webpack.config.main.js",
     "build:renderer": "npm run webpack -- --config tasks/webpack.config.renderer.js",
     "build": "npm run clean && cross-env NODE_ENV=production npm run build:main && cross-env NODE_ENV=production npm run build:renderer",
-
     "preboot": "npm run clean && cross-env NODE_ENV=development npm run build:main",
     "boot": "cross-env NODE_ENV=development electron build",
-
     "prestart": "npm run build",
     "start": "cross-env NODE_ENV=production electron build",
-
     "prerelease": "npm run build",
     "release": "node tasks/release"
   },
@@ -50,6 +44,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.22.0",
+    "json-loader": "^0.5.4",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "minimist": "^1.2.0",

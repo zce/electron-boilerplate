@@ -1,28 +1,14 @@
 import { app, BrowserWindow, dialog, Menu, shell } from 'electron'
+import pkg from '../package.json'
 // import createWindow from './window'
 
-// const aboutHtml = `
-// <!DOCTYPE html>
-// <html lang="en">
-// <head>
-//   <meta charset="UTF-8">
-//   <title>About</title>
-//   <style>
-//     body {
-//       margin: 0 auto;
-//       background: #F0F0F0;
-//       width: 400px;
-//       height: 120px;
-//       text-align: center;
-//     }
-//   </style>
-// </head>
-// <body>
-//   <h1>Electron Boilerplate</h1>
-//   <p>A boilerplate application for Electron runtime</p>
-// </body>
-// </html>
-// `
+const aboutDetail = `${pkg.description}
+Core: v${pkg.version}
+Node: v${process.versions.node}
+Chrome: v${process.versions.chrome}
+Electron: v${process.versions.electron}
+Datetime: ${pkg.updated}
+`
 
 export const edit = {
   label: 'Edit',
@@ -55,8 +41,8 @@ export const about = {
           buttons: ['OK'],
           defaultId: 0,
           title: 'About',
-          message: 'Electron Boilerplate',
-          detail: 'A boilerplate application for Electron runtime',
+          message: app.getName(),
+          detail: aboutDetail,
           icon: null,
           cancelId: -1,
           noLink: true

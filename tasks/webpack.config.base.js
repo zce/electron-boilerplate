@@ -29,14 +29,14 @@ const config = module.exports = {
     ]
   },
   resolve: {
-    root: ['../app/node_modules'],
-    modulesDirectories: ['node_modules'],
-    fallback: ['../node_modules'],
-    extensions: ['', '.js', '.json']
+    root: [path.resolve(__dirname, '../app/node_modules')],
+    fallback: [path.resolve(__dirname, '../node_modules')],
+    extensions: ['', '.js', '.json'],
+    modulesDirectories: ['node_modules']
   },
   resolveLoader: {
-    root: ['../node_modules'],
-    fallback: ['../node_modules']
+    root: [path.resolve(__dirname, '../node_modules')],
+    fallback: [path.resolve(__dirname, '../node_modules')]
   },
   // externals: nodeModules, // Object.keys(pkg.dependencies || {}),
   devtool: '#eval-source-map',
