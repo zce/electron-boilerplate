@@ -40,9 +40,12 @@ module.exports = merge(base, {
   ],
   vue: {
     loaders: {
+      html: 'raw',
+      // js: 'babel',
       css: ExtractTextPlugin.extract('css'),
       less: ExtractTextPlugin.extract('css!less')
-    }
+    },
+    autoprefixer: false
   }
 })
 
@@ -68,7 +71,7 @@ if (process.env.NODE_ENV === 'production') {
   ])
 } else {
   module.exports.module.preLoaders.push(
-    { test: /\.vue$/, loader: 'eslint' }
+    { test: /\.vue$/, loader: 'eslint', exclude: /node_modules/ }
   )
   module.exports.plugins = (module.exports.plugins || []).concat([
     new HtmlWebpackPlugin({

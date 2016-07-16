@@ -1,5 +1,4 @@
 import './assets/css/normalize.css'
-import './assets/css/font-awesome.css'
 import './assets/less/style.less'
 
 import './libraries/context-menu'
