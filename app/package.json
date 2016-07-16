@@ -5,10 +5,15 @@
   "description": "A Bolierplate application for Electron runtime",
   "updated": "2016-07-07T16:56:12.476Z",
   "main": "main.js",
-  "dependencies": {},
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "xtemplate": "^4.5.1",
+    "xtpl": "^3.2.0"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zce/electron-boilerplate.git"
+    "url": "git+https://github.com/zce/feedback.git"
   },
   "keywords": [
     "iceStone",
@@ -21,7 +26,7 @@
   "author": "iceStone <ice@micua.com> (http://blog.wedn.net/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zce/electron-boilerplate/issues"
+    "url": "https://github.com/zce/feedback/issues"
   },
-  "homepage": "https://github.com/zce/electron-boilerplate#readme"
+  "homepage": "https://github.com/zce/feedback#readme"
 }

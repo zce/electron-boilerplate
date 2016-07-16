@@ -15,7 +15,6 @@
     "release": "node tasks/release"
   },
   "dependencies": {
-    "fs-jetpack": "^0.9.2",
     "vue": "^1.0.26",
     "vue-router": "^0.7.13"
   },

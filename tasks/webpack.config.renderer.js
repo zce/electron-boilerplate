@@ -4,6 +4,7 @@ const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const base = require('./webpack.config.base')
+const pkg = require('../app/package.json')
 
 module.exports = merge(base, {
   entry: {
@@ -12,8 +13,8 @@ module.exports = merge(base, {
   module: {
     loaders: [
       { test: /\.vue$/, loader: 'vue' },
-      { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css') },
-      { test: /\.less$/, loader: ExtractTextPlugin.extract('style', 'css!less') },
+      { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css', { publicPath: '../'}) },
+      { test: /\.less$/, loader: ExtractTextPlugin.extract('style', 'css!less', { publicPath: '../'}) },
       // { test: /\.html$/, loader: 'vue-html' },
       { test: /\.(png|jpe?g|gif|svg)(\?.*)?$/, loader: 'url', query: { limit: 10000, name: 'img/[name].[hash:7].[ext]' } },
       { test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/, loader: 'url', query: { limit: 10000, name: 'font/[name].[hash:7].[ext]' } }
@@ -36,14 +37,14 @@ module.exports = merge(base, {
     port: 8080
   },
   plugins: [
-    new ExtractTextPlugin('./css/[name].css')
+    new ExtractTextPlugin('css/[name].css')
   ],
   vue: {
     loaders: {
-      html: 'raw',
+      // html: 'raw',
       // js: 'babel',
-      css: ExtractTextPlugin.extract('css'),
-      less: ExtractTextPlugin.extract('css!less')
+      css: ExtractTextPlugin.extract('css', { publicPath: '../'}),
+      less: ExtractTextPlugin.extract('css!less', { publicPath: '../'})
     },
     autoprefixer: false
   }
@@ -57,7 +58,7 @@ if (process.env.NODE_ENV === 'production') {
     new HtmlWebpackPlugin({
       template: './app/index.ejs',
       filename: 'index.html',
-      title: 'ElectronBoilerplate',
+      title: pkg.productName,
       chunks: ['renderer'],
       excludeChunks: ['main'],
       inject: true,
@@ -77,7 +78,7 @@ if (process.env.NODE_ENV === 'production') {
     new HtmlWebpackPlugin({
       template: './app/index.ejs',
       filename: 'index.html',
-      title: 'ElectronBoilerplate',
+      title: pkg.productName,
       chunks: ['renderer'],
       excludeChunks: ['main'],
       inject: true

@@ -2,13 +2,13 @@
 // them in that place after app relaunch).
 // Can be used for more than one window, just construct many
 // instances of it and give each different name.
-
+import fs from 'fs'
+import path from 'path'
 import { app, BrowserWindow, screen } from 'electron'
-import jetpack from 'fs-jetpack'
-const userData = jetpack.cwd(app.getPath('userData'))
+const dir = app.getPath('userData')
 
 export default (name, options) => {
-  const stateStoreFile = 'window-state-' + name + '.json'
+  const stateStoreFile = path.join(dir, 'window-state-' + name + '.json')
   const defaultSize = {
     width: options.width,
     height: options.height
@@ -18,7 +18,7 @@ export default (name, options) => {
 
   const restore = () => {
     try {
-      return Object.assign({}, defaultSize, userData.read(stateStoreFile, 'json'))
+      return Object.assign({}, defaultSize, JSON.parse(fs.readFileSync(stateStoreFile)))
     } catch (err) {
       return Object.assign({}, defaultSize)
     }
@@ -57,7 +57,7 @@ export default (name, options) => {
     if (!win.isMinimized() && !win.isMaximized()) {
       Object.assign(state, getCurrentState())
     }
-    userData.write(stateStoreFile, state, { atomic: true })
+    fs.writeFileSync(stateStoreFile, JSON.stringify(state), 'utf8')
   }
 
   state = ensureVisibleOnSomeDisplay(restore())

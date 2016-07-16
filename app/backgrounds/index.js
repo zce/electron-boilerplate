@@ -4,26 +4,28 @@
 // window from here.
 
 import { app } from 'electron'
-import setAppMenu from './menu'
+// import setAppMenu from './menu'
 import createWindow from './window'
 
 let mainWindow
 
 app.on('ready', () => {
-  setAppMenu()
+  // setAppMenu()
   mainWindow = createWindow('main', {
-    width: 1700,
-    height: 600,
-    useContentSize: true
-    // frame: false,
     // backgroundColor: 'transparent',
-    // transparent: true
+    // transparent: true,
+    x: 0,
+    y: 0,
+    width: 1200,
+    height: 720,
+    useContentSize: true,
+    frame: false
   })
   if (process.env.NODE_ENV === 'production') {
     mainWindow.loadURL(`file://${__dirname}/index.html`)
   } else {
     mainWindow.loadURL('http://localhost:8080/index.html')
-    mainWindow.webContents.openDevTools({ detach: false })
+    mainWindow.webContents.openDevTools({ detach: true })
   }
 })
 

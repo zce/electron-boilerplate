@@ -1,4 +1,11 @@
 <style scoped>
+  div {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
   img {
     margin-top: -25px;
     width: 450px;

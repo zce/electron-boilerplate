@@ -1,5 +1,16 @@
-export default class Plugin {
-  install (Vue, options) {
+import electron from 'electron'
+import config from './config'
+import * as utils from './utils'
+import * as storage from './storage'
+import * as server from './server'
 
-  }
+export default function Plugin () { }
+
+Plugin.install = function (Vue, options) {
+  Vue.prototype.$electron = electron
+  Vue.prototype.$config = config
+  Vue.prototype.$utils = utils
+  console.log(storage)
+  Vue.prototype.$storage = storage
+  Vue.prototype.$server = server
 }

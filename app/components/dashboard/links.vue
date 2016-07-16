@@ -19,6 +19,6 @@
     <li><a href="https://github.com/zce/electron-boilerplate">documentation</a> |</li>
     <li><a href="http://electron.atom.io/">electron</a> |</li>
     <li><a href="http://vuejs.org/">vue.js</a> |</li>
-    <li><a v-link="{name:'demo'}">hello</a></li>
+    <li><a v-link="{ name: 'demo' }">demo</a></li>
   </ul>
 </template>
