@@ -5,16 +5,22 @@
   "main": "build/main.js",
   "scripts": {
     "postintall": "cd app && npm install && cd ..",
-    "webpack": "webpack --progress --hide-modules",
-    "watch": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.renderer.js --hot --inline --colors",
     "clean": "rimraf build",
-    "preboot": "npm run clean && cross-env NODE_ENV=development npm run webpack -- --config webpack.config.main.js",
-    "boot": "cross-env NODE_ENV=development electron build",
-    "build:main": "npm run webpack -- --config webpack.config.main.js -p",
-    "build:renderer": "npm run webpack -- --config webpack.config.renderer.js -p",
+
+    "webpack": "webpack --progress --hide-modules",
+
+    "watch": "cross-env NODE_ENV=development webpack-dev-server --config tasks/webpack.config.renderer.js --hot --inline --colors",
+
+    "build:main": "npm run webpack -- --config tasks/webpack.config.main.js",
+    "build:renderer": "npm run webpack -- --config tasks/webpack.config.renderer.js",
     "build": "npm run clean && cross-env NODE_ENV=production npm run build:main && cross-env NODE_ENV=production npm run build:renderer",
+
+    "preboot": "npm run clean && cross-env NODE_ENV=development npm run build:main",
+    "boot": "cross-env NODE_ENV=development electron build",
+
     "prestart": "npm run build",
     "start": "cross-env NODE_ENV=production electron build",
+
     "prerelease": "npm run build",
     "release": "node tasks/release"
   },

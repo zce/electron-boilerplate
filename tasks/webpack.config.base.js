@@ -7,7 +7,7 @@ const webpack = require('webpack')
 const nodeModules = (() => {
   const nodeModules = {}
   try {
-    fs.readdirSync(path.resolve(__dirname, './app/node_modules')).filter(x => x !== '.bin').forEach(mod => { nodeModules[mod] = 'commonjs2 ' + mod })
+    fs.readdirSync(path.resolve(__dirname, '../app/node_modules')).filter(x => x !== '.bin').forEach(mod => { nodeModules[mod] = 'commonjs2 ' + mod })
     return nodeModules
   } catch (e) {
     return {}
@@ -15,7 +15,7 @@ const nodeModules = (() => {
 })()
 
 const config = module.exports = {
-  context: __dirname,
+  context: path.resolve(__dirname, '..'),
   output: {
     path: './build/',
     filename: '[name].js',
@@ -29,14 +29,14 @@ const config = module.exports = {
     ]
   },
   resolve: {
-    root: [path.resolve(__dirname, './app/node_modules')],
+    root: ['../app/node_modules'],
     modulesDirectories: ['node_modules'],
-    fallback: [path.resolve(__dirname, './node_modules')],
+    fallback: ['../node_modules'],
     extensions: ['', '.js', '.json']
   },
   resolveLoader: {
-    root: [path.resolve(__dirname, './node_modules')],
-    fallback: [path.resolve(__dirname, './node_modules')]
+    root: ['../node_modules'],
+    fallback: ['../node_modules']
   },
   // externals: nodeModules, // Object.keys(pkg.dependencies || {}),
   devtool: '#eval-source-map',
