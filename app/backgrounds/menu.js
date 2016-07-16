@@ -1,28 +1,28 @@
-import { app, BrowserWindow, Menu, shell } from 'electron'
-import createWindow from './window'
+import { app, BrowserWindow, dialog, Menu, shell } from 'electron'
+// import createWindow from './window'
 
-const aboutHtml = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>About</title>
-  <style>
-    body {
-      margin: 0 auto;
-      background: #F0F0F0;
-      width: 400px;
-      height: 120px;
-      text-align: center;
-    }
-  </style>
-</head>
-<body>
-  <h1>Electron Boilerplate</h1>
-  <p>A boilerplate application for Electron runtime</p>
-</body>
-</html>
-`
+// const aboutHtml = `
+// <!DOCTYPE html>
+// <html lang="en">
+// <head>
+//   <meta charset="UTF-8">
+//   <title>About</title>
+//   <style>
+//     body {
+//       margin: 0 auto;
+//       background: #F0F0F0;
+//       width: 400px;
+//       height: 120px;
+//       text-align: center;
+//     }
+//   </style>
+// </head>
+// <body>
+//   <h1>Electron Boilerplate</h1>
+//   <p>A boilerplate application for Electron runtime</p>
+// </body>
+// </html>
+// `
 
 export const edit = {
   label: 'Edit',
@@ -47,9 +47,21 @@ export const about = {
     {
       label: 'About',
       click: () => {
-        const aboutWindow = createWindow(about, { width: 420, height: 150, useContentSize: true, modal: true, parent: BrowserWindow.getFocusedWindow() })
-        aboutWindow.setMenu(null)
-        aboutWindow.loadURL(`data:text/html, ${aboutHtml}`)
+        // const aboutWindow = createWindow(about, { width: 420, height: 150, useContentSize: true, modal: true, parent: BrowserWindow.getFocusedWindow() })
+        // aboutWindow.setMenu(null)
+        // aboutWindow.loadURL(`data:text/html, ${aboutHtml}`)
+        dialog.showMessageBox(BrowserWindow.getFocusedWindow(), {
+          type: 'info',
+          buttons: ['OK'],
+          defaultId: 0,
+          title: 'About',
+          message: 'Electron Boilerplate',
+          detail: 'A boilerplate application for Electron runtime',
+          icon: null,
+          cancelId: -1,
+          noLink: true
+        })
+        // dialog.showErrorBox('Electron Boilerplate', 'A boilerplate application for Electron runtime')
       }
     }
   ]

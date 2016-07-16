@@ -5,7 +5,7 @@
   "main": "build/main.js",
   "scripts": {
     "postintall": "cd app && npm install && cd ..",
-    "clean": "rimraf build",
+    "clean": "rimraf build/*",
 
     "webpack": "webpack --progress --hide-modules",
 
