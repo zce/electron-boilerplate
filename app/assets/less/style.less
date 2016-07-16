@@ -122,14 +122,6 @@ a {
   }
 }
 
-.fade {
-  opacity: 0;
-  transition: opacity .15s linear;
-  &.in {
-    opacity: 1;
-  }
-}
-
 // components styles
 // =====================================
 button, input, select, textarea {
@@ -236,8 +228,8 @@ table {
     }
   }
   &-sm {
-    padding: 2/16rem 10/16rem;
-    font-size: 10/16rem;
+    padding: 3/16rem 12/16rem;
+    font-size: 12/16rem;
   }
   &-lg {
     padding: 8/16rem 20/16rem;
@@ -254,150 +246,6 @@ table {
 .window {
   display: flex;
   height: 100%;
-}
-
-.sidebar {
-  // display: flex;
-  position: relative;
-  transition: width 0.2s ease-in-out;
-
-  .panel {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    height: 100%;
-    overflow: hidden;
-    transition: opacity .15s linear;
-
-    h1 {
-      cursor: default;
-      font-size: 25/16rem;
-      font-weight: normal;
-      margin-bottom: 2/16rem;
-      margin-top: 12/16rem;
-      padding: 0 20/16rem;
-      max-width: 200/16rem;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    h3 {
-      margin: 0;
-      padding: 0 0 0 10/16rem;
-      font-size: 10/16rem;
-      font-weight: normal;
-    }
-    hr {
-      height: 1/16rem;
-      width: 100%;
-      border: 0;
-      margin-top: 10/16rem;
-      margin-bottom: 10/16rem;
-    }
-    ul {
-      padding: 0;
-      font-size: 100%;
-      list-style-type: none;
-      margin: 0;
-      li {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        box-sizing: border-box;
-        margin: 0;
-        padding: 12/16rem;
-        padding-left: 20/16rem;
-        white-space: nowrap;
-        &:hover, &.active {
-          border-left: 10/16rem solid transparent;
-          padding-left: 10/16rem;
-          i {
-            color: #888
-          }
-        }
-        .name {
-          flex: 1;
-        }
-        i {
-          display: inline-block;
-          font-size: 10/16rem;
-          height: 12/16rem;
-          width: 12/16rem;
-          margin: 5/16rem;
-          text-align: center;
-          vertical-align: middle;
-          color: transparent;
-          &:hover {
-            color: #fff;
-          }
-        }
-      }
-    }
-    .scroll {
-      flex: 1;
-      margin: 10/16rem 0;
-      overflow-y: auto;
-      overflow-x: hidden;
-    }
-    .actions {
-      flex: none;
-      max-height: 192/16rem;
-    }
-  }
-
-  .menu {
-    opacity: 1;
-    z-index: 1;
-  }
-
-  .option {
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: -1;
-
-    li {
-      justify-content: space-between;
-    }
-
-    input, select {
-      font-size: 12/16rem;
-      width: 100/16rem;
-      height: 26/16rem;
-      padding: 2/16rem 4/16rem;
-    }
-  }
-
-  &.open-option {
-    .menu {
-      opacity: 0;
-      z-index: -1;
-    }
-    .option {
-      opacity: 1;
-      z-index: 1;
-    }
-  }
-
-  .resizer {
-    @width: 6;
-    position: absolute;
-    top: 0;
-    right: 0;
-    cursor: col-resize;
-    height: 100%;
-    width: @width/16rem;
-    margin-left: -@width/2/16rem;
-    margin-right: -@width/2/16rem;
-    z-index: 1000;
-  }
-
-
-  // ::-webkit-scrollbar {
-  //   width: 0;
-  //   -webkit-appearance: none;
-  // }
 }
 
 .main {
@@ -443,90 +291,7 @@ table {
     flex: 1;
     flex-direction: column;
     padding: 10/16rem;
-  }
-}
-
-.modal {
-  background-color: rgba(0, 0, 0, .5);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 2000;
-  -webkit-overflow-scrolling: touch;
-  outline: 0;
-
-  .modal-dialog {
-    width: 600/16rem;
     position: relative;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1/16rem solid rgba(0,0,0,.2);
-    border-radius: 3/16rem;
-    box-shadow: 0 0 20/16rem rgba(0, 0, 0, .2);
-    outline: 0;
-  }
-
-  .modal-header {
-    padding: 10/16rem 15/16rem;
-    border-bottom: 1/16rem solid #e5e5e5;
-
-    .close {
-      -webkit-appearance: none;
-      margin-top: -2/16rem;
-      padding: 0;
-      cursor: pointer;
-      background: 0 0;
-      border: 0;
-      float: right;
-      font-size: 25/16rem;
-      line-height: 1;
-      color: #000;
-      opacity: .2;
-
-      &:focus,
-      &:hover {
-        color: #000;
-        text-decoration: none;
-        cursor: pointer;
-        opacity: .5;
-      }
-    }
-
-    .modal-title {
-      margin: 0;
-      line-height: 1.5;
-      font-weight: 500;
-    }
-  }
-
-  .modal-body {
-    position: relative;
-    padding: 10/16rem 15/16rem;
-  }
-
-  .modal-footer {
-    padding: 10/16rem 15/16rem;
-    text-align: right;
-    border-top: 1/16rem solid #e5e5e5;
-  }
-
-  &.fade {
-    // transition: opacity, z-index .15s linear;
-    .modal-dialog {
-      transition: transform .3s ease-out;
-      transform: translate(0, -25%);
-    }
-  }
-  &.in {
-    // z-index: 1050;
-    .modal-dialog {
-      transform: translate(0, 0);
-    }
   }
 }
 

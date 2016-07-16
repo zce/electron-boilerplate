@@ -1,11 +1,14 @@
 import path from 'path'
 import electron from 'electron'
+import pkg from '../package.json'
 
 const app = electron.app || electron.remote.app
 
 export default {
   app_name: app.getName(),
   app_version: app.getVersion(),
+  app_updated: pkg.updated,
+  app_description: pkg.description,
   storage_root: path.resolve(app.getPath('userData'), 'data'), // ????
   storage_ext: '.dat',
   storage_sign: `© ${new Date().getFullYear()} WEDN.NET`,

@@ -10,7 +10,6 @@ Plugin.install = function (Vue, options) {
   Vue.prototype.$electron = electron
   Vue.prototype.$config = config
   Vue.prototype.$utils = utils
-  console.log(storage)
   Vue.prototype.$storage = storage
   Vue.prototype.$server = server
 }

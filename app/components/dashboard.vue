@@ -16,22 +16,22 @@
   <div>
     <img src="../assets/img/logo.png" alt="electron-vue">
     <h1>Hello Electron + Vue.</h1>
-    <current-page></current-page>
+    <current></current>
     <versions></versions>
     <links></links>
   </div>
 </template>
 
 <script>
-  import CurrentPage from './dashboard/currentpage'
-  import Links from './dashboard/links'
-  import Versions from './dashboard/versions'
+  import current from './dashboard/currentpage'
+  import links from './dashboard/links'
+  import versions from './dashboard/versions'
 
   export default {
     components: {
-      CurrentPage,
-      Links,
-      Versions
+      current,
+      links,
+      versions
     },
     name: 'dashboard'
   }

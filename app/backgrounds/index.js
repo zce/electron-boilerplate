@@ -24,7 +24,7 @@ app.on('ready', () => {
   if (process.env.NODE_ENV === 'production') {
     mainWindow.loadURL(`file://${__dirname}/index.html`)
   } else {
-    mainWindow.loadURL('http://localhost:8080/index.html')
+    mainWindow.loadURL('http://localhost:2080/index.html')
     mainWindow.webContents.openDevTools({ detach: true })
   }
 })

@@ -1,10 +1,31 @@
-<style>
+<style lang="less">
   @import url(https://fonts.googleapis.com/css?family=Lato:300);
+  /* 必需 */
+  .fade-transition {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 10/16rem;
+    transition: opacity 0.2s ease-in-out;
+    transition-delay: 0.2s;
+    overflow: hidden;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  /* .fade-enter 定义进入的开始状态 */
+  /* .fade-leave 定义离开的结束状态 */
+  .fade-enter, .fade-leave {
+    opacity: 0;
+    visibility: hidden;
+  }
 </style>
 
 <template>
   <div class="window default">
-    <sidebar :open="sidebarOpened"></sidebar>
+    <sidebar :open.sync="sidebarOpened"></sidebar>
     <main class="main">
       <header class="titlebar drag">
         <button class="btn no-drag" @click="window('toggle-sidebar')"><i class="fa fa-bars" aria-hidden="true"></i></button>
@@ -14,37 +35,22 @@
         <button class="btn no-drag" @click="window('close')"><i class="fa fa-times" aria-hidden="true"></i></button>
       </header>
       <section class="content">
-        <router-view></router-view>
+        <router-view transition="fade"></router-view>
       </section>
     </main>
-    <div id="about" class="modal fade">
-      <div class="modal-dialog" role="document">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            <span class="sr-only">Close</span>
-          </button>
-          <h3 class="modal-title">{{$config.app_name}}</h3>
-        </div>
-        <div class="modal-body">
-          <p>Coming soon&hellip;</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">OK</button>
-        </div>
-      </div>
-    </div>
+    <about :open.sync="aboutOpened"></about>
   </div>
 </template>
 
 <script>
   import sidebar from './components/sidebar'
+  import about from './components/about'
 
   export default {
-    components: { sidebar },
+    components: { sidebar, about },
 
     ready () {
-      this.$server.start()
+      // this.$server.start()
     },
 
     data () {
@@ -54,6 +60,7 @@
 
       return {
         sidebarOpened: false,
+        aboutOpened: false,
         isMaximized: mainWindow.isMaximized(),
         current_stamp: this.$config.app_name
       }
@@ -63,6 +70,11 @@
       window (action) {
         if (action === 'toggle-sidebar') {
           this.sidebarOpened = !this.sidebarOpened
+          return
+        }
+
+        if (action === 'toggle-about') {
+          this.aboutOpened = !this.aboutOpened
           return
         }
 

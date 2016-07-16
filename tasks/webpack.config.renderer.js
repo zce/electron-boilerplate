@@ -34,7 +34,7 @@ module.exports = merge(base, {
     noInfo: false,
     // lazy: true,
     hot: true,
-    port: 8080
+    port: 2080
   },
   plugins: [
     new ExtractTextPlugin('css/[name].css')
