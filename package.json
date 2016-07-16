@@ -1,8 +1,4 @@
 {
-  "name": "electron-boilerplate",
-  "version": "0.1.0",
-  "description": "A Bolierplate application for Electron runtime",
-  "main": "build/main.js",
   "scripts": {
     "postinstall": "cd app && npm install && cd ..",
     "clean": "rimraf build/*",
@@ -58,23 +54,5 @@
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1",
     "webpack-merge": "^0.14.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zce/electron-boilerplate.git"
-  },
-  "keywords": [
-    "iceStone",
-    "wedn",
-    "micua",
-    "electron",
-    "vue",
-    "webpack"
-  ],
-  "author": "iceStone <ice@micua.com> (http://blog.wedn.net/)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/zce/electron-boilerplate/issues"
-  },
-  "homepage": "https://github.com/zce/electron-boilerplate#readme"
+  }
 }
