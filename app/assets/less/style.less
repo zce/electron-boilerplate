@@ -15,26 +15,6 @@
 @warning-color: hsl(48, 95%, 59%);
 // style
 // =============================
-html {
-  cursor: default;
-  height: 100%;
-  overflow: hidden;
-  font-size: 100%;
-  box-sizing: border-box;
-  -webkit-user-select: none;
-}
-
-body {
-  height: 100%;
-  font: 100%/1.5 "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-
 a {
   color: @primary-color;
   text-decoration: none;
@@ -94,7 +74,7 @@ a {
   padding: 0;
   margin: -1/16rem;
   overflow: hidden;
-  clip: rect(0,0,0,0);
+  clip: rect(0, 0, 0, 0);
   border: 0;
 }
 
@@ -124,7 +104,10 @@ a {
 
 // components styles
 // =====================================
-button, input, select, textarea {
+button,
+input,
+select,
+textarea {
   &:focus {
     outline: 0;
   }
@@ -243,57 +226,6 @@ table {
 
 // module styles
 // ================================
-.window {
-  display: flex;
-  height: 100%;
-}
-
-.main {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  overflow: hidden;
-
-  .titlebar {
-    border-bottom: 1/16rem solid transparent;
-    display: flex;
-    align-items: center;
-    max-width: 100%;
-    padding: 0 5/16rem;
-
-    .title {
-      flex: 1;
-      margin: 10/16rem;
-      font-size: 16/16rem;
-      font-weight: normal;
-      line-height: 30/16rem;
-      text-align: center;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-
-    .btn {
-      font-size: 18/16rem;
-      font-weight: normal;
-      background-color: transparent;
-      border: 1/16rem solid;
-      border-radius: 2/16rem;
-      height: 32/16rem;
-      width: 32/16rem;
-      margin: 3/16rem;
-      padding: 0;
-    }
-  }
-
-  .content {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    padding: 10/16rem;
-    position: relative;
-  }
-}
 
 // themes
 // ================================

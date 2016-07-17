@@ -1,7 +1,92 @@
 <style lang="less">
-  @import url(https://fonts.googleapis.com/css?family=Lato:300);
+  /* latin-ext */
+  @font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Lato Light'), local('Lato-Light'), url(assets/fonts/lato1.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+  }
+
+  /* latin */
+  @font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Lato Light'), local('Lato-Light'), url(assets/fonts/lato2.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+  }
+
+  html {
+    cursor: default;
+    height: 100%;
+    overflow: hidden;
+    font-size: 100%;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+  }
+
+  body {
+    height: 100%;
+    font: 100%/1.5 Lato, "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+
+  .window {
+    display: flex;
+    height: 100%;
+  }
+
+  .main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    overflow: hidden;
+    .titlebar {
+      border-bottom: 1/16rem solid transparent;
+      display: flex;
+      align-items: center;
+      max-width: 100%;
+      padding: 0 5/16rem;
+      .title {
+        flex: 1;
+        margin: 10/16rem;
+        font-size: 16/16rem;
+        font-weight: normal;
+        line-height: 30/16rem;
+        text-align: center;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      .btn {
+        font-size: 18/16rem;
+        font-weight: normal;
+        background-color: transparent;
+        border: 1/16rem solid;
+        border-radius: 2/16rem;
+        height: 32/16rem;
+        width: 32/16rem;
+        margin: 3/16rem;
+        padding: 0;
+      }
+    }
+    .content {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding: 10/16rem;
+      position: relative;
+    }
+  }
+
   /* 必需 */
-  .fade-transition {
+  .content-transition {
     position: absolute;
     top: 0;
     left: 0;
@@ -15,9 +100,9 @@
     opacity: 1;
   }
 
-  /* .fade-enter 定义进入的开始状态 */
-  /* .fade-leave 定义离开的结束状态 */
-  .fade-enter, .fade-leave {
+  /* .content-enter 定义进入的开始状态 */
+  /* .content-leave 定义离开的结束状态 */
+  .content-enter, .content-leave {
     opacity: 0;
     visibility: hidden;
   }
@@ -35,7 +120,7 @@
         <button class="btn no-drag" @click="window('close')"><i class="fa fa-times" aria-hidden="true"></i></button>
       </header>
       <section class="content">
-        <router-view transition="fade"></router-view>
+        <router-view transition="content"></router-view>
       </section>
     </main>
     <about :open.sync="aboutOpened"></about>
