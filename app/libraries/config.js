@@ -9,6 +9,7 @@ export default {
   app_version: app.getVersion(),
   app_updated: pkg.updated,
   app_description: pkg.description,
+  app_path: app.getAppPath(),
   storage_root: path.resolve(app.getPath('userData'), 'data'), // ????
   storage_ext: '.dat',
   storage_sign: `© ${new Date().getFullYear()} WEDN.NET`,
@@ -22,11 +23,11 @@ export default {
     send: '邮件发送完成'
   },
   answer_options: {
-    0: { short: 'A', full: 'A. 非常清楚' },
-    1: { short: 'B', full: 'B. 基本清楚' },
-    2: { short: 'C', full: 'C. 有点模糊' },
-    3: { short: 'D', full: 'D. 几乎不懂' }
-  },
+    0: { short: 'A', full: 'A. 非常清楚', ratio: 1.0 },
+    1: { short: 'B', full: 'B. 基本清楚', ratio: 0.8 },
+    2: { short: 'C', full: 'C. 有点模糊', ratio: 0.5 },
+    3: { short: 'D', full: 'D. 几乎不懂', ratio: 0.1 }
+  }
   allow_admin_rating: true,
   allow_student_repeat: false
 }

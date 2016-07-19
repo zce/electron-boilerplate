@@ -15,7 +15,8 @@ module.exports = merge(base, {
   plugins: [
     new CopyWebpackPlugin([
       { from: './app/package.json', to: '.' },
-      { from: './app/node_modules', to: './node_modules' }
+      { from: './app/node_modules', to: './node_modules' },
+      { from: './app/views', to: './views' }
     ])
   ],
 })

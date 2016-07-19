@@ -150,18 +150,19 @@
     <div class="panel menu">
       <h1 class="logo drag">{{$config.app_name}}</h1>
       <hr>
-      <h3>ACTIONS</h3>
+      <h3>操作</h3>
       <div class="scroll actions">
         <ul>
-          <li v-link="{ name: 'dashboard' }">Dashboard</li>
-          <li v-link="{ name: 'demo' }">Demo</li>
+          <li v-link="{ name: 'dashboard' }" :class="{active: $root.title === '仪表盘'}">仪表盘</li>
+          <!-- <li v-link="{ name: 'demo' }">Demo</li> -->
+          <li v-link="{ name: 'start' }" :class="{active: $root.title === '创建新的反馈统计'}">创建新的反馈</li>
         </ul>
       </div>
       <hr>
-      <h3>RECORDS</h3>
+      <h3>反馈记录</h3>
       <div class="scroll">
         <ul>
-          <li v-for="item in records" track-by="$index" :class="{ active: $root.title === item.stamp }" title="{{ item.path }}" v-link="{ name: 'demo', params: { item: item.stamp } }">
+          <li v-for="item in records" track-by="$index" :class="{ active: $root.title === item.stamp }" title="{{ item.path }}" v-link="{ name: 'watch', params: { item: item.stamp } }">
             <span class="name">{{item.name}}</span>
             <i class="fa fa-external-link" title="在文件夹中找到" @click="reveal(item, $event)"></i>
             <i class="fa fa-times" title="删除到回收站" @click="remove(item, $event)"></i>
@@ -169,39 +170,39 @@
         </ul>
       </div>
       <hr>
-      <h3>HELP</h3>
+      <h3>帮助</h3>
       <div class="scroll actions">
         <ul>
-          <li @click="toggleOption()">Option</li>
-          <li @click="$parent.window('toggle-about')">About</li>
+          <li @click="toggleOption()">设置</li>
+          <li @click="$root.window('toggle-about')">关于</li>
         </ul>
       </div>
     </div>
     <div class="panel option">
-      <h1>Demo</h1>
+      <h1>Settings</h1>
       <hr>
-      <h3>Options</h3>
+      <h3>选项</h3>
       <div class="scroll">
         <ul>
           <li>
-            <label>theme</label>
+            <label>主题</label>
             <select v-model="$root.theme">
               <option value="default">default</option>
               <option value="dark">dark</option>
               <option value="light">light</option>
             </select>
           </li>
-          <li>
+          <!-- <li>
             <label>port</label>
             <input type="text">
-          </li>
+          </li> -->
         </ul>
       </div>
       <hr>
-      <h3>help</h3>
+      <h3>帮助</h3>
       <div class="scroll actions">
         <ul>
-          <li @click="toggleOption()">Back</li>
+          <li @click="toggleOption()">返回</li>
         </ul>
       </div>
     </div>
@@ -250,13 +251,13 @@
         // 跳转到第一个记录
         const find = this.records.some(r => {
           if (r.stamp !== item.stamp) {
-            this.$router.go({ name: 'watcher', params: { item: r.stamp } })
+            this.$router.go({ name: 'watch', params: { item: r.stamp } })
             return true
           }
         })
 
         // 没有记录跳转到开始界面
-        find || this.$router.go({ name: 'editor' })
+        find || this.$router.go({ name: 'start' })
       },
 
       reveal (item, e) {

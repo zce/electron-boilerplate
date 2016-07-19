@@ -1,8 +1,8 @@
 {
-  "name": "electron-boilerplate",
-  "productName": "Electron Boilerplate",
+  "name": "feedback",
+  "productName": "Feedback",
   "version": "0.1.1",
-  "description": "A Bolierplate application for Electron runtime",
+  "description": "A Feedback application for Itcast",
   "updated": "2016-07-07T16:56:12.476Z",
   "main": "main.js",
   "repository": {

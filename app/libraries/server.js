@@ -11,13 +11,14 @@ import { main as logger } from './logger'
 import { getLocalAreaIp } from './utils'
 
 const stampFormat = '\\w{' + config.stamp_length + '}'
+const staticDir = path.resolve(config.app_path, 'views')
 
 const app = express()
 
 app.set('view engine', 'xtpl')
-app.set('views', path.resolve(__dirname, './main/view'))
+app.set('views', staticDir)
 
-// app.use(express.static(path.resolve(__dirname, './main/static')))
+app.use(express.static(staticDir))
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use((req, res, next) => {
@@ -52,8 +53,6 @@ app.get(`/:stamp(${stampFormat})`, (req, res) => {
     return false
   }
 
-  // const ruleKeys = Object.keys(data.questions)
-  // data.rule_key = ruleKeys.length && ruleKeys[ruleKeys.length - 1]
   data.answer_options = config.answer_options
 
   res.render('rating', data)
@@ -62,7 +61,7 @@ app.get(`/:stamp(${stampFormat})`, (req, res) => {
 /**
  * POST /r/:stamp
  */
-app.post(`/r/:stamp(${stampFormat})`, (req, res) => {
+app.post(`/:stamp(${stampFormat})`, (req, res) => {
   if (req.isLocal && !config.allow_admin_rating) {
     res.render('rated', { error: true, message: '您是管理员，不允许参加测评！' })
     return false
@@ -81,7 +80,7 @@ app.post(`/r/:stamp(${stampFormat})`, (req, res) => {
     return false
   }
 
-  if (data.rated_info[req.clientIp] && !config.allow_student_repeat) {
+  if (data.receives[req.clientIp] && !config.allow_student_repeat) {
     res.render('rated', { error: true, message: '你已经评价过了，不可以重复评价！' })
     return false
   }
@@ -93,8 +92,8 @@ app.post(`/r/:stamp(${stampFormat})`, (req, res) => {
     return false
   }
 
-  data.rated_info[req.clientIp] = info
-  data.rated_count++
+  data.receives[req.clientIp] = info
+  data.receives_count++
 
   storage.set(stamp, data)
 
@@ -102,14 +101,16 @@ app.post(`/r/:stamp(${stampFormat})`, (req, res) => {
 })
 
 function convert (stamp, body) {
-  const questions = storage.get(stamp).questions
-  const marksKeys = Object.keys(body).filter(k => k && k !== 'note' && k !== 'hash')
-  const validated = questions.length === marksKeys.length
+  const targets = storage.get(stamp).targets
+  const marksKeys = Object.keys(body).filter(k => k && k !== 'name' && k !== 'hash' && k !== 'note')
+  const validated = targets.length === marksKeys.length
   if (!validated) return null
 
   const marks = {}
   marksKeys.forEach(k => { marks[k] = parseInt(body[k], 10) })
   const feedback = {
+    name: body.name,
+    hash: body.hash,
     note: body.note,
     marks: marks
   }

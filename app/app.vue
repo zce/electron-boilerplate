@@ -42,19 +42,27 @@
       display: flex;
       flex: 1;
       flex-direction: column;
-      padding: 10/16rem;
+      padding: 15/16rem;
       position: relative;
+
+      // .inner {
+      //   // align-items: center;
+      //   // justify-content: center;
+      // }
     }
   }
 
   /* 必需 */
   .content-transition {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 10/16rem;
+    margin: 15/16rem;
     transition: opacity 0.2s ease-in-out;
     transition-delay: 0.2s;
     overflow: hidden;
@@ -96,9 +104,8 @@
   export default {
     components: { sidebar, about },
 
-    ready () {
-      this.$server.start()
-    },
+    // created () {
+    // },
 
     data () {
       const mainWindow = this.$electron.remote.getCurrentWindow()

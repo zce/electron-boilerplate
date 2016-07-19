@@ -1,8 +1,5 @@
 <style scoped>
   div {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
   }
@@ -13,7 +10,7 @@
 </style>
 
 <template>
-  <div>
+  <div class="inner">
     <img src="../assets/img/logo.png" alt="electron-vue">
     <h1>Hello Electron + Vue.</h1>
     <current></current>
@@ -33,6 +30,11 @@
       links,
       versions
     },
-    name: 'dashboard'
+
+    name: 'dashboard',
+
+    ready () {
+      this.$root.title = '仪表盘'
+    }
   }
 </script>
