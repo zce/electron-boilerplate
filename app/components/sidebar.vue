@@ -109,6 +109,8 @@
         width: 100/16rem;
         height: 26/16rem;
         padding: 2/16rem 4/16rem;
+        border: 1/16rem solid;
+        border-radius: 0;
       }
     }
 
@@ -136,7 +138,6 @@
       z-index: 1000;
     }
 
-
     // ::-webkit-scrollbar {
     //   width: 0;
     //   -webkit-appearance: none;
@@ -160,7 +161,7 @@
       <h3>RECORDS</h3>
       <div class="scroll">
         <ul>
-          <li v-for="item in records" track-by="$index" :class="{ active: $root.current_stamp === item.stamp }" title="{{ item.path }}" v-link="{ name: 'demo', params: { item: item.stamp } }">
+          <li v-for="item in records" track-by="$index" :class="{ active: $root.title === item.stamp }" title="{{ item.path }}" v-link="{ name: 'demo', params: { item: item.stamp } }">
             <span class="name">{{item.name}}</span>
             <i class="fa fa-external-link" title="在文件夹中找到" @click="reveal(item, $event)"></i>
             <i class="fa fa-times" title="删除到回收站" @click="remove(item, $event)"></i>
@@ -184,7 +185,7 @@
         <ul>
           <li>
             <label>theme</label>
-            <select>
+            <select v-model="$root.theme">
               <option value="default">default</option>
               <option value="dark">dark</option>
               <option value="light">light</option>
@@ -200,7 +201,7 @@
       <h3>help</h3>
       <div class="scroll actions">
         <ul>
-          <li @click="toggleOption()">back</li>
+          <li @click="toggleOption()">Back</li>
         </ul>
       </div>
     </div>
@@ -245,7 +246,7 @@
           // return $.logger.error(e)
         }
         // 当前打开的不是该文件
-        if (this.$root.current_stamp !== item.stamp) return false
+        if (this.$root.title !== item.stamp) return false
         // 跳转到第一个记录
         const find = this.records.some(r => {
           if (r.stamp !== item.stamp) {

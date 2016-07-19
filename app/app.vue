@@ -1,42 +1,4 @@
 <style lang="less">
-  /* latin-ext */
-  @font-face {
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 300;
-    src: local('Lato Light'), local('Lato-Light'), url(assets/fonts/lato1.woff2) format('woff2');
-    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
-  }
-
-  /* latin */
-  @font-face {
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 300;
-    src: local('Lato Light'), local('Lato-Light'), url(assets/fonts/lato2.woff2) format('woff2');
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-  }
-
-  html {
-    cursor: default;
-    height: 100%;
-    overflow: hidden;
-    font-size: 100%;
-    box-sizing: border-box;
-    -webkit-user-select: none;
-  }
-
-  body {
-    height: 100%;
-    font: 100%/1.5 Lato, "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
-  }
-
-  *,
-  *::before,
-  *::after {
-    box-sizing: inherit;
-  }
-
   .window {
     display: flex;
     height: 100%;
@@ -109,12 +71,12 @@
 </style>
 
 <template>
-  <div class="window default">
+  <div class="window {{theme}}">
     <sidebar :open.sync="sidebarOpened"></sidebar>
     <main class="main">
       <header class="titlebar drag">
         <button class="btn no-drag" @click="window('toggle-sidebar')"><i class="fa fa-bars" aria-hidden="true"></i></button>
-        <h2 class="title">{{current_stamp}}</h2>
+        <h2 class="title">{{title}}</h2>
         <button class="btn no-drag" @click="window('minimize')"><i class="fa fa-minus" aria-hidden="true"></i></button>
         <button class="btn no-drag" @click="window('maximize')"><i class="fa" :class="{ 'fa-expand': !isMaximized, 'fa-compress': isMaximized }" aria-hidden="true"></i></button>
         <button class="btn no-drag" @click="window('close')"><i class="fa fa-times" aria-hidden="true"></i></button>
@@ -135,7 +97,7 @@
     components: { sidebar, about },
 
     ready () {
-      // this.$server.start()
+      this.$server.start()
     },
 
     data () {
@@ -144,10 +106,11 @@
       setTimeout(() => { this.sidebarOpened = true }, 150)
 
       return {
+        title: this.$config.app_name,
+        isMaximized: mainWindow.isMaximized(),
         sidebarOpened: false,
         aboutOpened: false,
-        isMaximized: mainWindow.isMaximized(),
-        current_stamp: this.$config.app_name
+        theme: 'default'
       }
     },
 

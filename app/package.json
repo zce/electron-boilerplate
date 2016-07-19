@@ -5,12 +5,6 @@
   "description": "A Bolierplate application for Electron runtime",
   "updated": "2016-07-07T16:56:12.476Z",
   "main": "main.js",
-  "dependencies": {
-    "body-parser": "^1.15.2",
-    "express": "^4.14.0",
-    "xtemplate": "^4.5.1",
-    "xtpl": "^3.2.0"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zce/feedback.git"
@@ -28,5 +22,15 @@
   "bugs": {
     "url": "https://github.com/zce/feedback/issues"
   },
-  "homepage": "https://github.com/zce/feedback#readme"
+  "homepage": "https://github.com/zce/feedback#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "xtemplate": "^4.5.1",
+    "xtpl": "^3.2.0"
+  },
+  "devDependencies": {
+    "devtron": "^1.2.1",
+    "vue-devtools": "^2.0.4"
+  }
 }

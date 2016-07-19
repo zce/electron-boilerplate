@@ -26,6 +26,9 @@ app.on('ready', () => {
   } else {
     mainWindow.loadURL('http://localhost:2080/index.html')
     mainWindow.webContents.openDevTools({ detach: true })
+    // mainWindow
+    require('devtron').install()
+    require('vue-devtools').install()
   }
 })
 
