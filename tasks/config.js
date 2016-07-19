@@ -23,7 +23,8 @@ module.exports = {
   'download': {},
   'app-bundle-id': `net.wedn.${pkg.name}`,
   'helper-bundle-id': `net.wedn.${pkg.name}.helper`,
-  'app-category-type': 'public.app-category.developer-tools',
+  // 'app-category-type': 'public.app-category.developer-tools',
+  'app-category-type': 'public.app-category.productivity',
   'app-copyright': `Copyright (c) ${new Date().getFullYear()} WEDN.NET.`,
   'version-string': {
     CompanyName: 'WEDN.NET',
