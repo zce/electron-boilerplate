@@ -44,6 +44,14 @@
       flex-direction: column;
       padding: 10/16rem;
       position: relative;
+
+      .inner {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        // align-items: center;
+        // justify-content: center;
+      }
     }
   }
 
