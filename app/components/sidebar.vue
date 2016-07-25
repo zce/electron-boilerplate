@@ -110,7 +110,7 @@
         height: 26/16rem;
         padding: 2/16rem 4/16rem;
         border: 1/16rem solid;
-        border-radius: 0;
+        border-radius: 4/16rem;
       }
     }
 
@@ -280,7 +280,7 @@
 
       mousemove (e) {
         let width = this.beginWidth + e.clientX - this.beginX
-        width = width < 120 ? 120 : width
+        width = width < 200 ? 200 : width
         width = width > 600 ? 600 : width
         this.width = width
       },
