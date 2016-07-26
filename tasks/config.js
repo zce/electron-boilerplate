@@ -10,7 +10,7 @@ module.exports = {
   'platform': argv.platform || 'all',
   'arch': argv.arch || 'all',
   'build-version': pkg.version,
-  'ignore': [/node_modules|src/],
+  'ignore': [],
   'overwrite': true,
   'prune': argv.prune || false,
   'version': argv.version || require('../node_modules/electron-prebuilt/package.json').version,

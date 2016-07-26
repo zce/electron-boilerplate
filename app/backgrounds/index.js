@@ -9,6 +9,18 @@ import createWindow from './window'
 
 let mainWindow
 
+const shouldQuit = app.makeSingleInstance((commandLine, workingDirectory) => {
+  // Someone tried to run a second instance, we should focus our window.
+  if (mainWindow) {
+    if (mainWindow.isMinimized()) mainWindow.restore()
+    mainWindow.focus()
+  }
+})
+
+if (shouldQuit) {
+  app.quit()
+}
+
 app.on('ready', () => {
   // setAppMenu()
   mainWindow = createWindow('main', {
