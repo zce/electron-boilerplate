@@ -3,6 +3,7 @@
     // display: flex;
     position: relative;
     transition: width 0.2s ease-in-out;
+    // transition-delay: 0.2s;
 
     .panel {
       display: flex;
@@ -152,68 +153,68 @@
     <section class="panel menu">
       <h1 class="logo drag">{{$config.app.name}}</h1>
       <hr>
-      <h3>ACTIONS</h3>
+      <h3>{{$t('sidebar.actions.title')}}</h3>
       <div class="scroll actions">
         <ul>
-          <li v-link="{name: 'dashboard'}">Dashboard</li>
+          <li v-link="{name: 'dashboard'}">{{$t('sidebar.actions.dashboard')}}</li>
           <li v-link="{name: 'vuex'}">VUEX</li>
         </ul>
       </div>
       <hr>
-      <h3>RECORDS</h3>
+      <h3>{{$t('sidebar.records.title')}}</h3>
       <div class="scroll">
         <ul>
           <li v-for="item in records" track-by="$index" :class="{active: $root.title === item.stamp}" title="{{item.path}}" v-link="{name: 'demo', params: {item: item.stamp}}">
             <span class="name">{{item.name}}</span>
-            <i class="fa fa-external-link" title="在文件夹中找到" @click="reveal(item, $event)"></i>
-            <i class="fa fa-times" title="删除到回收站" @click="remove(item, $event)"></i>
+            <i class="fa fa-external-link" title="{{$t('sidebar.records.revealinfinder', {name: item.name})}}" @click="reveal(item, $event)"></i>
+            <i class="fa fa-times" title="{{$t('sidebar.records.movetotrash', {name: item.name})}}" @click="remove(item, $event)"></i>
           </li>
         </ul>
       </div>
       <hr>
-      <h3>HELP</h3>
+      <h3>{{$t('sidebar.help.title')}}</h3>
       <div class="scroll actions">
         <ul>
-          <li @click="toggleOption()">Option</li>
-          <li @click="$parent.window('toggle-about')">About</li>
+          <li @click="toggleOption()">{{$t('sidebar.help.options')}}</li>
+          <li @click="$parent.window('toggle-about')">{{$t('sidebar.help.about')}}</li>
         </ul>
       </div>
     </section>
     <section class="panel option">
-      <h1>Setting</h1>
+      <h1>{{$t('sidebar.settings.title')}}</h1>
       <hr>
-      <h3>OPTIONS</h3>
+      <h3>{{$t('sidebar.options.title')}}</h3>
       <div class="scroll">
         <ul>
           <li>
-            <label>theme</label>
-            <select v-model="$root.theme">
-              <option v-for="(key, value) in themes" value="{{key}}">{{$t(value)}}</option>
+            <label for="theme">{{$t('sidebar.options.theme.title')}}</label>
+            <select id="theme" v-model="$root.window_theme">
+              <option v-for="(key, value) in themes" value="{{key}}">{{$t('sidebar.options.theme.' + value)}}</option>
             </select>
           </li>
           <li>
-            <label>address</label>
-            <select v-model="$root.server.address">
+            <label for="address">{{$t('sidebar.options.address')}}</label>
+            <select id="address" v-model="$root.server_address">
               <option v-for="item in addresses" value="{{item}}">{{item}}</option>
             </select>
           </li>
           <li>
-            <label>port</label>
-            <input type="number" v-model="$root.server.port" debounce="500" lazy>
+            <label for="port">{{$t('sidebar.options.port')}}</label>
+            <input id="port" type="number" v-model="$root.server_port" debounce="500" number lazy>
           </li>
           <li>
-            <label>locales</label>
-            <select v-model="$root.config.lang">
-              <option v-for="(key, value) in locales" value="{{key}}">{{key}}</option>
+            <label for="locales">{{$t('sidebar.options.locales')}}</label>
+            <select id="locales" v-model="$root.lang">
+              <option v-for="(key, value) in locales" value="{{key}}">{{value.name}}</option>
             </select>
           </li>
         </ul>
       </div>
       <hr>
-      <h3>HELP</h3>
+      <h3>{{$t('sidebar.help.title')}}</h3>
       <div class="scroll actions">
         <ul>
-          <li @click="toggleOption()">Back</li>
+          <li @click="toggleOption()">{{$t('sidebar.help.back')}}</li>
         </ul>
       </div>
     </section>

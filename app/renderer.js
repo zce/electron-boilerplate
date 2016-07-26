@@ -5,10 +5,6 @@ import './assets/less/style.less'
 
 import Vue from 'vue'
 
-// custom plugin
-import Plugin from './libraries/vue'
-Vue.use(Plugin)
-
 // router
 import Router from 'vue-router'
 Vue.use(Router)
@@ -19,6 +15,14 @@ Vue.use(I18n)
 import locales from './locales'
 Object.keys(locales).forEach(item => Vue.locale(item, locales[item]))
 
+// custom plugin
+import Plugin from './libraries/vue'
+Vue.use(Plugin)
+
+// config
+Vue.config.debug = process.env.NODE_ENV !== 'production'
+Vue.config.silent = process.env.NODE_ENV === 'production'
+
 // routes
 const router = new Router()
 import routes from './libraries/routes'
@@ -28,7 +32,3 @@ router.map(routes)
 import App from './app'
 router.start(App, 'app')
 
-// config
-Vue.config.debug = process.env.NODE_ENV !== 'production'
-Vue.config.silent = process.env.NODE_ENV === 'production'
-Vue.config.lang = 'zh-CN'

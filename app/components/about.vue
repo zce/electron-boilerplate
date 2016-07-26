@@ -118,11 +118,11 @@
       <section class="modal-body">
         <p><strong>{{$config.app.description}}</strong></p>
         <ul>
-          <li><span>Core:     </span><strong>v{{$config.app.version}}</strong></li>
-          <li><span>Node:     </span><strong>v{{versions.node}}</strong></li>
-          <li><span>Chrome:   </span><strong>v{{versions.chrome}}</strong></li>
-          <li><span>Electron: </span><strong>v{{versions.electron}}</strong></li>
-          <li><span>Datetime: </span><strong>{{$config.app.updated}}</strong></li>
+          <li><span>{{$t('about.core')}}:     </span><strong>v{{versions.app}}</strong></li>
+          <li><span>{{$t('about.node')}}:     </span><strong>v{{versions.node}}</strong></li>
+          <li><span>{{$t('about.electron')}}: </span><strong>v{{versions.electron}}</strong></li>
+          <li><span>{{$t('about.chromium')}}: </span><strong>v{{versions.chrome}}</strong></li>
+          <li><span>{{$t('about.datetime')}}: </span><strong>{{$config.app.updated}}</strong></li>
         </ul>
       </section>
       <section class="modal-footer">
@@ -139,6 +139,7 @@
     },
 
     data () {
+      process.versions.app = this.$config.app.version
       return { versions: process.versions }
     },
 

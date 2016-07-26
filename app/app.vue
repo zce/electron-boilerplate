@@ -79,28 +79,30 @@
 </style>
 
 <template>
-  <div class="window {{theme}}">
-    <sidebar :open.sync="sidebarOpened"></sidebar>
+  <div class="window {{window_theme}}">
+    <sidebar :open.sync="sidebar_opened"></sidebar>
     <main class="main">
       <header class="titlebar drag">
         <button class="btn no-drag" @click="window('toggle-sidebar')"><i class="fa fa-bars" aria-hidden="true"></i></button>
         <h2 class="title">{{title}}</h2>
         <button class="btn no-drag" @click="window('minimize')"><i class="fa fa-minus" aria-hidden="true"></i></button>
-        <button class="btn no-drag" @click="window('maximize')"><i class="fa" :class="{ 'fa-expand': !isMaximized, 'fa-compress': isMaximized }" aria-hidden="true"></i></button>
+        <button class="btn no-drag" @click="window('maximize')"><i class="fa" :class="{ 'fa-expand': !maximized, 'fa-compress': maximized }" aria-hidden="true"></i></button>
         <button class="btn no-drag" @click="window('close')"><i class="fa fa-times" aria-hidden="true"></i></button>
       </header>
       <section class="content">
         <router-view transition="content"></router-view>
       </section>
     </main>
-    <about :open.sync="aboutOpened"></about>
+    <about :open.sync="about_opened"></about>
   </div>
 </template>
 
 <script>
+  import electron from 'electron'
   import Vue from 'vue'
   import sidebar from './components/sidebar'
   import about from './components/about'
+  const mainWindow = electron.remote.getCurrentWindow()
 
   export default {
     components: { sidebar, about },
@@ -108,50 +110,58 @@
     ready () {
       this.$server.start(() => {
         const restart = (n, o) => {
-          n !== o && this.$server.start()
+          if (n === o) return
+          this.$config.server.address = this.server_address
+          this.$config.server.port = this.server_port
+          this.$option.set('server_port', this.server_port)
+          this.$server.start()
         }
-        this.$watch('server.address', restart)
-        this.$watch('server.port', restart)
+        this.$watch('server_address', restart)
+        this.$watch('server_port', restart)
       })
-
-      // this.$watch('lang', (n) => { Vue.config.lang = n })
+      this.$watch('lang', n => {
+        Vue.config.lang = n
+        this.$option.set('lang', n)
+      })
+      this.$watch('window_theme', n => {
+        this.$option.set('window_theme', n)
+      })
     },
 
     data () {
-      const mainWindow = this.$electron.remote.getCurrentWindow()
-
-      setTimeout(() => { this.sidebarOpened = true }, 150)
-
+      setTimeout(() => {
+        this.sidebar_opened = this.$option.get('sidebar_opened', true)
+      }, 50)
       this.$config.server.address = this.$utils.getLocalAreaAddress()
-
+      this.$config.server.port = this.$option.get('server_port', this.$config.server.port)
       return {
         title: this.$config.app.name,
-        isMaximized: mainWindow.isMaximized(),
-        sidebarOpened: false,
-        aboutOpened: false,
-        theme: 'default',
-        server: this.$config.server,
-        config: Vue.config
+        maximized: mainWindow.isMaximized(),
+        sidebar_opened: false,
+        about_opened: false,
+        window_theme: this.$option.get('window_theme', 'default'),
+        server_address: this.$config.server.address,
+        server_port: this.$config.server.port,
+        lang: Vue.config.lang
       }
     },
 
     methods: {
       window (action) {
         if (action === 'toggle-sidebar') {
-          this.sidebarOpened = !this.sidebarOpened
+          this.sidebar_opened = !this.sidebar_opened
+          this.$option.set('sidebar_opened', this.sidebar_opened)
           return
         }
 
         if (action === 'toggle-about') {
-          this.aboutOpened = !this.aboutOpened
+          this.about_opened = !this.about_opened
           return
         }
 
-        const mainWindow = this.$electron.remote.getCurrentWindow()
-
         if (action === 'maximize') {
           action = mainWindow.isMaximized() ? 'unmaximize' : 'maximize'
-          this.isMaximized = !this.isMaximized
+          this.maximized = !this.maximized
         } else if (action === 'close') {
           // if (!confirm('确认关闭？')) return
         }
