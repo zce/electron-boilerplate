@@ -5,9 +5,13 @@ import './assets/less/style.less'
 
 import Vue from 'vue'
 
-// router
-import Router from 'vue-router'
-Vue.use(Router)
+// // Vuex
+// import Vuex from 'vuex'
+// Vue.use(Vuex)
+
+// // Keen UI
+// import Keen from 'keen-ui'
+// Vue.use(Keen)
 
 // i18n
 import I18n from 'vue-i18n'
@@ -22,6 +26,10 @@ Vue.use(Plugin)
 // config
 Vue.config.debug = process.env.NODE_ENV !== 'production'
 Vue.config.silent = process.env.NODE_ENV === 'production'
+
+// router
+import Router from 'vue-router'
+Vue.use(Router)
 
 // routes
 const router = new Router()

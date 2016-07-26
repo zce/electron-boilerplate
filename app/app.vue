@@ -102,11 +102,15 @@
   import Vue from 'vue'
   import sidebar from './components/sidebar'
   import about from './components/about'
+  // import 我们刚刚创建的 store
+  import store from './vuex/store'
+
   const mainWindow = electron.remote.getCurrentWindow()
 
   export default {
     components: { sidebar, about },
-
+    // 在根组件加入 store，让它的子组件和 store 连接
+    store,
     ready () {
       this.$server.start(() => {
         const restart = (n, o) => {
