@@ -65,8 +65,16 @@
         margin: 5/16rem;
       }
       strong {
-        font-weight: 500;
-        font-style: 1.4em;
+        font-weight: 600;
+        // font-size: 1.4em;
+      }
+      ul {
+        font-family: Consolas, 'Courier New', monospace;
+        line-height: 1.6;
+        span {
+          display: inline-block;
+          min-width: 90/16rem;
+        }
       }
     }
 
@@ -98,28 +106,30 @@
 </style>
 
 <template>
-  <div id="about" class="modal" v-if="open" transition="toggle">
-    <div class="modal-dialog" role="document">
-      <div class="modal-header drag">
+  <section id="about" class="modal" v-if="open" transition="toggle">
+    <section class="modal-dialog" role="document">
+      <section class="modal-header drag">
         <button type="button" class="close" @click="close()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
           <span class="sr-only">Close</span>
         </button>
-        <h3 class="modal-title">{{$config.app_name}}</h3>
-      </div>
-      <div class="modal-body">
-        <p><strong>{{$config.app_description}}</strong></p>
-        <p>Core: <strong>v{{$config.app_version}}</strong></p>
-        <p>Node: <strong>v{{versions.node}}</strong></p>
-        <p>Chrome: <strong>v{{versions.chrome}}</strong></p>
-        <p>Electron: <strong>v{{versions.electron}}</strong></p>
-        <p>Datetime: <strong>{{$config.app_updated}}</strong></p>
-      </div>
-      <div class="modal-footer">
+        <h3 class="modal-title">{{$config.app.name}}</h3>
+      </section>
+      <section class="modal-body">
+        <p><strong>{{$config.app.description}}</strong></p>
+        <ul>
+          <li><span>Core:     </span><strong>v{{$config.app.version}}</strong></li>
+          <li><span>Node:     </span><strong>v{{versions.node}}</strong></li>
+          <li><span>Chrome:   </span><strong>v{{versions.chrome}}</strong></li>
+          <li><span>Electron: </span><strong>v{{versions.electron}}</strong></li>
+          <li><span>Datetime: </span><strong>{{$config.app.updated}}</strong></li>
+        </ul>
+      </section>
+      <section class="modal-footer">
         <button type="button" class="btn btn-primary btn-sm" @click="close()">OK</button>
-      </div>
-    </div>
-  </div>
+      </section>
+    </section>
+  </section>
 </template>
 
 <script>
@@ -129,15 +139,11 @@
     },
 
     data () {
-      return {
-        versions: process.versions
-      }
+      return { versions: process.versions }
     },
 
     methods: {
-      close () {
-        this.open = false
-      }
+      close () { this.open = false }
     }
   }
 </script>

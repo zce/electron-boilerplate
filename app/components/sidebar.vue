@@ -106,9 +106,11 @@
 
       input, select {
         font-size: 12/16rem;
-        width: 100/16rem;
+        width: 55%;
+        // max-width: 150/16rem;
+        min-width: 100/16rem;
         height: 26/16rem;
-        padding: 2/16rem 4/16rem;
+        padding: 2/16rem 6/16rem;
         border: 1/16rem solid;
         border-radius: 4/16rem;
       }
@@ -146,22 +148,22 @@
 </style>
 
 <template>
-  <aside class="sidebar" :class="{ 'open-option': openOption }" :style="{ width: open ? width + 'px': '0', transition: transition }">
-    <div class="panel menu">
-      <h1 class="logo drag">{{$config.app_name}}</h1>
+  <aside class="sidebar" :class="{'open-option': openOption}" :style="{width: open ? width + 'px': '0', transition: transition}">
+    <section class="panel menu">
+      <h1 class="logo drag">{{$config.app.name}}</h1>
       <hr>
       <h3>ACTIONS</h3>
       <div class="scroll actions">
         <ul>
-          <li v-link="{ name: 'dashboard' }">Dashboard</li>
-          <li v-link="{ name: 'demo' }">Demo</li>
+          <li v-link="{name: 'dashboard'}">Dashboard</li>
+          <li v-link="{name: 'vuex'}">VUEX</li>
         </ul>
       </div>
       <hr>
       <h3>RECORDS</h3>
       <div class="scroll">
         <ul>
-          <li v-for="item in records" track-by="$index" :class="{ active: $root.title === item.stamp }" title="{{ item.path }}" v-link="{ name: 'demo', params: { item: item.stamp } }">
+          <li v-for="item in records" track-by="$index" :class="{active: $root.title === item.stamp}" title="{{item.path}}" v-link="{name: 'demo', params: {item: item.stamp}}">
             <span class="name">{{item.name}}</span>
             <i class="fa fa-external-link" title="在文件夹中找到" @click="reveal(item, $event)"></i>
             <i class="fa fa-times" title="删除到回收站" @click="remove(item, $event)"></i>
@@ -176,41 +178,52 @@
           <li @click="$parent.window('toggle-about')">About</li>
         </ul>
       </div>
-    </div>
-    <div class="panel option">
-      <h1>Demo</h1>
+    </section>
+    <section class="panel option">
+      <h1>Setting</h1>
       <hr>
-      <h3>Options</h3>
+      <h3>OPTIONS</h3>
       <div class="scroll">
         <ul>
           <li>
             <label>theme</label>
             <select v-model="$root.theme">
-              <option value="default">default</option>
-              <option value="dark">dark</option>
-              <option value="light">light</option>
+              <option v-for="(key, value) in themes" value="{{key}}">{{$t(value)}}</option>
+            </select>
+          </li>
+          <li>
+            <label>address</label>
+            <select v-model="$root.server.address">
+              <option v-for="item in addresses" value="{{item}}">{{item}}</option>
             </select>
           </li>
           <li>
             <label>port</label>
-            <input type="text">
+            <input type="number" v-model="$root.server.port" debounce="500" lazy>
+          </li>
+          <li>
+            <label>locales</label>
+            <select v-model="$root.config.lang">
+              <option v-for="(key, value) in locales" value="{{key}}">{{key}}</option>
+            </select>
           </li>
         </ul>
       </div>
       <hr>
-      <h3>help</h3>
+      <h3>HELP</h3>
       <div class="scroll actions">
         <ul>
           <li @click="toggleOption()">Back</li>
         </ul>
       </div>
-    </div>
+    </section>
     <i class="resizer" @mousedown="mousedown($event)"></i>
   </aside>
 </template>
 
 <script>
   import path from 'path'
+  import locales from '../locales'
 
   export default {
     props: {
@@ -220,7 +233,16 @@
     data () {
       this.loadRecords()
       this.$storage.watchList(() => this.loadRecords())
-      return { records: [], width: 250, openOption: false }
+
+      return {
+        locales: locales,
+        // themes: { default: '默认', dark: '暗色', light: '亮色' },
+        themes: { default: 'default', dark: 'dark', light: 'light' },
+        addresses: this.$utils.getMachineAddresses(),
+        records: [],
+        width: 250,
+        openOption: false
+      }
     },
 
     methods: {
@@ -228,8 +250,8 @@
         this.$storage.getList().then(files => {
           this.records = files.map(file => ({
             name: file,
-            stamp: path.basename(file, this.$config.storage_ext),
-            path: path.join(this.$config.storage_root, file)
+            stamp: path.basename(file, this.$config.storage.ext),
+            path: path.join(this.$config.storage.root, file)
           }))
         })
       },
@@ -237,7 +259,7 @@
       remove (item, e) {
         e.preventDefault()
         e.stopPropagation()
-        if (!confirm(`确认删除『${item.stamp}${this.$config.storage_ext}』？`)) return false
+        if (!confirm(`确认删除『${item.stamp}${this.$config.storage.ext}』？`)) return false
 
         try {
           // 删除到回收站

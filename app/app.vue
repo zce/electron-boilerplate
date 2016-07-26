@@ -98,6 +98,7 @@
 </template>
 
 <script>
+  import Vue from 'vue'
   import sidebar from './components/sidebar'
   import about from './components/about'
 
@@ -105,7 +106,15 @@
     components: { sidebar, about },
 
     ready () {
-      this.$server.start()
+      this.$server.start(() => {
+        const restart = (n, o) => {
+          n !== o && this.$server.start()
+        }
+        this.$watch('server.address', restart)
+        this.$watch('server.port', restart)
+      })
+
+      // this.$watch('lang', (n) => { Vue.config.lang = n })
     },
 
     data () {
@@ -113,12 +122,16 @@
 
       setTimeout(() => { this.sidebarOpened = true }, 150)
 
+      this.$config.server.address = this.$utils.getLocalAreaAddress()
+
       return {
-        title: this.$config.app_name,
+        title: this.$config.app.name,
         isMaximized: mainWindow.isMaximized(),
         sidebarOpened: false,
         aboutOpened: false,
-        theme: 'default'
+        theme: 'default',
+        server: this.$config.server,
+        config: Vue.config
       }
     },
 
@@ -140,7 +153,7 @@
           action = mainWindow.isMaximized() ? 'unmaximize' : 'maximize'
           this.isMaximized = !this.isMaximized
         } else if (action === 'close') {
-          if (!confirm('确认关闭？')) return
+          // if (!confirm('确认关闭？')) return
         }
         const m = mainWindow[action]
         typeof m === 'function' && m()

@@ -4,6 +4,9 @@ import * as utils from './utils'
 import * as storage from './storage'
 import * as server from './server'
 
+import './menu'
+import './extlink'
+
 export default function Plugin () { }
 
 Plugin.install = function (Vue, options) {

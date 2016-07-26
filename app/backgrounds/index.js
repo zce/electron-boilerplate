@@ -16,6 +16,8 @@ app.on('ready', () => {
     // transparent: true,
     x: 0,
     y: 0,
+    minWidth: 1200,
+    minHeight: 720,
     width: 1200,
     height: 720,
     useContentSize: true,
@@ -25,8 +27,8 @@ app.on('ready', () => {
     mainWindow.loadURL(`file://${__dirname}/index.html`)
   } else {
     mainWindow.loadURL('http://localhost:2080/index.html')
-    mainWindow.webContents.openDevTools({ detach: true })
-    // mainWindow
+    mainWindow.webContents.openDevTools({ detach: false })
+    // 载入开发工具
     require('devtron').install()
     require('vue-devtools').install()
   }

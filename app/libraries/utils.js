@@ -1,24 +1,29 @@
 import os from 'os'
 import config from './config'
 
-export function getLocalAreaIp () {
+export function getMachineAddresses () {
+  let addresses = []
   const networkInterfaces = os.networkInterfaces()
-  for (let name in networkInterfaces) {
-    const infos = networkInterfaces[name]
-    if (infos && infos.length) {
-      for (let i = 0; i < infos.length; i++) {
-        if (infos[i].family === 'IPv4' && infos[i].address !== '127.0.0.1') {
-          return infos[i].address
-        }
-      }
-    }
-  }
+  Object.keys(networkInterfaces).forEach(key => {
+    const infos = networkInterfaces[key]
+    if (!(infos && infos.length)) return
+    addresses = addresses.concat(
+      infos
+        .filter(i => i.family === 'IPv4' && !i.internal && i.netmask === '255.255.255.0')
+        .map(i => i.address)
+    )
+  })
+  return addresses
+}
+
+export function getLocalAreaAddress () {
+  return getMachineAddresses().find(a => a)
 }
 
 export function getStamp (count = config.stamp_length) {
   let stamp = ''
-  // let chars = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']; //随机数
-  let chars = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'k', 'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+  // const chars = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']; //随机数
+  const chars = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'k', 'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
   for (let i = 0; i < count; i++) {
     stamp += chars[Math.floor(Math.random() * chars.length)]
   }

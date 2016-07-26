@@ -29,7 +29,7 @@ textEditingMenu.append(cut)
 textEditingMenu.append(copy)
 textEditingMenu.append(paste)
 
-document.addEventListener('contextmenu', function (e) {
+document.addEventListener('contextmenu', e => {
   switch (e.target.nodeName) {
     case 'TEXTAREA':
     case 'INPUT':
