@@ -7,7 +7,7 @@
   "main": "main.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zce/feedback.git"
+    "url": "git+https://github.com/zce/electron-boilerplate.git"
   },
   "keywords": [
     "iceStone",
@@ -20,9 +20,9 @@
   "author": "iceStone <ice@micua.com> (http://blog.wedn.net/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zce/feedback/issues"
+    "url": "https://github.com/zce/electron-boilerplate/issues"
   },
-  "homepage": "https://github.com/zce/feedback#readme",
+  "homepage": "https://github.com/zce/electron-boilerplate#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",

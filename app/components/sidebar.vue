@@ -279,7 +279,7 @@
         })
 
         // 没有记录跳转到开始界面
-        find || this.$router.go({ name: 'editor' })
+        find || this.$router.go({ name: 'dashboard' })
       },
 
       reveal (item, e) {

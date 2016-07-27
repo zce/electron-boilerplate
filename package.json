@@ -1,4 +1,17 @@
 {
+  "name": "electron-boilerplate",
+  "description": "A boilerplate application for Electron runtime",
+  "version": "0.2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zce/electron-boilerplate.git"
+  },
+  "author": "iceStone <ice@micua.com> (http://blog.wedn.net/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zce/electron-boilerplate/issues"
+  },
+  "homepage": "https://github.com/zce/electron-boilerplate#readme",
   "scripts": {
     "postinstall": "cd app && npm install && cd ..",
     "clean": "rimraf build/*",

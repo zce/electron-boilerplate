@@ -57,6 +57,9 @@
 
   /* 必需 */
   .content-transition {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
     position: absolute;
     top: 0;
     left: 0;
