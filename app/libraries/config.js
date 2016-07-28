@@ -19,10 +19,10 @@ export default {
   server: {
     address: '',
     port: 20800
-  }
+  },
+  stamp_length: 8
 }
 
-// stamp_length: 8,
 // status_keys: {
 //   initial: '尚未开始统计',
 //   rating: '统计中',

@@ -17,9 +17,11 @@ const nodeModules = (() => {
 const config = module.exports = {
   context: path.resolve(__dirname, '..'),
   output: {
-    path: './build/',
+    // http://stackoverflow.com/questions/34371029/cannot-start-webpack-dev-server-with-gulp
+    path: path.resolve(__dirname, '../build/'),
     filename: '[name].js',
-    libraryTarget: 'commonjs2'
+    libraryTarget: 'commonjs2',
+    // publicPath: '/'
   },
   module: {
     preLoaders: [],
@@ -51,11 +53,13 @@ const config = module.exports = {
 
 if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '' // '#source-map'
+  module.exports.debug = false
   config.plugins = (config.plugins || []).concat([
     new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } }),
     new webpack.optimize.OccurenceOrderPlugin()
   ])
 } else {
+  module.exports.debug = true
   config.module.preLoaders.push(
     { test: /\.js$/, loader: 'eslint', exclude: /node_modules/ }
   )

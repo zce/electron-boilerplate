@@ -106,7 +106,7 @@
   import sidebar from './components/sidebar'
   import about from './components/about'
   // import 我们刚刚创建的 store
-  import store from './vuex/store'
+  import store from './libraries/vuex/store'
 
   const mainWindow = electron.remote.getCurrentWindow()
 

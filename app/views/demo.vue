@@ -4,8 +4,13 @@
 
 <template>
   <div class="inner">
-    <h1 class="page-header select drag">Demo</h1>
-    <textarea name="demo" cols="100" rows="20"></textarea>
-    <input type="text" name="demo2">
+    <h1 class="page-header drag">Demo</h1>
+    <p class="select">this is demo page!</p>
   </div>
 </template>
+
+<script>
+  export default {
+    name: 'demo'
+  }
+</script>
