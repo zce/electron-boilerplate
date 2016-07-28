@@ -18,7 +18,7 @@ const config = module.exports = {
   context: path.resolve(__dirname, '..'),
   output: {
     // http://stackoverflow.com/questions/34371029/cannot-start-webpack-dev-server-with-gulp
-    path: path.resolve(__dirname, '../build/'),
+    path: path.resolve(__dirname, '../temp/core/'),
     filename: '[name].js',
     libraryTarget: 'commonjs2',
     // publicPath: '/'

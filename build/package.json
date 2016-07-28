@@ -1,0 +1,26 @@
+{
+  "name": "electron-boilerplate",
+  "productName": "Electron Boilerplate",
+  "version": "0.2.1",
+  "description": "A Bolierplate application for Electron runtime",
+  "updated": "2016-07-27T16:56:12.476Z",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zce/electron-boilerplate.git"
+  },
+  "keywords": [
+    "iceStone",
+    "wedn",
+    "micua",
+    "electron",
+    "vue",
+    "webpack"
+  ],
+  "author": "iceStone <ice@micua.com> (http://blog.wedn.net/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zce/electron-boilerplate/issues"
+  },
+  "homepage": "https://github.com/zce/electron-boilerplate#readme"
+}

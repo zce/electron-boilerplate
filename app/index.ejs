@@ -8,7 +8,8 @@
   <app/>
   <% if (process.env.NODE_ENV === 'development') { %>
   <script>
-    require('module').globalPaths.push(require('path').resolve(require('electron').remote.app.getAppPath(), './node_modules'))
+    // require('module').globalPaths.push(require('path').resolve(require('electron').remote.app.getAppPath(), './node_modules'))
+    require('module').globalPaths.push(require('path').resolve(require('electron').remote.app.getAppPath(), './core.asar/node_modules'))
   </script>
   <% } %>
   <!-- built files will be auto injected -->
