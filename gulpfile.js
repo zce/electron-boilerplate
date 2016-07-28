@@ -82,6 +82,7 @@ const getFileStamp = (filename, type) => {
 gulp.task('archive', ['compile:renderer'], archive)
 
 const repo = 'https://raw.githubusercontent.com/zce/electron-boilerplate/vue-auto-update/dist/'
+// const repo = 'http://localhost:8080/'
 gulp.task('dist', ['archive'], () => {
   fs.existsSync('./dist/latest') || fs.mkdir('./dist/latest')
   return gulp.src('./build/*.asar')

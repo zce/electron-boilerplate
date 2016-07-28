@@ -21,5 +21,9 @@ export default {
   '/demo': {
     component: Vue.component('demo', require('../views/demo')),
     name: 'demo'
+  },
+  '/update': {
+    component: Vue.component('update', require('../views/update')),
+    name: 'update'
   }
 }

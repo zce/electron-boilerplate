@@ -30,14 +30,16 @@
     "clean:npm": "gulp clean:npm",
     "watch": "cross-env NODE_ENV=development gulp watch",
     "build": "cross-env NODE_ENV=production gulp compile:renderer",
+    "dist": "cross-env NODE_ENV=development gulp dist",
+    "release": "cross-env NODE_ENV=production gulp release",
     "boot": "cross-env NODE_ENV=development gulp boot",
-    "dev": "cross-env NODE_ENV=development gulp dev",
-    "start": "cross-env NODE_ENV=production gulp start",
-    "release": "cross-env NODE_ENV=production gulp release"
+    "start": "cross-env NODE_ENV=production gulp start"
   },
   "dependencies": {
     "glob": "^7.0.5",
+    "got": "^6.3.0",
     "keen-ui": "^0.8.8",
+    "semver": "^5.3.0",
     "vue": "^1.0.26",
     "vue-i18n": "^4.1.0",
     "vue-router": "^0.7.13",
