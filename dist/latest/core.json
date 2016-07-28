@@ -1,5 +1,5 @@
 {
-  "url": "http://git.oschina.net/micua/tms/raw/v4.x/packages/core-v0.2.1.gz",
+  "url": "https://raw.githubusercontent.com/zce/electron-boilerplate/vue-auto-update/dist/packages/core-v0.2.1.gz",
   "name": "core",
   "notes": "A Bolierplate application for Electron runtime",
   "updated": "2016-07-27T16:56:12.476Z",
