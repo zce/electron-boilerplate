@@ -23,6 +23,7 @@ const plugins = gulpLoadPlugins()
 const PluginError = plugins.util.PluginError
 
 gulp.task('clean', [], del.bind(this, ['temp', 'build/*.asar']))
+gulp.task('clean:npm', [], del.bind(this, ['node_modules', 'app/node_modules']))
 
 gulp.task('watch', [], (callback) => {
   webpackConfigRenderer.entry.renderer.unshift('webpack-dev-server/client?http://localhost:2080/', 'webpack/hot/dev-server')
