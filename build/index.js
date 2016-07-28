@@ -15,7 +15,7 @@ try {
   })
   fs.unlinkSync(manifestFilename)
 } catch (e) {
-  console.log(e)
+  console.log(e.message)
 }
 
 require('./core.asar')

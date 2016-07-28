@@ -37,6 +37,7 @@
   },
   "about": {
     "v8": "V8",
+    "env": "环境",
     "core": "内核",
     "data": "数据",
     "node": "Node",

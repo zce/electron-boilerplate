@@ -4,7 +4,7 @@ import './assets/css/font-awesome.css'
 import './assets/less/style.less'
 
 import Vue from 'vue'
-// console.log(1111)
+console.log(1111)
 
 // // Keen UI
 // import Keen from 'keen-ui'

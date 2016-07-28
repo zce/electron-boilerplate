@@ -37,6 +37,7 @@
   },
   "about": {
     "v8": "V8",
+    "env": "Env",
     "core": "Core",
     "data": "Data",
     "node": "Node",

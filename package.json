@@ -30,7 +30,7 @@
     "clean:npm": "gulp clean:npm",
     "watch": "cross-env NODE_ENV=development gulp watch",
     "build": "cross-env NODE_ENV=production gulp compile:renderer",
-    "dist": "cross-env NODE_ENV=development gulp dist",
+    "dist": "cross-env NODE_ENV=production gulp dist",
     "release": "cross-env NODE_ENV=production gulp release",
     "boot": "cross-env NODE_ENV=development gulp boot",
     "start": "cross-env NODE_ENV=production gulp start"
