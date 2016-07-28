@@ -44,7 +44,12 @@ gulp.task('watch', [], (callback) => {
   })
 })
 
-gulp.task('compile:main', ['clean'], (callback) => {
+gulp.task('compile:data', ['clean'], () => {
+  return gulp.src('./app/assets/data/**/*.*')
+    .pipe(gulp.dest('./temp/data'))
+})
+
+gulp.task('compile:main', ['compile:data'], (callback) => {
   webpack(webpackConfigMain, (error, stats) => {
     if (error) throw new PluginError('webpack', error)
     // plugins.util.log('[webpack]', stats.toString({ colors: true }))
