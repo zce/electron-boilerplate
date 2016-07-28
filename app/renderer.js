@@ -13,7 +13,7 @@ import Vue from 'vue'
 // i18n
 import I18n from 'vue-i18n'
 Vue.use(I18n)
-import locales from './locales'
+import locales from './assets/locales'
 Object.keys(locales).forEach(item => Vue.locale(item, locales[item]))
 
 // custom plugin

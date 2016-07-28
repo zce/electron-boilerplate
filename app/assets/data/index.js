@@ -1,3 +1,3 @@
 module.exports = {
-  schools: require('./schools.json')
+  options: require('./options.json')
 }

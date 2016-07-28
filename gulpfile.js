@@ -46,6 +46,7 @@ gulp.task('watch', [], (callback) => {
 
 gulp.task('compile:data', ['clean'], () => {
   return gulp.src('./app/assets/data/**/*.*')
+    .pipe(plugins.jsonminify())
     .pipe(gulp.dest('./temp/data'))
 })
 
@@ -124,12 +125,12 @@ gulp.task('release', ['archive'], (callback) => {
 // ==================== 启动执行任务 ====================
 // ======================================================
 
-gulp.task('boot', ['compile:main'], () => {
+gulp.task('boot', ['compile:main'], (callback) => {
   process.env.NODE_ENV = process.env.NODE_ENV || 'development'
-  archive(() => spawn(electron, ['build']))
+  archive(() => spawn(electron, ['build']).on('close', callback))
 })
 
-gulp.task('start', ['compile:renderer'], () => {
+gulp.task('start', ['compile:renderer'], (callback) => {
   process.env.NODE_ENV = process.env.NODE_ENV || 'production'
-  archive(() => spawn(electron, ['build']))
+  archive(() => spawn(electron, ['build']).on('close', callback))
 })

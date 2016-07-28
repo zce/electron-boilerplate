@@ -8,11 +8,14 @@ import * as server from './server'
 import './menu'
 import './extlink'
 
+const data = window.require('data.asar')
+
 export default function Plugin () { }
 
 Plugin.install = function (Vue, options) {
   Vue.prototype.$electron = electron
   Vue.prototype.$config = config
+  Vue.prototype.$db = data
   Vue.prototype.$option = option
   Vue.prototype.$utils = utils
   Vue.prototype.$storage = storage

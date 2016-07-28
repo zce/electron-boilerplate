@@ -225,7 +225,7 @@
 
 <script>
   import path from 'path'
-  import locales from '../locales'
+  import locales from '../assets/locales'
 
   export default {
     props: {

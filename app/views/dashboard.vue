@@ -44,6 +44,7 @@
     <p>
       You are using electron v{{ versions['atom-shell'] }} with node v{{ versions.node }} on the {{ platform }} platform.
     </p>
+    <p>{{$db.options.message}}</p>
     <ul class="js-external-link">
       <li><a href="https://github.com/zce/electron-boilerplate">documentation</a> |</li>
       <li><a href="http://electron.atom.io/">electron</a> |</li>

@@ -18,6 +18,7 @@
     ready () {
       updater.init()
       updater.setFeedURL('core.asar', 'https://raw.githubusercontent.com/zce/electron-boilerplate/vue-auto-update/dist/latest/core.json')
+      updater.setFeedURL('data.asar', 'https://raw.githubusercontent.com/zce/electron-boilerplate/vue-auto-update/dist/latest/data.json')
       updater.on('available', (task) => console.log('available', task))
       updater.on('not-available', (task) => console.log('not-available', task))
       updater.on('progress', (task, p) => console.log(task.name, p))
