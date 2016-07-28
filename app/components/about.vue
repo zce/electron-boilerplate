@@ -119,6 +119,7 @@
         <p><strong>{{$config.app.description}}</strong></p>
         <ul>
           <li><span>{{$t('about.core')}}:     </span><strong>v{{versions.app}}</strong></li>
+          <li><span>{{$t('about.data')}}:     </span><strong>v{{versions.data}}</strong></li>
           <li><span>{{$t('about.node')}}:     </span><strong>v{{versions.node}}</strong></li>
           <li><span>{{$t('about.electron')}}: </span><strong>v{{versions.electron}}</strong></li>
           <li><span>{{$t('about.chromium')}}: </span><strong>v{{versions.chrome}}</strong></li>
@@ -140,6 +141,7 @@
 
     data () {
       process.versions.app = this.$config.app.version
+      process.versions.data = this.$db.version
       return { versions: process.versions }
     },
 

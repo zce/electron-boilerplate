@@ -6,6 +6,7 @@
 import { app } from 'electron'
 // import setAppMenu from './menu'
 import createWindow from './window'
+import update from './update'
 
 let mainWindow
 
@@ -22,28 +23,28 @@ if (shouldQuit) {
 }
 
 app.on('ready', () => {
-  // setAppMenu()
-  mainWindow = createWindow('main', {
-    // backgroundColor: 'transparent',
-    // transparent: true,
-    x: 0,
-    y: 0,
-    minWidth: 1200,
-    minHeight: 720,
-    width: 1200,
-    height: 720,
-    useContentSize: true,
-    frame: false
+  update(() => {
+    // setAppMenu()
+    mainWindow = createWindow('main', {
+      x: 0,
+      y: 0,
+      minWidth: 1200,
+      minHeight: 720,
+      width: 1200,
+      height: 720,
+      useContentSize: true,
+      frame: false
+    })
+    if (process.env.NODE_ENV === 'production') {
+      mainWindow.loadURL(`file://${__dirname}/index.html`)
+    } else {
+      mainWindow.loadURL('http://localhost:2080/index.html')
+      mainWindow.webContents.openDevTools({ detach: false })
+      // 载入开发工具
+      require('devtron').install()
+      require('vue-devtools').install()
+    }
   })
-  if (process.env.NODE_ENV === 'production') {
-    mainWindow.loadURL(`file://${__dirname}/index.html`)
-  } else {
-    mainWindow.loadURL('http://localhost:2080/index.html')
-    mainWindow.webContents.openDevTools({ detach: false })
-    // 载入开发工具
-    require('devtron').install()
-    require('vue-devtools').install()
-  }
 })
 
 app.on('window-all-closed', () => {

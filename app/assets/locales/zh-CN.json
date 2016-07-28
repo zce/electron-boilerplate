@@ -4,7 +4,9 @@
     "actions": {
       "title": "操作",
       "dashboard": "仪表盘",
-      "start": "开始创建新记录"
+      "start": "开始创建新记录",
+      "update": "自动更新",
+      "vuex": "VUEX"
     },
     "records": {
       "title": "记录",
@@ -36,6 +38,7 @@
   "about": {
     "v8": "V8",
     "core": "内核",
+    "data": "数据",
     "node": "Node",
     "chromium": "Chromium",
     "electron": "Electron",

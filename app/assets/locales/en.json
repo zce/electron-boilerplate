@@ -4,7 +4,9 @@
     "actions": {
       "title": "ACTIONS",
       "dashboard": "Dashboard",
-      "start": "Start"
+      "start": "Start",
+      "update": "Update",
+      "vuex": "VUEX"
     },
     "records": {
       "title": "RECORDS",
@@ -36,6 +38,7 @@
   "about": {
     "v8": "V8",
     "core": "Core",
+    "data": "Data",
     "node": "Node",
     "chromium": "Chromium",
     "electron": "Electron",

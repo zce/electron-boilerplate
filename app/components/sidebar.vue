@@ -158,7 +158,8 @@
         <ul>
           <li v-link="{name: 'dashboard'}" :class="{active: $route.name === 'dashboard'}">{{$t('sidebar.actions.dashboard')}}</li>
           <li v-link="{name: 'start'}" :class="{active: $route.name === 'start'}">{{$t('sidebar.actions.start')}}</li>
-          <li v-link="{name: 'vuex'}" :class="{active: $route.name === 'vuex'}">VUEX</li>
+          <li v-link="{name: 'update'}" :class="{active: $route.name === 'update'}">{{$t('sidebar.actions.update')}}</li>
+          <li v-link="{name: 'vuex'}" :class="{active: $route.name === 'vuex'}">{{$t('sidebar.actions.vuex')}}</li>
         </ul>
       </div>
       <hr>

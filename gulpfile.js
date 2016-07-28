@@ -128,10 +128,14 @@ gulp.task('release', ['archive'], (callback) => {
 
 gulp.task('boot', ['compile:main'], (callback) => {
   process.env.NODE_ENV = process.env.NODE_ENV || 'development'
-  archive(() => spawn(electron, ['build']).on('close', callback))
+  archive(() => spawn(electron, ['build']).on('close', callback).stdout.on('data', (data) => {
+    plugins.util.log('electron', data.toString())
+  }))
 })
 
 gulp.task('start', ['compile:renderer'], (callback) => {
   process.env.NODE_ENV = process.env.NODE_ENV || 'production'
-  archive(() => spawn(electron, ['build']).on('close', callback))
+  archive(() => spawn(electron, ['build']).on('close', callback).stdout.on('data', (data) => {
+    plugins.util.log('electron', data.toString())
+  }))
 })
