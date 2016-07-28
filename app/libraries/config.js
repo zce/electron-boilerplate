@@ -7,7 +7,7 @@ const app = electron.app || electron.remote.app
 export default {
   app: {
     name: app.getName(),
-    version: app.getVersion(),
+    version: pkg.version,
     updated: pkg.updated,
     description: pkg.description
   },
