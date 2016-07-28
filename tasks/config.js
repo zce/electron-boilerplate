@@ -1,10 +1,10 @@
 const path = require('path')
-const pkg = require('../app/package.json')
+const pkg = require('../build/package.json')
 const argv = require('minimist')(process.argv.slice(2))
 
 module.exports = {
   'dir': path.resolve(__dirname, '../build'),
-  'out': path.resolve(__dirname, '../releases'),
+  'out': path.resolve(__dirname, '../dist/releases'),
   'name': argv.name || pkg.productName,
   'icon': path.resolve(__dirname, './resources/icon'),
   'platform': argv.platform || 'all',
@@ -15,11 +15,12 @@ module.exports = {
   'prune': argv.prune || false,
   'version': argv.version || require('../node_modules/electron-prebuilt/package.json').version,
   'app-version': pkg.version,
-  'asar': {
-    ordering: '',
-    unpack: '',
-    unpackDir: ''
-  },
+  // 'asar': {
+  //   ordering: '',
+  //   unpack: '',
+  //   unpackDir: ''
+  // },
+  'asar': false,
   'download': {},
   'app-bundle-id': `net.wedn.${pkg.name}`,
   'helper-bundle-id': `net.wedn.${pkg.name}.helper`,

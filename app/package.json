@@ -1,4 +1,8 @@
 {
+  "name": "electron-boilerplate",
+  "version": "0.2.1",
+  "description": "A Bolierplate application for Electron runtime",
+  "updated": "2016-07-27T16:56:12.476Z",
   "main": "main.js",
   "dependencies": {
     "body-parser": "^1.15.2",

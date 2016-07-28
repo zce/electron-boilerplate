@@ -41,7 +41,4 @@ temp
 build/*.asar
 
 # Distribution directrory
-dist
-
-# Release directrory
-releases
+dist/releases

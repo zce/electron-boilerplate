@@ -68,6 +68,7 @@
     "gulp": "^3.9.1",
     "gulp-gzip": "^1.4.0",
     "gulp-load-plugins": "^1.2.4",
+    "gulp-rename": "^1.2.2",
     "gulp-util": "^3.0.7",
     "html-webpack-plugin": "^2.22.0",
     "json-loader": "^0.5.4",

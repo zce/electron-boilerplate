@@ -2,6 +2,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'production'
 
 const fs = require('fs')
 const path = require('path')
+const crypto = require('crypto')
 const spawn = require('child_process').spawn
 
 const gulp = require('gulp')
@@ -59,7 +60,6 @@ gulp.task('compile:renderer', ['compile:main'], (callback) => {
   })
 })
 
-// gulp.task('compile', ['compile:renderer'])
 const archive = (callback) => {
   const tempDir = path.resolve(__dirname, 'temp')
   const buildDir = path.resolve(__dirname, 'build')
@@ -71,9 +71,52 @@ const archive = (callback) => {
   Promise.all(targets.map(item => asarArchive(item))).then(() => callback())
 }
 
-// gulp.task('dev', ['watch'], () => {
-//   return gulp.start(['boot'])
-// })
+const getFileStamp = (filename, type) => {
+  type = type || 'sha1'
+  const buffer = fs.readFileSync(filename)
+  var hash = crypto.createHash(type)
+  hash.update(buffer)
+  return hash.digest('hex')
+}
+
+gulp.task('archive', ['compile:renderer'], archive)
+
+const repo = 'http://git.oschina.net/micua/tms/raw/v4.x/'
+gulp.task('dist', ['archive'], () => {
+  fs.existsSync('./dist/latest') || fs.mkdir('./dist/latest')
+  return gulp.src('./build/*.asar')
+    .pipe(plugins.rename({ extname: '' }))
+    .pipe(plugins.gzip({ gzipOptions: { level: 9 } }))
+    .pipe(plugins.rename(p => {
+      const pkg = require(`./temp/${p.basename}/package.json`)
+      fs.writeFileSync(`./dist/latest/${p.basename}.json`, JSON.stringify({
+        url: `${repo}packages/${p.basename}-v${pkg.version}.gz`,
+        name: p.basename,
+        notes: pkg.description,
+        updated: pkg.updated,
+        version: pkg.version,
+        sha1: getFileStamp(`./build/${p.basename}.asar`)
+      }, null, 2), 'utf8')
+      p.basename = `${p.basename}-v${pkg.version}`
+      p.extname = '.gz'
+    }))
+    .pipe(gulp.dest('./dist/packages'))
+})
+
+gulp.task('release', ['archive'], (callback) => {
+  plugins.util.log('release', '\x1b[34mBuilding electron app(s)...\x1b[0m')
+  packager(options, (error, paths) => {
+    if(error) throw new PluginError('release', error)
+    plugins.util.log('release', 'Build(s) successful!')
+    plugins.util.log('release', paths)
+    plugins.util.log('release', '\n\x1b[34mBuilding electron app(s) DONE\x1b[0m')
+    callback()
+  })
+})
+
+// ======================================================
+// ==================== 启动执行任务 ====================
+// ======================================================
 
 gulp.task('boot', ['compile:main'], () => {
   process.env.NODE_ENV = process.env.NODE_ENV || 'development'
@@ -84,19 +127,3 @@ gulp.task('start', ['compile:renderer'], () => {
   process.env.NODE_ENV = process.env.NODE_ENV || 'production'
   archive(() => spawn(electron, ['build']))
 })
-
-gulp.task('archive', ['compile:renderer'], archive)
-
-gulp.task('release', ['compile:renderer'], (callback) => {
-  // plugins.util.log('[release]', '\x1b[34mBuilding electron app(s)...\n\x1b[0m')
-  plugins.util.log('[release]', '\x1b[34mBuilding electron app(s)...\x1b[0m')
-  packager(options, (error, paths) => {
-    if(error) throw new PluginError('release', error)
-    plugins.util.log('[release]', 'Build(s) successful!')
-    plugins.util.log('[release]', paths)
-    plugins.util.log('[release]', '\n\x1b[34mBuilding electron app(s) DONE\x1b[0m')
-    callback()
-  })
-})
-
-
