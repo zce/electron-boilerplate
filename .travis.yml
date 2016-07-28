@@ -4,4 +4,4 @@ node_js:
   - stable
 
 script:
-- npm run release
+- npm run release -- --platform=linux

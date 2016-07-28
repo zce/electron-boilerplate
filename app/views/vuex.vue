@@ -17,8 +17,8 @@
 </template>
 
 <script>
-  import { incrementCounter } from '../vuex/actions'
-  import { getCount } from '../vuex/getters'
+  import { incrementCounter } from '../libraries/vuex/actions'
+  import { getCount } from '../libraries/vuex/getters'
 
   export default {
     vuex: {
