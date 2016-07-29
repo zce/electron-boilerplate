@@ -9,7 +9,7 @@ export function getMachineAddresses () {
     if (!(infos && infos.length)) return
     addresses = addresses.concat(
       infos
-        .filter(i => i.family === 'IPv4' && !i.internal && i.netmask === '255.255.255.0')
+        .filter(i => !i.internal && i.family === 'IPv4'/* && i.netmask === '255.255.255.0' */)
         .map(i => i.address)
     )
   })

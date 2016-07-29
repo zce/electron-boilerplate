@@ -37,7 +37,7 @@ export default (callback) => {
     .on('completed', (result) => {
       if (!result) return callback()
       webContents && webContents.send('update_done', '全部更新完成！正在重启')
-      updater.quitAndInstall(2000)
+      updater.quitAndInstall(1000)
     })
     .on('error', (error) => {
       webContents.send('update_done', '更新出错，请联系作者！')

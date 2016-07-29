@@ -1,3 +1,4 @@
+const os = require('os')
 const path = require('path')
 const pkg = require('../build/package.json')
 const argv = require('minimist')(process.argv.slice(2))
@@ -7,8 +8,8 @@ module.exports = {
   'out': path.resolve(__dirname, '../dist/releases'),
   'name': argv.name || pkg.productName,
   'icon': path.resolve(__dirname, './resources/icon'),
-  'platform': argv.platform || 'all',
-  'arch': argv.arch || 'all',
+  'platform': argv.platform || os.platform(),
+  'arch': argv.arch || os.arch(),
   'build-version': pkg.version,
   'ignore': [],
   'overwrite': true,
@@ -17,13 +18,14 @@ module.exports = {
   'app-version': pkg.version,
   // 'asar': {
   //   ordering: '',
-  //   unpack: '',
+  //   unpack: '*.asar',
   //   unpackDir: ''
   // },
   'asar': false,
   'download': {},
   'app-bundle-id': `net.wedn.${pkg.name}`,
   'helper-bundle-id': `net.wedn.${pkg.name}.helper`,
+  'osx-sign': false,
   // 'app-category-type': 'public.app-category.developer-tools',
   'app-category-type': 'public.app-category.productivity',
   'app-copyright': `Copyright (c) ${new Date().getFullYear()} WEDN.NET.`,
