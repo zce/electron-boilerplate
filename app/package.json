@@ -5,7 +5,7 @@
   "updated": "2016-07-29T02:56:12.476Z",
   "main": "main.js",
   "dependencies": {
-    "asar-updater": "^0.2.5",
+    "asar-updater": "^0.2.6",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "xtemplate": "^4.5.1",

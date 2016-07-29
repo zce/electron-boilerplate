@@ -26,13 +26,13 @@ export default (callback) => {
       webContents && webContents.send('update_message', `『${task.name}』无需更新！`)
     })
     .on('progress', (task, p) => {
-      webContents.send('update_progress', p)
+      webContents && webContents.send('update_progress', p)
       if (p === -1) {
-        webContents.send('update_message', `『${task.name}』更新中...`)
+        webContents && webContents.send('update_message', `『${task.name}』更新中...`)
       }
     })
     .on('downloaded', (task) => {
-      webContents.send('update_message', `『${task.name}』更新完成！`)
+      webContents && webContents.send('update_message', `『${task.name}』更新完成！`)
     })
     .on('completed', (result) => {
       if (!result) return callback()
@@ -40,7 +40,7 @@ export default (callback) => {
       updater.quitAndInstall(1000)
     })
     .on('error', (error) => {
-      webContents.send('update_done', '更新出错，请联系作者！')
+      webContents && webContents.send('update_done', '更新出错，请联系作者！')
       callback()
     })
     .checkForUpdates()
