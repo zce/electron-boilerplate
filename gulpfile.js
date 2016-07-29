@@ -99,15 +99,16 @@ gulp.task('dist', ['archive'], () => {
     .pipe(plugins.gzip({ gzipOptions: { level: 9 } }))
     .pipe(plugins.rename(p => {
       const pkg = require(`./temp/${p.basename}/package.json`)
+      const name = `${p.basename}-${pkg.version}`
       fs.writeFileSync(`./dist/latest/${p.basename}.json`, JSON.stringify({
-        url: `${repo}packages/${p.basename}-v${pkg.version}.gz`,
+        url: `${repo}packages/${name}.gz`,
         name: p.basename,
         notes: pkg.description,
         updated: pkg.updated,
         version: pkg.version,
         sha1: getFileStamp(`./build/${p.basename}.asar`)
       }, null, 2), 'utf8')
-      p.basename = `${p.basename}-v${pkg.version}`
+      p.basename = `${name}`
       p.extname = '.gz'
     }))
     .pipe(gulp.dest('./dist/packages'))
