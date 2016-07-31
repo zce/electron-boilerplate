@@ -3,7 +3,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'production'
 const fs = require('fs')
 const path = require('path')
 const crypto = require('crypto')
-const spawn = require('child_process').spawn
+const { exec, spawn } = require('child_process')
 
 const gulp = require('gulp')
 const gulpLoadPlugins = require('gulp-load-plugins')
@@ -67,14 +67,19 @@ gulp.task('compile:renderer', ['compile:main'], (callback) => {
   })
 })
 
-const archive = (callback) => {
+const archive = (callback, prune) => {
   const tempDir = path.resolve(__dirname, 'temp')
   const buildDir = path.resolve(__dirname, 'build')
   const targets = fs.readdirSync(tempDir).filter(item => fs.statSync(path.resolve(tempDir, item)).isDirectory())
-  const asarArchive = (item) => new Promise(resolve => createPackage(path.resolve(tempDir, item), path.resolve(buildDir, item + '.asar'), () => {
-    plugins.util.log('archive', `pack ${item} done...`)
-    resolve()
-  }))
+  const asarArchive = (item) => new Promise(resolve => {
+    const itempath = path.resolve(tempDir, item)
+    const pack = () => createPackage(itempath, path.resolve(buildDir, item + '.asar'), () => {
+      plugins.util.log('archive', `pack ${item} done...`)
+      resolve()
+    })
+    if (!prune) return pack()
+    exec('npm prune --production', { cwd: itempath }).on('close', pack)
+  })
   Promise.all(targets.map(item => asarArchive(item))).then(() => callback())
 }
 
@@ -86,7 +91,7 @@ const getFileStamp = (filename, type) => {
   return hash.digest('hex')
 }
 
-gulp.task('archive', ['compile:renderer'], archive)
+gulp.task('archive', ['compile:renderer'], (callback) => archive(callback, true))
 
 // const repo = 'https://raw.githubusercontent.com/zce/electron-boilerplate/vue-auto-update/dist/'
 const repo = 'http://git.oschina.net/wedn/ebp/raw/master/'
@@ -140,5 +145,5 @@ gulp.task('start', ['compile:renderer'], (callback) => {
   process.env.NODE_ENV = process.env.NODE_ENV || 'production'
   archive(() => spawn(electron, ['build']).on('close', callback).stdout.on('data', (data) => {
     plugins.util.log('electron', data.toString())
-  }))
+  }), true)
 })

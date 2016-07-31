@@ -275,7 +275,7 @@
         // 跳转到第一个记录
         const find = this.records.some(r => {
           if (r.stamp !== item.stamp) {
-            this.$router.go({ name: 'watcher', params: { item: r.stamp } })
+            this.$router.go({ name: 'watch', params: { item: r.stamp } })
             return true
           }
         })

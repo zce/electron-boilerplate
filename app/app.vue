@@ -119,8 +119,10 @@
         const restart = (n, o) => {
           if (n === o) return
           this.$config.server.address = this.server_address
+          this.$option.set('server_address', this.server_address)
           this.$config.server.port = this.server_port
           this.$option.set('server_port', this.server_port)
+          this.$emit('server_link_changed')
           this.$server.start()
         }
         this.$watch('server_address', restart)
@@ -133,13 +135,18 @@
       this.$watch('window_theme', n => {
         this.$option.set('window_theme', n)
       })
+      mainWindow
+        .on('maximize', () => { this.maximized = true })
+        .on('unmaximize', () => { this.maximized = false })
     },
 
     data () {
       setTimeout(() => {
         this.sidebar_opened = this.$option.get('sidebar_opened', true)
       }, 50)
-      this.$config.server.address = this.$utils.getLocalAreaAddress()
+      let address = this.$option.get('server_address')
+      address = this.$utils.getMachineAddresses().includes(address) ? address : this.$utils.getLocalAreaAddress()
+      this.$config.server.address = address
       this.$config.server.port = this.$option.get('server_port', this.$config.server.port)
       return {
         title: this.$config.app.name,
@@ -168,7 +175,6 @@
 
         if (action === 'maximize') {
           action = mainWindow.isMaximized() ? 'unmaximize' : 'maximize'
-          this.maximized = !this.maximized
         } else if (action === 'close') {
           // if (!confirm('确认关闭？')) return
         }
