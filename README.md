@@ -27,7 +27,7 @@ $ npm run boot
 
 ### Then you can ...
 
-1. Rewrite the `package.json` (root, app, build)
+1. Rewrite the `package.json`
   - `./package.json` remove all fields without `script`, `dependencies` and `devDependencies`
   - `./app/package.json`
   - `./build/package.json`
@@ -37,8 +37,7 @@ $ npm run boot
 3. Change asar auto updater repo url
   - create new repo for dist update
   - clone the repo to `./dist`
-  - change repo url in `./gulpfile.json`
-  - change repo url in `./app/backgrounds/update.js`
+  - change repo config in `./tasks/updater.config.json`
 
 4. First of all, Run `npm run dist` to create dist file
   - run `npm run dist` in proj folder
