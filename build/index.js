@@ -1,6 +1,6 @@
 /*!
- * Teaching management system
- *   https://tms.wedn.net/
+ * Electron Bolierplate
+ *   https://github.com/zce/electron-boilerplate
  *
  * Date:
  *   2016-07-30T23:56:12.476Z
@@ -16,7 +16,6 @@
  *   [Vue](https://vuejs.org)
  *   [Electron](https://electron.atom.io)
  *   [Desktop UI](https://github.com/zce/desktop-ui)
- *   [Electron Bolierplate](https://github.com/zce/electron-boilerplate)
  *   etc.
  *
  * Copyright 2015-2016 WEDN, Inc. and other contributors
