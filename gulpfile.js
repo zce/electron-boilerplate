@@ -103,7 +103,7 @@ const boot = (callback, prune) => archive(
  * Code lint
  */
 gulp.task('lint', () => {
-  return gulp.src(['gulpfile.js', 'app/**/*.js', 'app/**/*.vue', '!app/node_modules/**'])
+  return gulp.src(['gulpfile.js', 'app/**/*.js', 'app/**/*.vue', 'tasks/**/*.js', '!app/node_modules/**'])
     .pipe(plugins.eslint())
     .pipe(plugins.eslint.format('node_modules/eslint-friendly-formatter'))
     .pipe(plugins.eslint.failAfterError())

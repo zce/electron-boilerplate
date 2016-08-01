@@ -18,10 +18,10 @@ const config = module.exports = {
   context: path.resolve(__dirname, '..'),
   output: {
     // http://stackoverflow.com/questions/34371029/cannot-start-webpack-dev-server-with-gulp
+    // publicPath: '/',
     path: path.resolve(__dirname, '../temp/core/'),
     filename: '[name].js',
-    libraryTarget: 'commonjs2',
-    // publicPath: '/'
+    libraryTarget: 'commonjs2'
   },
   module: {
     preLoaders: [],
@@ -44,7 +44,7 @@ const config = module.exports = {
   devtool: '#eval-source-map',
   plugins: [
     new webpack.ExternalsPlugin('commonjs2', nodeModules),
-    new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV) } }),
+    new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV) } })
   ],
   eslint: {
     formatter: require('eslint-friendly-formatter')
