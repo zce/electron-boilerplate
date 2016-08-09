@@ -52,6 +52,7 @@
           padding: 12/16rem;
           padding-left: 20/16rem;
           white-space: nowrap;
+          transition: background-color .3s ease;
           &:hover, &.active {
             border-left: 10/16rem solid transparent;
             padding-left: 10/16rem;
