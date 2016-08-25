@@ -3,5 +3,5 @@
 module.exports = {
   service: 'http://git.oschina.net',
   repository: 'wedn/ebp',
-  branch: 'master'
+  branch: 'vue-auto-update'
 }

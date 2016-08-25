@@ -5,12 +5,14 @@
 			"file_exclude_patterns":
 			[
 				"*.sublime-project",
-        "*.log"
+				"*.log"
 			],
 			"folder_exclude_patterns":
 			[
 				"temp",
-				"data"
+				"data",
+				"build",
+				"dist/packages"
 			],
 			"path": "."
 		}
