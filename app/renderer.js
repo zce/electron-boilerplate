@@ -5,10 +5,6 @@ import './assets/less/style.less'
 
 import Vue from 'vue'
 
-// // Keen UI
-// import Keen from 'keen-ui'
-// Vue.use(Keen)
-
 // i18n
 import I18n from 'vue-i18n'
 Vue.use(I18n)

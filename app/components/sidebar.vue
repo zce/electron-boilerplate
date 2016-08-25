@@ -1,18 +1,15 @@
 <style lang="less">
   .sidebar {
-    // display: flex;
     position: relative;
     transition: width 0.2s ease-in-out;
-    // transition-delay: 0.2s;
-
+    // transition-delay: 0s;
     .panel {
       display: flex;
       flex: 1;
       flex-direction: column;
       height: 100%;
       overflow: hidden;
-      transition: opacity .15s linear;
-
+      transition: opacity .2s linear;
       h1 {
         cursor: default;
         font-size: 25/16rem;
@@ -20,7 +17,6 @@
         margin-bottom: 2/16rem;
         margin-top: 12/16rem;
         padding: 0 20/16rem;
-        // max-width: 200/16rem;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -52,8 +48,9 @@
           padding: 12/16rem;
           padding-left: 20/16rem;
           white-space: nowrap;
-          transition: background-color .3s ease;
-          &:hover, &.active {
+          transition: background-color .6s ease-in;
+          &:hover,
+          &.active {
             border-left: 10/16rem solid transparent;
             padding-left: 10/16rem;
             i {
@@ -89,27 +86,22 @@
         max-height: 192/16rem;
       }
     }
-
     .menu {
       opacity: 1;
       z-index: 1;
     }
-
     .option {
       opacity: 0;
       position: absolute;
       top: 0;
       width: 100%;
       z-index: -1;
-
       li {
         justify-content: space-between;
       }
-
       input, select {
         font-size: 12/16rem;
         width: 55%;
-        // max-width: 150/16rem;
         min-width: 100/16rem;
         height: 26/16rem;
         padding: 2/16rem 6/16rem;
@@ -117,7 +109,6 @@
         border-radius: 4/16rem;
       }
     }
-
     &.open-option {
       .menu {
         opacity: 0;
@@ -128,7 +119,6 @@
         z-index: 1;
       }
     }
-
     .resizer {
       @width: 6;
       position: absolute;
@@ -141,11 +131,10 @@
       margin-right: -@width/2/16rem;
       z-index: 1000;
     }
-
-    // ::-webkit-scrollbar {
-    //   width: 0;
-    //   -webkit-appearance: none;
-    // }
+    ::-webkit-scrollbar {
+      width: 1/16rem;
+      -webkit-appearance: none;
+    }
   }
 </style>
 
@@ -159,8 +148,6 @@
         <ul>
           <li v-link="{name: 'dashboard'}" :class="{active: $route.name === 'dashboard'}">{{$t('sidebar.actions.dashboard')}}</li>
           <li v-link="{name: 'start'}" :class="{active: $route.name === 'start'}">{{$t('sidebar.actions.start')}}</li>
-          <li v-link="{name: 'update'}" :class="{active: $route.name === 'update'}">{{$t('sidebar.actions.update')}}</li>
-          <li v-link="{name: 'vuex'}" :class="{active: $route.name === 'vuex'}">{{$t('sidebar.actions.vuex')}}</li>
         </ul>
       </div>
       <hr>

@@ -5,11 +5,13 @@ import config from '../../tasks/updater.config'
 const server = `${config.service}/${config.repository}/raw/${config.branch}/latest/`
 
 updater.init()
+
 updater.setFeedURL('core.asar', server + 'core.json')
 updater.setFeedURL('data.asar', server + 'data.json')
 
 let updaterWindow = null
 let webContents = null
+
 export default (callback) => {
   updater
     .on('available', (task) => {
@@ -40,7 +42,9 @@ export default (callback) => {
       updater.quitAndInstall(1000)
     })
     .on('error', (error) => {
-      if (error) webContents && webContents.send('update_done', '更新出错，请联系作者！')
+      if (error) {
+        webContents && webContents.send('update_done', '更新出错，请联系作者！')
+      }
       callback()
     })
     .checkForUpdates()

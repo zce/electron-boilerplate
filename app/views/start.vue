@@ -16,6 +16,7 @@
 <script>
   export default {
     name: 'start',
+    pathname: '/start',
 
     data () {
       this.$root.title = '创建新的记录'

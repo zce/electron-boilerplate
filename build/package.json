@@ -1,7 +1,7 @@
 {
   "name": "electron-boilerplate",
-  "productName": "Electron Boilerplate",
   "version": "0.2.0",
+  "productName": "Electron Boilerplate",
   "description": "A Bolierplate application for Electron runtime",
   "main": "index.js",
   "repository": {

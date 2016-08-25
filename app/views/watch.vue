@@ -14,6 +14,9 @@
 
 <script>
   export default {
+    name: 'watch',
+    pathname: '/watch/:item',
+
     data () {
       return { item: {} }
     },

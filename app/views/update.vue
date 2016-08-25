@@ -17,13 +17,17 @@
 
 <script>
   import updater from 'asar-updater'
+  import config from '../../tasks/updater.config'
+  const server = `${config.service}/${config.repository}/raw/${config.branch}/latest/`
 
   export default {
     name: 'update',
+    pathname: '/update',
+
     ready () {
       updater.init()
-      updater.setFeedURL('core.asar', 'https://raw.githubusercontent.com/zce/electron-boilerplate/vue-auto-update/dist/latest/core.json')
-      updater.setFeedURL('data.asar', 'https://raw.githubusercontent.com/zce/electron-boilerplate/vue-auto-update/dist/latest/data.json')
+      updater.setFeedURL('core.asar', server + 'core.json')
+      updater.setFeedURL('data.asar', server + 'data.json')
       updater.on('available', (task) => console.log('available', task))
       updater.on('not-available', (task) => console.log('not-available', task))
       updater.on('progress', (task, p) => console.log(task.name, p))
@@ -31,6 +35,7 @@
       updater.on('completed', (manifest, tasks) => alert(manifest))
       updater.on('error', console.log)
     },
+
     methods: {
       update () {
         updater.checkForUpdates()

@@ -3,7 +3,7 @@
  *   https://github.com/zce/electron-boilerplate
  *
  * Date:
- *   2016-07-30T23:56:12.476Z
+ *   2016-08-25T23:56:12.476Z
  *
  * Maintainers:
  *   汪磊 <ice@wedn.net> (http://github.com/zce)

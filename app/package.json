@@ -1,14 +1,15 @@
 {
   "name": "electron-boilerplate",
-  "version": "0.2.5",
+  "version": "0.2.8",
   "description": "A Bolierplate application for Electron runtime",
-  "updated": "2016-07-29T02:56:12.476Z",
+  "updated": "2016-08-25T02:56:12.476Z",
   "main": "main.js",
   "dependencies": {
     "asar-updater": "^0.2.6",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
-    "xtemplate": "^4.5.1",
+    "log4js": "^0.6.38",
+    "xtemplate": "^4.6.0",
     "xtpl": "^3.2.0"
   },
   "devDependencies": {

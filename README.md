@@ -1,4 +1,4 @@
-# electron-boilerplate
+# Electron Boilerplate
 
 A boilerplate application for Electron runtime
 

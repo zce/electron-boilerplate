@@ -44,5 +44,9 @@
     "chromium": "Chromium",
     "electron": "Electron",
     "datetime": "Datetime"
+  },
+  "dashboard": {
+    "introduction": "当前Electron v{electron}，包括Node v{node}，运行在{platform}平台。",
+    "copyright": "版权所有 (c) 2016 WEDN，保留一切权利"
   }
 }

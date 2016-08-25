@@ -1,18 +1,13 @@
-// This helper remembers the size and position of your windows (and restores
-// them in that place after app relaunch).
-// Can be used for more than one window, just construct many
-// instances of it and give each different name.
 import fs from 'fs'
 import path from 'path'
 import { app, BrowserWindow, screen } from 'electron'
+
 const dir = app.getPath('userData')
 
 export default (name, options) => {
   const stateStoreFile = path.join(dir, 'window-state-' + name + '.json')
-  const defaultSize = {
-    width: options.width,
-    height: options.height
-  }
+  const defaultSize = { width: options.width, height: options.height }
+
   let state = {}
   let win
 

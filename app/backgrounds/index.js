@@ -1,8 +1,3 @@
-// This is main process of Electron, started as first thing when your
-// app starts. This script is running through entire life of your application.
-// It doesn't have any windows which you can see on screen, but we can open
-// window from here.
-
 import { app } from 'electron'
 import setAppMenu from './menu'
 import createWindow from './window'
@@ -13,7 +8,9 @@ let mainWindow
 const shouldQuit = app.makeSingleInstance((commandLine, workingDirectory) => {
   // Someone tried to run a second instance, we should focus our window.
   if (mainWindow) {
-    if (mainWindow.isMinimized()) mainWindow.restore()
+    if (mainWindow.isMinimized()) {
+      mainWindow.restore()
+    }
     mainWindow.focus()
   }
 })
@@ -26,8 +23,8 @@ app.on('ready', () => {
   update(() => {
     setAppMenu()
     mainWindow = createWindow('main', {
-      x: 0,
-      y: 0,
+      // x: 0,
+      // y: 0,
       minWidth: 1200,
       minHeight: 720,
       width: 1200,
@@ -47,6 +44,4 @@ app.on('ready', () => {
   })
 })
 
-app.on('window-all-closed', () => {
-  app.quit()
-})
+app.on('window-all-closed', () => app.quit())

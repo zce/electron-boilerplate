@@ -44,5 +44,9 @@
     "chromium": "Chromium",
     "electron": "Electron",
     "datetime": "Datetime"
+  },
+  "dashboard": {
+    "introduction": "You are using electron v{electron} with node v{node} on the {platform} platform.",
+    "copyright": "Copyright (c) 2016 WEDN, Inc. All Rights Reserved."
   }
 }

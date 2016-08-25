@@ -1,9 +1,8 @@
 <style lang="less">
   .window {
     display: flex;
-    height: 100%;
+    height: 100vh;
   }
-
   .main {
     display: flex;
     flex: 1;
@@ -44,18 +43,8 @@
       flex-direction: column;
       padding: 10/16rem;
       position: relative;
-
-      .inner {
-        display: flex;
-        flex: 1;
-        flex-direction: column;
-        // align-items: center;
-        // justify-content: center;
-      }
     }
   }
-
-  /* 必需 */
   .content-transition {
     display: flex;
     flex: 1;
@@ -72,10 +61,8 @@
     visibility: visible;
     opacity: 1;
   }
-
-  /* .content-enter 定义进入的开始状态 */
-  /* .content-leave 定义离开的结束状态 */
-  .content-enter, .content-leave {
+  .content-enter,
+  .content-leave {
     opacity: 0;
     visibility: hidden;
   }
@@ -103,17 +90,18 @@
 <script>
   import electron from 'electron'
   import Vue from 'vue'
+
   import sidebar from './components/sidebar'
   import about from './components/about'
-  // import 我们刚刚创建的 store
   import store from './libraries/vuex/store'
 
   const mainWindow = electron.remote.getCurrentWindow()
 
   export default {
-    components: { sidebar, about },
-    // 在根组件加入 store，让它的子组件和 store 连接
     store,
+
+    components: { sidebar, about },
+
     ready () {
       this.$server.start(() => {
         const restart = (n, o) => {
@@ -128,22 +116,15 @@
         this.$watch('server_address', restart)
         this.$watch('server_port', restart)
       })
-      this.$watch('lang', n => {
-        Vue.config.lang = n
-        this.$option.set('lang', n)
-      })
-      this.$watch('window_theme', n => {
-        this.$option.set('window_theme', n)
-      })
+      this.$watch('lang', n => this.$option.set('lang', (Vue.config.lang = n)))
+      this.$watch('window_theme', n => this.$option.set('window_theme', n))
       mainWindow
         .on('maximize', () => { this.maximized = true })
         .on('unmaximize', () => { this.maximized = false })
     },
 
     data () {
-      setTimeout(() => {
-        this.sidebar_opened = this.$option.get('sidebar_opened', true)
-      }, 50)
+      setTimeout(() => { this.sidebar_opened = this.$option.get('sidebar_opened', true) }, 50)
       let address = this.$option.get('server_address')
       address = this.$utils.getMachineAddresses().includes(address) ? address : this.$utils.getLocalAreaAddress()
       this.$config.server.address = address
@@ -162,22 +143,19 @@
 
     methods: {
       window (action) {
-        if (action === 'toggle-sidebar') {
-          this.sidebar_opened = !this.sidebar_opened
-          this.$option.set('sidebar_opened', this.sidebar_opened)
-          return
+        switch (action) {
+          case 'toggle-sidebar':
+            this.sidebar_opened = !this.sidebar_opened
+            this.$option.set('sidebar_opened', this.sidebar_opened)
+            return
+          case 'toggle-about':
+            this.about_opened = !this.about_opened
+            return
+          case 'maximize':
+            action = mainWindow.isMaximized() ? 'unmaximize' : 'maximize'
+            break
         }
 
-        if (action === 'toggle-about') {
-          this.about_opened = !this.about_opened
-          return
-        }
-
-        if (action === 'maximize') {
-          action = mainWindow.isMaximized() ? 'unmaximize' : 'maximize'
-        } else if (action === 'close') {
-          // if (!confirm('确认关闭？')) return
-        }
         const m = mainWindow[action]
         typeof m === 'function' && m()
       }
