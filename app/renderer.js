@@ -31,4 +31,3 @@ router.map(routes)
 // start
 import App from './app'
 router.start(App, 'app')
-

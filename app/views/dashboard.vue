@@ -6,6 +6,12 @@
   img {
     margin-top: -25px;
     width: 450px;
+    transition: transform 1s ease;
+    transform-origin: 50px 50px;
+
+    &.rotate {
+      transform: rotate(700deg);
+    }
   }
   p {
     line-height: 24px;
@@ -41,7 +47,7 @@
 
 <template>
   <div class="inner">
-    <img src="../assets/img/logo.png" alt="electron-vue">
+    <img src="../assets/img/logo.png" alt="electron-vue" :class="{rotate: rotate}" @click="eggshell()">
     <h1>{{$config.app.name}}</h1>
     <p>{{$t('dashboard.introduction', { electron: versions.electron, node: versions.node, platform: platform })}}</p>
     <ul>
@@ -70,7 +76,24 @@
     data () {
       return {
         platform: os.platform(),
-        versions: process.versions
+        versions: process.versions,
+        click: 0,
+        rotate: false
+      }
+    },
+
+    methods: {
+      eggshell () {
+        if (!this.click) {
+          setTimeout(() => {
+            if (this.click > 6) {
+              this.rotate = !this.rotate
+              alert(`手速：${this.click}/1000ms`)
+            }
+            this.click = 0
+          }, 1000)
+        }
+        this.click++
       }
     }
   }
