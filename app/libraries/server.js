@@ -27,10 +27,8 @@ app.use((req, res, next) => {
     // 测试允许多次提交
     req.clientIp = Date.now()
   }
-  // req.connection.socket.remoteAddress || '::1'
   // 注入是否本地请求
   req.isLocal = req.clientIp === '127.0.0.1' || req.clientIp === config.server.address
-
   next()
 })
 
