@@ -65,23 +65,22 @@ const archive = (callback, prune) => {
 }
 
 const watch = (callback) => {
+  // hot module replace
   webpackConfigRenderer.entry.renderer.unshift(
     'webpack-dev-server/client?http://localhost:2080/',
     'webpack/hot/dev-server'
   )
+  webpackConfigRenderer.plugins.push(new webpack.HotModuleReplacementPlugin())
+  // webpack dashboard console
   const dashboard = new Dashboard()
-  webpackConfigRenderer.plugins.push(new webpack.HotModuleReplacementPlugin(), new DashboardPlugin(dashboard.setData))
-  new WebpackDevServer(webpack(webpackConfigRenderer), {
-    // watchOptions: {
-    //   aggregateTimeout: 300,
-    //   poll: 1000 // is this the same as specifying --watch-poll?
-    // },
+  webpackConfigRenderer.plugins.push(new DashboardPlugin(dashboard.setData))
+  // webpack dev server
+  const server = new WebpackDevServer(webpack(webpackConfigRenderer), {
     hot: true,
-    quiet: true,
-    stats: {
-      colors: true
-    }
-  }).listen(2080, 'localhost', (error) => {
+    quiet: true, // no default console
+    stats: { colors: true }
+  })
+  server.listen(2080, 'localhost', (error) => {
     if (error) throw new plugins.util.PluginError('watch', error)
     plugins.util.log('[watch]', 'http://localhost:2080/webpack-dev-server/index.html')
     // keep the server alive or continue?

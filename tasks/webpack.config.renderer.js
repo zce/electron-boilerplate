@@ -22,18 +22,18 @@ module.exports = merge(base, {
     extensions: ['', '.js', '.json', '.css', '.less', '.sass', '.scss', '.vue']
   },
   target: 'electron-renderer',
-  devServer: {
-    // contentBase: './build',
-    historyApiFallback: true,
-    progress: true,
-    inline: true,
-    colors: true,
-    quiet: false,
-    noInfo: false,
-    // lazy: true,
-    hot: true,
-    port: 2080
-  },
+  // devServer: {
+  //   // contentBase: './build',
+  //   historyApiFallback: true,
+  //   progress: true,
+  //   inline: true,
+  //   colors: true,
+  //   quiet: false,
+  //   noInfo: false,
+  //   // lazy: true,
+  //   hot: true,
+  //   port: 2080
+  // },
   plugins: [
     new ExtractTextPlugin('css/[name].css')
   ],
