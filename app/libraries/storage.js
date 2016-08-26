@@ -1,6 +1,5 @@
 import fs from 'fs'
 import path from 'path'
-
 import config from './config'
 
 const suffix = config.storage.sign

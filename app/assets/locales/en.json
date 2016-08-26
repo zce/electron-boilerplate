@@ -4,7 +4,9 @@
     "actions": {
       "title": "ACTIONS",
       "dashboard": "Dashboard",
-      "start": "Start"
+      "start": "Start",
+      "update": "Update",
+      "vuex": "VUEX"
     },
     "records": {
       "title": "RECORDS",
@@ -35,10 +37,16 @@
   },
   "about": {
     "v8": "V8",
+    "env": "Env",
     "core": "Core",
+    "data": "Data",
     "node": "Node",
     "chromium": "Chromium",
     "electron": "Electron",
     "datetime": "Datetime"
+  },
+  "dashboard": {
+    "introduction": "You are using electron v{electron} with node v{node} on the {platform} platform.",
+    "copyright": "Copyright (c) 2016 WEDN, Inc. All Rights Reserved."
   }
 }

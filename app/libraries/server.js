@@ -1,14 +1,9 @@
-/**
- * 后台HTTP服务
- */
 import path from 'path'
 import express from 'express'
 import bodyParser from 'body-parser'
 
 import config from './config'
 import { main as logger } from './logger'
-
-// const stampFormat = '\\w{' + config.stamp_length + '}'
 
 const app = express()
 
@@ -30,12 +25,10 @@ app.use((req, res, next) => {
     req.clientIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress
   } else {
     // 测试允许多次提交
-    req.clientIp = new Date().getTime()
+    req.clientIp = Date.now()
   }
-  // req.connection.socket.remoteAddress || '::1'
   // 注入是否本地请求
-  req.isLocal = req.clientIp === '127.0.0.1' || req.clientIp === config.server_ip
-
+  req.isLocal = req.clientIp === '127.0.0.1' || req.clientIp === config.server.address
   next()
 })
 

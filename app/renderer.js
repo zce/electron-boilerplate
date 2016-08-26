@@ -4,16 +4,11 @@ import './assets/css/font-awesome.css'
 import './assets/less/style.less'
 
 import Vue from 'vue'
-// console.log(1111)
-
-// // Keen UI
-// import Keen from 'keen-ui'
-// Vue.use(Keen)
 
 // i18n
 import I18n from 'vue-i18n'
 Vue.use(I18n)
-import locales from './locales'
+import locales from './assets/locales'
 Object.keys(locales).forEach(item => Vue.locale(item, locales[item]))
 
 // custom plugin
@@ -36,4 +31,3 @@ router.map(routes)
 // start
 import App from './app'
 router.start(App, 'app')
-

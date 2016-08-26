@@ -15,7 +15,7 @@
 
 import { shell } from 'electron'
 
-const supportExternalLinks = e => {
+document.body.addEventListener('click', e => {
   let href
   let isExternal = false
 
@@ -35,6 +35,4 @@ const supportExternalLinks = e => {
   }
 
   checkDomElement(e.target)
-}
-
-document.addEventListener('click', supportExternalLinks, false)
+}, false)

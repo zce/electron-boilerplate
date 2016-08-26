@@ -4,37 +4,37 @@ import pkg from '../package.json'
 
 const app = electron.app || electron.remote.app
 
-export default {
-  app: {
-    name: app.getName(),
-    version: app.getVersion(),
-    updated: pkg.updated,
-    description: pkg.description
-  },
-  storage: {
-    root: path.resolve(app.getPath('userData'), 'data'), // ????
-    ext: '.dat',
-    sign: `© ${new Date().getFullYear()} WEDN.NET`
-  },
-  server: {
-    address: '',
-    port: 20800
-  },
-  stamp_length: 8
+const config = {}
+
+// app info
+config.app = {
+  name: app.getName(),
+  path: app.getAppPath(),
+  version: pkg.version,
+  updated: pkg.updated,
+  description: pkg.description
 }
 
-// status_keys: {
-//   initial: '尚未开始统计',
-//   rating: '统计中',
-//   rated: '统计完成',
-//   sending: '邮件发送中',
-//   send: '邮件发送完成'
-// },
-// answer_options: {
-//   0: { short: 'A', full: 'A. 非常清楚' },
-//   1: { short: 'B', full: 'B. 基本清楚' },
-//   2: { short: 'C', full: 'C. 有点模糊' },
-//   3: { short: 'D', full: 'D. 几乎不懂' }
-// },
-// allow_admin_rating: true,
-// allow_student_repeat: false,
+// storage config
+config.storage = {
+  root: path.resolve(config.app.path, '..', 'data'),
+  ext: '.dat',
+  sign: `© ${new Date().getFullYear()} WEDN.NET`
+}
+
+// log4js appender config
+const logFile = path.resolve(config.app.path, '..', pkg.name + '.log')
+config.log4js = [
+  { type: 'file', filename: logFile, category: 'main' },
+  { type: 'file', filename: logFile, category: 'renderer' }
+]
+
+// server config
+config.server = {
+  address: '',
+  port: 56831
+}
+
+export default Object.assign(config, {
+  stamp_length: 8
+})

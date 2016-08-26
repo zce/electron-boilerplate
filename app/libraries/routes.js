@@ -1,25 +1,15 @@
-import Vue from 'vue'
+const views = [
+  require('../views/dashboard'),
+  require('../views/vuex'),
+  require('../views/update'),
+  require('../views/blank'),
+  require('../views/start'),
+  require('../views/watch')
+]
 
-// console.log(require('../views/dashboard').name)
-export default {
-  '/': {
-    component: Vue.component('dashboard', require('../views/dashboard')),
-    name: 'dashboard'
-  },
-  '/vuex': {
-    component: Vue.component('vuex', require('../views/vuex')),
-    name: 'vuex'
-  },
-  '/start': {
-    component: Vue.component('start', require('../views/start')),
-    name: 'start'
-  },
-  '/watch/:item': {
-    component: Vue.component('watch', require('../views/watch')),
-    name: 'watch'
-  },
-  '/demo': {
-    component: Vue.component('demo', require('../views/demo')),
-    name: 'demo'
-  }
-}
+const routes = {}
+views.forEach(v => {
+  routes[v.pathname] = { name: v.name, component: v }
+})
+
+export default routes

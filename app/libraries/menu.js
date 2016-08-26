@@ -8,17 +8,17 @@ const isAnyTextSelected = () => window.getSelection().toString().length
 
 const cut = new MenuItem({
   label: 'Cut',
-  click: () => document.execCommand('cut')
+  click: document.execCommand.bind(document, 'cut')
 })
 
 const copy = new MenuItem({
   label: 'Copy',
-  click: () => document.execCommand('copy')
+  click: document.execCommand.bind(document, 'copy')
 })
 
 const paste = new MenuItem({
   label: 'Paste',
-  click: () => document.execCommand('paste')
+  click: document.execCommand.bind(document, 'paste')
 })
 
 const normalMenu = new Menu()
@@ -29,7 +29,7 @@ textEditingMenu.append(cut)
 textEditingMenu.append(copy)
 textEditingMenu.append(paste)
 
-document.addEventListener('contextmenu', e => {
+document.body.addEventListener('contextmenu', e => {
   switch (e.target.nodeName) {
     case 'TEXTAREA':
     case 'INPUT':

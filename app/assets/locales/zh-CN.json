@@ -4,7 +4,9 @@
     "actions": {
       "title": "操作",
       "dashboard": "仪表盘",
-      "start": "开始创建新记录"
+      "start": "开始创建新记录",
+      "update": "自动更新",
+      "vuex": "VUEX"
     },
     "records": {
       "title": "记录",
@@ -35,10 +37,16 @@
   },
   "about": {
     "v8": "V8",
+    "env": "环境",
     "core": "内核",
+    "data": "数据",
     "node": "Node",
     "chromium": "Chromium",
     "electron": "Electron",
     "datetime": "Datetime"
+  },
+  "dashboard": {
+    "introduction": "当前Electron v{electron}，包括Node v{node}，运行在{platform}平台。",
+    "copyright": "版权所有 (c) 2016 WEDN，保留一切权利"
   }
 }

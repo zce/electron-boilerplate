@@ -1,5 +1,7 @@
 <style scoped>
-  div.inner {
+  .inner {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
   }
@@ -21,6 +23,9 @@
   import { getCount } from '../libraries/vuex/getters'
 
   export default {
+    name: 'vuex',
+    pathname: '/vuex',
+
     vuex: {
       actions: {
         increment: incrementCounter
