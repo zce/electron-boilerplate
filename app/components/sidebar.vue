@@ -48,14 +48,9 @@
           padding: 12/16rem;
           padding-left: 20/16rem;
           white-space: nowrap;
-<<<<<<< HEAD
           transition: background-color .6s ease-in;
           &:hover,
           &.active {
-=======
-          transition: background-color .3s ease;
-          &:hover, &.active {
->>>>>>> vue
             border-left: 10/16rem solid transparent;
             padding-left: 10/16rem;
             i {
