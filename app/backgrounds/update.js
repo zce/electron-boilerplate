@@ -13,6 +13,9 @@ let updaterWindow = null
 let webContents = null
 
 export default (callback) => {
+  // 未开启 asar 自动更新
+  if (!config) return callback()
+
   updater
     .on('available', (task) => {
       if (!updaterWindow) {
