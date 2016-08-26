@@ -11,6 +11,8 @@ const Promise = require('bluebird')
 const del = require('del')
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
+const Dashboard = require('webpack-dashboard')
+const DashboardPlugin = require('webpack-dashboard/plugin')
 const electron = require('electron-prebuilt')
 const packager = require('electron-packager')
 const { createPackage } = require('asar')
@@ -67,13 +69,15 @@ const watch = (callback) => {
     'webpack-dev-server/client?http://localhost:2080/',
     'webpack/hot/dev-server'
   )
-  webpackConfigRenderer.plugins.push(new webpack.HotModuleReplacementPlugin())
+  const dashboard = new Dashboard()
+  webpackConfigRenderer.plugins.push(new webpack.HotModuleReplacementPlugin(), new DashboardPlugin(dashboard.setData))
   new WebpackDevServer(webpack(webpackConfigRenderer), {
-    hot: true,
     // watchOptions: {
     //   aggregateTimeout: 300,
     //   poll: 1000 // is this the same as specifying --watch-poll?
     // },
+    hot: true,
+    quiet: true,
     stats: {
       colors: true
     }

@@ -85,6 +85,7 @@
     "vue-loader": "^8.5.2",
     "vue-style-loader": "^1.0.0",
     "webpack": "^1.13.2",
+    "webpack-dashboard": "^0.1.8",
     "webpack-dev-server": "^1.15.0",
     "webpack-merge": "^0.14.1"
   }
