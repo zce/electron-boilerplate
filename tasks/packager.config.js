@@ -29,7 +29,7 @@ module.exports = {
   // 'app-category-type': 'public.app-category.developer-tools',
   'app-category-type': 'public.app-category.productivity',
   'app-copyright': `Copyright (c) ${new Date().getFullYear()} WEDN.NET.`,
-  'version-string': {
+  'win32metadata': {
     CompanyName: 'WEDN.NET',
     FileDescription: 'EBP',
     OriginalFilename: 'EBP.exe',
