@@ -210,7 +210,7 @@ gulp.task('release', ['archive'], (callback) => {
 /**
  * Webpack dev server watch
  */
-gulp.task('watch', [], watch)
+gulp.task('watch', [], () => watch())
 
 /**
  * Develop boot app
