@@ -1,15 +1,13 @@
 const views = [
   require('../views/dashboard'),
-  require('../views/vuex'),
-  require('../views/update'),
-  require('../views/blank'),
   require('../views/start'),
-  require('../views/watch')
+  require('../views/watch'),
+  require('../views/vuex'),
+  require('../views/demo'),
+  require('../views/blank')
 ]
 
 const routes = {}
-views.forEach(v => {
-  routes[v.pathname] = { name: v.name, component: v }
-})
+views.forEach(v => { routes[v.pathname] = { name: v.name, component: v } })
 
 export default routes

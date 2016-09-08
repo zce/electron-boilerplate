@@ -23,11 +23,10 @@ config.storage = {
 }
 
 // log4js appender config
-const logFile = path.resolve(config.app.path, '..', pkg.name + '.log')
-config.log4js = [
-  { type: 'file', filename: logFile, category: 'main' },
-  { type: 'file', filename: logFile, category: 'renderer' }
-]
+config.log4js = {
+  type: 'file',
+  filename: path.resolve(config.app.path, '..', pkg.name + '.log')
+}
 
 // server config
 config.server = {

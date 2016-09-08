@@ -1,8 +1,8 @@
 {
   "name": "electron-boilerplate",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "A Bolierplate application for Electron runtime",
-  "updated": "2016-08-26T02:56:12.476Z",
+  "updated": "2016-09-08T11:20:23.455Z",
   "main": "main.js",
   "dependencies": {
     "asar-updater": "^0.3.1",

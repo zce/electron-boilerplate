@@ -15,7 +15,7 @@
       background-color: #fff;
       border: 1/16rem solid rgba(0, 0, 0, .2);
       border-radius: 2/16rem;
-      box-shadow: 0 0 20/16rem rgba(0, 0, 0, .2);
+      box-shadow: 0 0 20/16rem rgba(0, 0, 0, .5);
       outline: 0;
     }
     .modal-header {
@@ -54,11 +54,13 @@
         font-weight: 600;
       }
       ul {
-        font-family: Consolas, 'Courier New', monospace;
         line-height: 1.6;
         span {
           display: inline-block;
           min-width: 95/16rem;
+        }
+        strong {
+          font-family: Consolas, 'Courier New', monospace;
         }
       }
     }
@@ -75,6 +77,10 @@
       transition: transform .3s ease-out;
       transform: translate(0, 0);
     }
+    & + .window {
+      transition: -webkit-filter .3s linear;
+      -webkit-filter: blur(2/16rem)
+    }
   }
   .toggle-enter,
   .toggle-leave {
@@ -90,10 +96,7 @@
     <section class="modal-dialog" role="document">
       <section class="modal-header drag">
         <h3 class="modal-title">{{$config.app.name}}</h3>
-        <button type="button" class="close" @click="close()" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-          <span class="sr-only">Close</span>
-        </button>
+        <button type="button" class="close" @click="close()" aria-label="Close">&times;</button>
       </section>
       <section class="modal-body">
         <p><strong>{{$config.app.description}}</strong></p>
@@ -108,7 +111,8 @@
         </ul>
       </section>
       <section class="modal-footer">
-        <button type="button" class="btn btn-primary btn-sm" @click="close()">OK</button>
+        <button type="button" class="btn btn-warning btn-sm" @click="reveal()">{{$t('about.btn_reveal')}}</button>
+        <button type="button" class="btn btn-primary btn-sm" @click="close()">{{$t('about.btn_ok')}}</button>
       </section>
     </section>
   </section>
@@ -127,7 +131,8 @@
     },
 
     methods: {
-      close () { this.open = false }
+      close () { this.open = false },
+      reveal () { this.$electron.shell.showItemInFolder(this.$config.log4js.filename) }
     }
   }
 </script>

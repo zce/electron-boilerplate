@@ -43,7 +43,9 @@
     "node": "Node",
     "chromium": "Chromium",
     "electron": "Electron",
-    "datetime": "Datetime"
+    "datetime": "Datetime",
+    "btn_reveal": "Reveal Log File",
+    "btn_ok": "OK"
   },
   "dashboard": {
     "introduction": "You are using electron v{electron} with node v{node} on the {platform} platform.",

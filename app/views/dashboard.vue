@@ -51,7 +51,7 @@
     <h1>{{$config.app.name}}</h1>
     <p>{{$t('dashboard.introduction', { electron: versions.electron, node: versions.node, platform: platform })}}</p>
     <ul>
-      <li><a v-link="{ name: 'update' }">Update</a></li>
+      <li><a v-link="{ name: 'demo' }">Demo</a></li>
       <li><a v-link="{ name: 'vuex' }">VUEX</a></li>
       <li><a v-link="{ name: 'blank' }">Blank</a></li>
     </ul>

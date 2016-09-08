@@ -41,6 +41,7 @@
         margin: 0;
         li {
           display: flex;
+          line-height: 1.2;
           align-items: center;
           cursor: pointer;
           box-sizing: border-box;

@@ -43,7 +43,9 @@
     "node": "Node",
     "chromium": "Chromium",
     "electron": "Electron",
-    "datetime": "Datetime"
+    "datetime": "Datetime",
+    "btn_reveal": "找到日志文件",
+    "btn_ok": "好的"
   },
   "dashboard": {
     "introduction": "当前Electron v{electron}，包括Node v{node}，运行在{platform}平台。",

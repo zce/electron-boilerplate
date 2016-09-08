@@ -69,6 +69,7 @@
 </style>
 
 <template>
+  <about :open.sync="about_opened"></about>
   <div class="window {{window_theme}}">
     <sidebar :open.sync="sidebar_opened"></sidebar>
     <main class="main">
@@ -83,7 +84,6 @@
         <router-view transition="content"></router-view>
       </section>
     </main>
-    <about :open.sync="about_opened"></about>
   </div>
 </template>
 
