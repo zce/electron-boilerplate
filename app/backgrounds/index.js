@@ -5,23 +5,21 @@ import update from './update'
 
 let mainWindow
 
-const shouldQuit = app.makeSingleInstance((commandLine, workingDirectory) => {
-  // Someone tried to run a second instance, we should focus our window.
-  if (mainWindow) {
-    if (mainWindow.isMinimized()) {
-      mainWindow.restore()
-    }
-    mainWindow.focus()
-  }
+// single window instance
+const shouldQuit = app.makeSingleInstance(() => {
+  if (!mainWindow) return
+  if (mainWindow.isMinimized()) mainWindow.restore()
+  mainWindow.focus()
 })
 
-if (shouldQuit) {
-  app.quit()
-}
+if (shouldQuit) app.quit()
 
 app.on('ready', () => {
+  // check for update
   update(() => {
+    // set app menu
     setAppMenu()
+    // create window
     mainWindow = createWindow('main', {
       // x: 0,
       // y: 0,
@@ -32,16 +30,16 @@ app.on('ready', () => {
       useContentSize: true,
       frame: false
     })
+    // load main page
     if (process.env.NODE_ENV === 'production') {
-      mainWindow.loadURL(`file://${__dirname}/index.html`)
-    } else {
-      mainWindow.loadURL('http://localhost:2080/index.html')
-      mainWindow.webContents.openDevTools({ detach: false })
-      // 载入开发工具
-      require('devtron').install()
-      require('vue-devtools').install()
+      return mainWindow.loadURL(`file://${__dirname}/index.html`)
     }
+    mainWindow.loadURL('http://localhost:2080/index.html')
+    mainWindow.webContents.openDevTools({ detach: false })
+    // load chrome exts
+    require('devtron').install()
+    require('vue-devtools').install()
   })
 })
 
-app.on('window-all-closed', () => app.quit())
+app.on('window-all-closed', app.quit)

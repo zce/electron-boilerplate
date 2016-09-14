@@ -6,7 +6,7 @@
     "type": "git",
     "url": "git+https://github.com/zce/electron-boilerplate.git"
   },
-  "author": "iceStone <ice@micua.com> (http://blog.wedn.net/)",
+  "author": "iceStone <ice@wedn.net> (http://wedn.net/)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/zce/electron-boilerplate/issues"

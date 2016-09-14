@@ -60,6 +60,7 @@
           }
           .name {
             flex: 1;
+            font-family: Consolas, 'Courier New', monospace;
           }
           i {
             display: inline-block;

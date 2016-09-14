@@ -45,9 +45,7 @@ export default (callback) => {
       updater.quitAndInstall(1000)
     })
     .on('error', (error) => {
-      if (error) {
-        webContents && webContents.send('update_done', '更新出错，请联系作者！')
-      }
+      if (error) webContents && webContents.send('update_done', '更新出错，请重试！')
       callback()
     })
     .checkForUpdates()

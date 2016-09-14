@@ -16,6 +16,13 @@ module.exports = merge(base, {
       { from: './app/package.json', to: '.' },
       { from: './app/update.html', to: '.' },
       { from: './app/node_modules', to: './node_modules' }
-    ])
+    ], {
+      ignore: [
+        '*.md',
+        '*.markdown',
+        { glob: '**/.bin/*', dot: true },
+        { glob: '**/LICENSE', dot: true }
+      ]
+    })
   ]
 })

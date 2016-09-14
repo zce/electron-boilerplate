@@ -30,16 +30,21 @@ function read (uri) {
   }
 }
 
+export function getPath (stamp) {
+  return path.join(config.storage.root, stamp + config.storage.ext)
+}
+
 export function set (stamp, value) {
-  write(path.join(config.storage.root, stamp + config.storage.ext), value)
+  value.meta = config.storage.meta
+  write(getPath(stamp), value)
 }
 
 export function get (stamp) {
-  return read(path.join(config.storage.root, stamp + config.storage.ext))
+  return read(getPath(stamp))
 }
 
 export function watch (stamp, callback) {
-  fs.watchFile(path.join(config.storage.root, stamp + config.storage.ext), { interval: 500 }, (curr, prev) => {
+  fs.watchFile(getPath(stamp), { interval: 500 }, (curr, prev) => {
     if (curr && curr.size && curr.mtime !== prev.mtime) {
       const data = get(stamp)
       data && callback(data)
@@ -57,7 +62,5 @@ export function getList () {
 }
 
 export function watchList (callback) {
-  fs.watch(config.storage.root, { interval: 400 }, (event, filename) => {
-    event !== 'change' && callback()
-  })
+  fs.watch(config.storage.root, { interval: 400 }, e => e !== 'change' && callback())
 }

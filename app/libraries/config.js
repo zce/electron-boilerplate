@@ -17,9 +17,10 @@ config.app = {
 
 // storage config
 config.storage = {
+  meta: { type: pkg.name, version: pkg.version },
+  sign: `© ${new Date().getFullYear()} WEDN.NET`,
   root: path.resolve(config.app.path, '..', 'data'),
-  ext: '.dat',
-  sign: `© ${new Date().getFullYear()} WEDN.NET`
+  ext: '.dat'
 }
 
 // log4js appender config
