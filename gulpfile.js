@@ -15,7 +15,7 @@ const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 const Dashboard = require('webpack-dashboard')
 const DashboardPlugin = require('webpack-dashboard/plugin')
-const electron = require('electron-prebuilt')
+const electron = require('electron')
 const packager = require('electron-packager')
 const { createPackage } = require('asar')
 

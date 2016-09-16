@@ -14,7 +14,7 @@ module.exports = {
   'ignore': [],
   'overwrite': true,
   'prune': argv.prune || false,
-  'version': argv.version || require('../node_modules/electron-prebuilt/package.json').version,
+  'version': argv.version || require('../node_modules/electron/package.json').version,
   'app-version': pkg.version,
   // 'asar': {
   //   ordering: '',
