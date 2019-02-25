@@ -1,0 +1,26 @@
+html {
+  font-size: 20px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[data-theme=dark] {
+  --primary: #f03e3e;
+  --secondary: #868e96;
+  --global-bg: #495057;
+  --global-color: #dee2e6;
+  --titlebar-bg: #343a40;
+  --titlebar-color: #fff;
+  --activitybar-bg: #212529;
+  --activitybar-color: #fff;
+  --sidebar-bg: #343a40;
+  --sidebar-color: #fff;
+  --statusbar-bg: #212529;
+  --statusbar-color: #fff;
+}
+
