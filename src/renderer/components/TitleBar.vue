@@ -8,7 +8,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 @Component
 export default class TitleBar extends Vue {
   // @ts-ignore
-  @Prop() private title!: string;
+  @Prop() private title!: string
 }
 </script>
 

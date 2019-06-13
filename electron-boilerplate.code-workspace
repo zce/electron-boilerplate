@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"name": "src",
+			"path": "src"
+		},
+		{
+			"name": "root",
+			"path": "."
+		}
+	],
+	"settings": {
+    "explorer.openEditors.visible": 0,
+    "files.exclude": {
+      "node_modules": true,
+      "src": true,
+      "*.code-workspace": true
+    },
+    "terminal.integrated.cwd": ".",
+    "typescript.tsdk": "node_modules/typescript/lib",
+  }
+}

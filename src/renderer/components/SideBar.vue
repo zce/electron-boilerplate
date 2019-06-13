@@ -3,13 +3,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 
 @Component
-export default class SideBar extends Vue {
-  // @ts-ignore
-  @Prop() private title!: string;
-}
+export default class SideBar extends Vue {}
 </script>
 
 <style scoped lang="scss">

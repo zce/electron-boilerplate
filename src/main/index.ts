@@ -7,9 +7,18 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow: BrowserWindow | null
 
-function createWindow () {
+const createWindow = () => {
   // Create the browser window.
-  mainWindow = new BrowserWindow({ width: 800, height: 600, titleBarStyle: 'hidden', frame: false })
+  mainWindow = new BrowserWindow({
+    width: 1280,
+    height: 720,
+    center: true,
+    titleBarStyle: 'hidden',
+    frame: false,
+    webPreferences: {
+      nodeIntegration: true
+    }
+  })
 
   if (isDevelopment) {
     // and load localhost for HMR

@@ -1,6 +1,7 @@
 {
   "name": "electron-boilerplate",
   "version": "0.1.0",
+  "private": true,
   "description": " A boilerplate application for Electron runtime",
   "keywords": [
     "boilerplate",
@@ -16,31 +17,35 @@
     "url": "git+https://github.com/zce/electron-boilerplate.git"
   },
   "license": "MIT",
-  "author": "zce <w@zce.me> (https://zce.me/)",
-  "main": "index.js",
+  "author": {
+    "name": "zce",
+    "email": "w@zce.me",
+    "url": "https://zce.me"
+  },
   "scripts": {
     "lint": "# TODO: lint task",
-    "lint:fix": "# TODO: lint task",
-    "dev": "electron-webpack dev",
     "compile": "electron-webpack",
     "build": "yarn compile && electron-builder",
-    "dist": "yarn build --dir -c.compression=store -c.mac.identity=null"
+    "dist": "yarn build --dir -c.compression=store -c.mac.identity=null",
+    "dev": "electron-webpack dev"
   },
   "dependencies": {
-    "electron": "^4.0.2",
-    "electron-builder": "^20.38.5",
-    "electron-webpack": "^2.6.1",
-    "electron-webpack-ts": "^3.1.1",
-    "electron-webpack-vue": "^2.2.3",
-    "node-sass": "^4.11.0",
-    "sass-loader": "^7.1.0",
-    "typescript": "^3.2.4",
-    "vue": "^2.5.22",
-    "vue-property-decorator": "^7.3.0",
-    "vue-router": "^3.0.2",
-    "vuex": "^3.1.0",
-    "webpack": "^4.29.0"
+    "source-map-support": "^0.5.12"
   },
-  "devDependencies": {},
-  "electronWebpack": {}
+  "devDependencies": {
+    "electron": "^5.0.3",
+    "electron-builder": "^20.43.0",
+    "electron-webpack": "^2.6.2",
+    "electron-webpack-ts": "^3.2.0",
+    "electron-webpack-vue": "^2.3.0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^7.1.0",
+    "typescript": "^3.5.1",
+    "vue": "^2.6.10",
+    "vue-property-decorator": "^8.1.1",
+    "vue-router": "^3.0.6",
+    "vuex": "^3.1.1",
+    "webpack": "^4.34.0",
+    "webpack-build-notifier": "^1.0.3"
+  }
 }

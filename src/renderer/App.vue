@@ -1,6 +1,6 @@
 <template>
   <div class="workbench" data-theme="dark">
-    <TitleBar title="hello world" />
+    <TitleBar title="Electron Boilerplate" />
     <div class="wrapper">
       <ActivityBar />
       <SideBar />
@@ -15,19 +15,13 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import TitleBar from '@/components/TitleBar.vue'
-import ActivityBar from '@/components/ActivityBar.vue'
-import SideBar from '@/components/SideBar.vue'
-import StatusBar from '@/components/StatusBar.vue'
 
-@Component({
-  components: {
-    TitleBar,
-    ActivityBar,
-    SideBar,
-    StatusBar
-  }
-})
+import TitleBar from './components/TitleBar.vue'
+import ActivityBar from './components/ActivityBar.vue'
+import SideBar from './components/SideBar.vue'
+import StatusBar from './components/StatusBar.vue'
+
+@Component({ components: { TitleBar, ActivityBar, SideBar, StatusBar } })
 export default class Home extends Vue {}
 </script>
 
