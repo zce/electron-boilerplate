@@ -1,0 +1,19 @@
+sudo: false
+
+language: node_js
+
+node_js:
+  - lts/*
+
+cache:
+  yarn: true
+
+notifications:
+  email:
+    on_success: never
+    on_failure: change
+
+script:
+  - yarn format
+  - yarn lint
+  - yarn dist

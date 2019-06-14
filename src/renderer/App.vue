@@ -25,7 +25,6 @@ import StatusBar from './components/StatusBar.vue'
 export default class Home extends Vue {}
 </script>
 
-
 <style lang="scss">
 .workbench {
   display: flex;

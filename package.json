@@ -2,7 +2,7 @@
   "name": "electron-boilerplate",
   "version": "0.1.0",
   "private": true,
-  "description": " A boilerplate application for Electron runtime",
+  "description": "A boilerplate application with Vue.js framework for Electron runtime",
   "keywords": [
     "boilerplate",
     "electron",
@@ -23,29 +23,78 @@
     "url": "https://zce.me"
   },
   "scripts": {
-    "lint": "# TODO: lint task",
+    "format": "prettier --write \"**/*.{ts,vue}\"",
+    "lint": "eslint \"**/*.{ts,vue}\"",
     "compile": "electron-webpack",
     "build": "yarn compile && electron-builder",
     "dist": "yarn build --dir -c.compression=store -c.mac.identity=null",
-    "dev": "electron-webpack dev"
+    "dev": "electron-webpack dev",
+    "commit": "git-cz",
+    "release": "standard-version"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "*.md": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{ts,vue}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "prettier": {
+    "endOfLine": "lf",
+    "printWidth": 80,
+    "semi": false,
+    "singleQuote": true
   },
   "dependencies": {
     "source-map-support": "^0.5.12"
   },
   "devDependencies": {
+    "@commitlint/cli": "^8.0.0",
+    "@commitlint/config-conventional": "^8.0.0",
+    "@vue/eslint-config-standard": "^4.0.0",
+    "@vue/eslint-config-typescript": "^4.0.0",
+    "commitizen": "^3.1.1",
+    "cz-conventional-changelog": "^2.1.0",
     "electron": "^5.0.3",
     "electron-builder": "^20.43.0",
     "electron-webpack": "^2.6.2",
     "electron-webpack-ts": "^3.2.0",
     "electron-webpack-vue": "^2.3.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.2.2",
+    "husky": "^2.4.1",
+    "lint-staged": "^8.2.1",
     "node-sass": "^4.12.0",
+    "prettier": "^1.18.2",
     "sass-loader": "^7.1.0",
-    "typescript": "^3.5.1",
+    "standard-version": "^6.0.1",
+    "typescript": "^3.5.2",
     "vue": "^2.6.10",
     "vue-property-decorator": "^8.1.1",
     "vue-router": "^3.0.6",
     "vuex": "^3.1.1",
     "webpack": "^4.34.0",
-    "webpack-build-notifier": "^1.0.3"
+    "webpack-build-notifier": "^1.0.3",
+    "webpack-notifier": "^1.7.0"
   }
 }

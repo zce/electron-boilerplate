@@ -22,7 +22,9 @@ const createWindow = () => {
 
   if (isDevelopment) {
     // and load localhost for HMR
-    mainWindow.loadURL(`http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`)
+    mainWindow.loadURL(
+      `http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`
+    )
     // Open the DevTools.
     mainWindow.webContents.openDevTools()
   } else {
