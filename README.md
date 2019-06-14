@@ -45,7 +45,6 @@
 - vuex
 - webpack
 - webpack-build-notifier
-- webpack-notifier
 
 ## Contributing
 
