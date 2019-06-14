@@ -46,6 +46,10 @@
 - webpack
 - webpack-build-notifier
 
+## References
+
+- https://github.com/zeng450026937/RTVC
+
 ## Contributing
 
 1. **Fork** it on GitHub!

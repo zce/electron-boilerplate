@@ -2,5 +2,14 @@ title: Electron Boilerplate
 commonSourceDirectory: src/common
 main:
   sourceDirectory: src/main
+  extraEntries:
+    - "@/preload.ts"
+  webpackConfig: webpack.main.additions.js
 renderer:
+  dll:
+    - vue
+    - vuex
+    - vue-router
   sourceDirectory: src/renderer
+  webpackConfig: webpack.renderer.additions.js
+  webpackDllConfig: webpack.renderer.dll.additions.js
