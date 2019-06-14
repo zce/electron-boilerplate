@@ -1,0 +1,6 @@
+title: Electron Boilerplate
+commonSourceDirectory: src/common
+main:
+  sourceDirectory: src/main
+renderer:
+  sourceDirectory: src/renderer
