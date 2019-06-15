@@ -1,0 +1,4 @@
+productName: "Electron Boilerplate"
+appId: "me.zce.electron-boilerplate"
+mac:
+  category: "public.app-category.developer-tools"

@@ -26,9 +26,9 @@
     "format": "prettier --write \"**/*.{ts,vue}\"",
     "lint": "eslint \"**/*.{ts,vue}\" --format node_modules/eslint-friendly-formatter",
     "compile": "electron-webpack",
-    "compile:dll": "electron-webpack dll",
-    "build": "yarn compile && electron-builder",
-    "dist": "yarn build --dir -c.compression=store -c.mac.identity=null",
+    "compile:dll": "yarn compile dll",
+    "build": "yarn compile:dll && yarn compile && electron-builder",
+    "build:dir": "yarn build --dir -c.compression=store -c.mac.identity=null",
     "dev": "electron-webpack dev",
     "commit": "git-cz",
     "release": "standard-version"
