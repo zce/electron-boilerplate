@@ -4,9 +4,10 @@
     <div class="wrapper">
       <ActivityBar />
       <SideBar />
-      <div class="editor">
-        <div class="tabs"></div>
-        <div class="main"></div>
+      <div class="container">
+        <!-- <div class="tabs"></div>
+        <div class="main"></div> -->
+        <router-view></router-view>
       </div>
     </div>
     <StatusBar />
@@ -22,7 +23,7 @@ import SideBar from './components/SideBar.vue'
 import StatusBar from './components/StatusBar.vue'
 
 @Component({ components: { TitleBar, ActivityBar, SideBar, StatusBar } })
-export default class Home extends Vue {}
+export default class App extends Vue {}
 </script>
 
 <style lang="scss">
@@ -41,7 +42,7 @@ export default class Home extends Vue {}
   flex-grow: 1;
 }
 
-.editor {
+.container {
   display: flex;
   flex-grow: 1;
   flex-direction: column;

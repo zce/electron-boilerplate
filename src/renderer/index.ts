@@ -1,17 +1,20 @@
 import Vue from 'vue'
 
-// import i18n from './i18n'
+import i18n from './i18n'
 import store from './store'
 import router from './router'
 import App from './App.vue'
 
 import './assets/style.scss'
 
-Vue.config.productionTip = false
+// Vue.config.productionTip = false
+
+i18n.locale = store.getters.settings.locale
 
 const app = new Vue({
-  router,
+  i18n,
   store,
+  router,
   render: h => h(App)
 })
 

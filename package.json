@@ -91,9 +91,11 @@
     "standard-version": "^6.0.1",
     "typescript": "^3.5.2",
     "vue": "^2.6.10",
+    "vue-i18n": "^8.11.2",
     "vue-property-decorator": "^8.1.1",
     "vue-router": "^3.0.6",
     "vuex": "^3.1.1",
+    "vuex-class": "^0.3.2",
     "webpack": "^4.34.0",
     "webpack-build-notifier": "^1.0.3"
   }

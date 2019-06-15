@@ -1,5 +1,7 @@
 <template>
-  <div class="statusbar"></div>
+  <div class="statusbar">
+    <small>StatusBar</small>
+  </div>
 </template>
 
 <script lang="ts">

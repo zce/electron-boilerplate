@@ -1,3 +1,6 @@
+// Reboot
+// --------------------------------------------------
+
 html {
   font-size: 20px;
 }
@@ -7,10 +10,18 @@ body {
   padding: 0;
 }
 
+// Typography
+// --------------------------------------------------
+
 body {
+  font-size: 0.8rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
+
+// Themes
+// --------------------------------------------------
 
 [data-theme=dark] {
   --primary: #f03e3e;

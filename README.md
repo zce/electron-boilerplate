@@ -40,6 +40,7 @@
 - standard-version
 - typescript
 - vue
+- vue-i18n
 - vue-property-decorator
 - vue-router
 - vuex

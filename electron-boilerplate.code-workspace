@@ -1,9 +1,21 @@
 {
 	"folders": [
 		{
-			"name": "src",
-			"path": "src"
+			"name": "main",
+			"path": "src/main"
 		},
+		{
+			"name": "renderer",
+			"path": "src/renderer"
+		},
+		{
+			"name": "common",
+			"path": "src/common"
+		},
+		// {
+		// 	"name": "src",
+		// 	"path": "src"
+		// },
 		{
 			"name": "root",
 			"path": "."
