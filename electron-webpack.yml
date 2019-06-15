@@ -10,6 +10,7 @@ renderer:
     - vue
     - vuex
     - vue-router
+    - vue-i18n
   sourceDirectory: src/renderer
   webpackConfig: webpack.renderer.additions.js
   webpackDllConfig: webpack.renderer.dll.additions.js
