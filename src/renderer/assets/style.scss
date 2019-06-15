@@ -38,3 +38,17 @@ body {
   --statusbar-color: #fff;
 }
 
+[data-theme=light] {
+  --primary: #007acc;
+  --secondary: #495057;
+  --global-bg: #fff;
+  --global-color: #333;
+  --titlebar-bg: #ddd;
+  --titlebar-color: #333;
+  --activitybar-bg: #2c2c2c;
+  --activitybar-color: rgba(255, 255, 255, 0.6);
+  --sidebar-bg: #f3f3f3;
+  --sidebar-color: #6f6f6f;
+  --statusbar-bg: #007acc;
+  --statusbar-color: #fff;
+}

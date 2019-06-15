@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar">
-    <small>SideBar</small>
+    <span>SideBar</span>
   </div>
 </template>
 
@@ -11,10 +11,13 @@ import { Vue, Component } from 'vue-property-decorator'
 export default class SideBar extends Vue {}
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .sidebar {
   width: 10rem;
-  color: var(--sidebar-color);
   background: var(--sidebar-bg);
+  color: var(--sidebar-color);
+  text-align: center;
+  font-size: 0.6rem;
+  line-height: 10rem;
 }
 </style>

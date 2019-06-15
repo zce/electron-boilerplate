@@ -2,13 +2,20 @@
   <div class="home">
     <h1>{{ $t('hello') }}</h1>
     <p>
-      <select v-model="$i18n.locale">
+      <select v-model="settings.locale">
         <option v-for="(value, key) in locales" :value="key" :key="key">{{
           value
         }}</option>
       </select>
       <span>{{ $i18n.locale }}</span>
     </p>
+    <p>
+      <select v-model="settings.theme">
+        <option value="dark">暗色</option>
+        <option value="light">亮色</option>
+      </select>
+    </p>
+    <br />
     <p>
       <button @click="incrementAsync">++</button>
       <button @click="increment">+</button>
@@ -21,12 +28,14 @@
 
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator'
-import { namespace } from 'vuex-class'
+import { Getter, namespace } from 'vuex-class'
 
 const counter = namespace('counter')
 
 @Component
 export default class Home extends Vue {
+  @Getter settings!: { [key: string]: any }
+
   @counter.Getter count!: number
   @counter.Action increment!: () => void
   @counter.Action incrementAsync!: () => void
@@ -43,9 +52,15 @@ export default class Home extends Vue {
     return { locales }
   }
 
-  @Watch('$i18n.locale')
+  @Watch('setting.locale')
   localeChange (value: string, prev: string) {
     this.$store.dispatch('updateSettings', { locale: value })
+    this.$i18n.locale = value
+  }
+
+  @Watch('settings.theme')
+  themeChange (value: string, prev: string) {
+    this.$store.dispatch('updateSettings', { theme: value })
   }
 }
 </script>
@@ -55,6 +70,6 @@ export default class Home extends Vue {
   flex-grow: 1;
   padding: 5rem;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1rem;
 }
 </style>

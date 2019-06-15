@@ -1,6 +1,6 @@
 <template>
   <div class="activitybar">
-    <small>ActivityBar</small>
+    <span>ActivityBar</span>
   </div>
 </template>
 
@@ -14,11 +14,11 @@ export default class ActivityBar extends Vue {}
 <style lang="scss">
 .activitybar {
   width: 2.5rem;
-  color: var(--activitybar-color);
   background: var(--activitybar-bg);
-
-  small {
-    writing-mode: vertical-rl;
-  }
+  color: var(--activitybar-color);
+  text-align: center;
+  writing-mode: vertical-rl;
+  font-size: 0.6rem;
+  line-height: 2.5rem;
 }
 </style>

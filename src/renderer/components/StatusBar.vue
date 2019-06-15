@@ -1,6 +1,6 @@
 <template>
   <div class="statusbar">
-    <small>StatusBar</small>
+    <span>StatusBar</span>
   </div>
 </template>
 
@@ -11,10 +11,13 @@ import { Vue, Component } from 'vue-property-decorator'
 export default class StatusBar extends Vue {}
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .statusbar {
   height: 1.1rem;
-  color: var(--statusbar-color);
   background: var(--statusbar-bg);
+  color: var(--statusbar-color);
+  text-align: center;
+  font-size: 0.6rem;
+  line-height: 1.1rem;
 }
 </style>
