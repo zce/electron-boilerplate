@@ -1,4 +1,4 @@
-import { GetterTree, MutationTree, ActionTree } from 'vuex'
+import { GetterTree, MutationTree, ActionTree, Module } from 'vuex'
 import { State } from '../types'
 
 // types
@@ -12,7 +12,7 @@ const DECREMENT: string = 'DECREMENT'
 
 // initial state
 const state: CounterState = {
-  count: 0
+  count: 100
 }
 
 // getters
@@ -41,5 +41,14 @@ const actions: ActionTree<CounterState, State> = {
 // namespaced
 const namespaced: boolean = true
 
+// counter module
+const counter: Module<CounterState, State> = {
+  state,
+  getters,
+  mutations,
+  actions,
+  namespaced
+}
+
 // expose module
-export default { state, getters, mutations, actions, namespaced }
+export default counter

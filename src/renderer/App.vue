@@ -1,12 +1,10 @@
 <template>
-  <div class="workbench" data-theme="dark">
+  <div class="workbench" :data-theme="settings.theme">
     <TitleBar title="Electron Boilerplate" />
     <div class="wrapper">
       <ActivityBar />
       <SideBar />
       <div class="container">
-        <!-- <div class="tabs"></div>
-        <div class="main"></div> -->
         <router-view></router-view>
       </div>
     </div>
@@ -15,7 +13,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Vue, Component } from 'vue-property-decorator'
+import { Getter } from 'vuex-class'
 
 import TitleBar from './components/TitleBar.vue'
 import ActivityBar from './components/ActivityBar.vue'
@@ -23,7 +22,9 @@ import SideBar from './components/SideBar.vue'
 import StatusBar from './components/StatusBar.vue'
 
 @Component({ components: { TitleBar, ActivityBar, SideBar, StatusBar } })
-export default class App extends Vue {}
+export default class App extends Vue {
+  @Getter settings!: { [key: string]: any }
+}
 </script>
 
 <style lang="scss">

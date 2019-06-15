@@ -18,10 +18,7 @@ const getSettings = () => {
 const state: State = {
   settings: getSettings(),
   activitybar: {},
-  sidebar: {},
-  count: 0
+  sidebar: {}
 }
-
-console.log(state)
 
 export default state

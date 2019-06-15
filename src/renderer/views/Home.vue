@@ -7,28 +7,45 @@
           value
         }}</option>
       </select>
+      <span>{{ $i18n.locale }}</span>
     </p>
-    <p>{{ $i18n.locale }}</p>
+    <p>
+      <button @click="incrementAsync">++</button>
+      <button @click="increment">+</button>
+      <span>{{ count }}</span>
+      <button @click="decrement">-</button>
+      <button @click="decrementAsync">--</button>
+    </p>
   </div>
 </template>
 
 <script lang="ts">
-import { Watch, Component, Vue } from 'vue-property-decorator'
+import { Vue, Component, Watch } from 'vue-property-decorator'
+import { namespace } from 'vuex-class'
+
+const counter = namespace('counter')
 
 @Component
 export default class Home extends Vue {
-  @Watch('$i18n.locale')
-  localeChange (value: string, prev: string) {
-    console.log(111)
-    this.$store.dispatch('updateSettings', { locale: value })
-  }
+  @counter.Getter count!: number
+  @counter.Action increment!: () => void
+  @counter.Action incrementAsync!: () => void
+  @counter.Action decrement!: () => void
+  @counter.Action decrementAsync!: () => void
 
   data () {
-    const locales = this.$i18n.availableLocales.reduce(
-      (o, k) => ({ ...o, [k]: this.$i18n.messages[k].name }),
+    const availables = this.$i18n.availableLocales
+    const messages = this.$i18n.messages
+    const locales = availables.reduce(
+      (o, k) => ({ ...o, [k]: messages[k].name }),
       {}
     )
     return { locales }
+  }
+
+  @Watch('$i18n.locale')
+  localeChange (value: string, prev: string) {
+    this.$store.dispatch('updateSettings', { locale: value })
   }
 }
 </script>
@@ -36,9 +53,8 @@ export default class Home extends Vue {
 <style lang="scss">
 .home {
   flex-grow: 1;
-
-  h1 {
-    text-align: center;
-  }
+  padding: 5rem;
+  text-align: center;
+  font-size: 2rem;
 }
 </style>
