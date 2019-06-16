@@ -19,5 +19,6 @@ export default class SideBar extends Vue {}
   font-size: 0.6rem;
   line-height: 10rem;
   text-align: center;
+  writing-mode: vertical-rl;
 }
 </style>

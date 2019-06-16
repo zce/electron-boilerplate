@@ -1,7 +1,7 @@
 /**
  * Helpful links
  * - https://github.com/electron/electron-quick-start/blob/master/main.js
- * - https://github.com/mawie81/electron-window-state
+ * - https://github.com/sindresorhus/electron-boilerplate/blob/master/index.js
  */
 
 // Modules to control application life and create native browser window

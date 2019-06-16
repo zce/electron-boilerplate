@@ -45,7 +45,7 @@ export default class App extends Vue {
 
 .container {
   display: flex;
-  flex-grow: 1;
+  flex: 1 0%;
   flex-direction: column;
 }
 </style>
