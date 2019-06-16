@@ -16,9 +16,10 @@ export default class TitleBar extends Vue {
   height: 1.1rem;
   color: var(--titlebar-color);
   background: var(--titlebar-bg);
-  text-align: center;
   font-size: 0.6rem;
   line-height: 1.1rem;
+  text-align: center;
+
   -webkit-user-select: none;
   -webkit-app-region: drag;
 }

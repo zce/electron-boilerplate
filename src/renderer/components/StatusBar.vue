@@ -16,8 +16,8 @@ export default class StatusBar extends Vue {}
   height: 1.1rem;
   background: var(--statusbar-bg);
   color: var(--statusbar-color);
-  text-align: center;
   font-size: 0.6rem;
   line-height: 1.1rem;
+  text-align: center;
 }
 </style>

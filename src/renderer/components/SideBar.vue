@@ -16,8 +16,8 @@ export default class SideBar extends Vue {}
   width: 10rem;
   background: var(--sidebar-bg);
   color: var(--sidebar-color);
-  text-align: center;
   font-size: 0.6rem;
   line-height: 10rem;
+  text-align: center;
 }
 </style>

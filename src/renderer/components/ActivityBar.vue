@@ -16,9 +16,9 @@ export default class ActivityBar extends Vue {}
   width: 2.5rem;
   background: var(--activitybar-bg);
   color: var(--activitybar-color);
-  text-align: center;
-  writing-mode: vertical-rl;
   font-size: 0.6rem;
   line-height: 2.5rem;
+  text-align: center;
+  writing-mode: vertical-rl;
 }
 </style>

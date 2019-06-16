@@ -26,29 +26,43 @@ body {
 [data-theme=dark] {
   --primary: #f03e3e;
   --secondary: #868e96;
+
   --global-bg: #495057;
   --global-color: #dee2e6;
+
   --titlebar-bg: #343a40;
-  --titlebar-color: #fff;
+  --titlebar-color: #ffffff;
+  --titlebar-inactive-bg: #343a4099;
+  --titlebar-inactive-color: #ffffff99;
+
   --activitybar-bg: #212529;
-  --activitybar-color: #fff;
+  --activitybar-color: #ffffff;
+
   --sidebar-bg: #343a40;
-  --sidebar-color: #fff;
+  --sidebar-color: #ffffff;
+
   --statusbar-bg: #212529;
-  --statusbar-color: #fff;
+  --statusbar-color: #ffffff;
 }
 
 [data-theme=light] {
   --primary: #007acc;
   --secondary: #495057;
-  --global-bg: #fff;
-  --global-color: #333;
-  --titlebar-bg: #ddd;
-  --titlebar-color: #333;
+
+  --global-bg: #ffffff;
+  --global-color: #000000;
+
+  --titlebar-bg: #dddddd;
+  --titlebar-color: #333333;
+  --titlebar-inactive-bg: #dddddd99;
+  --titlebar-inactive-color: #33333399;
+
   --activitybar-bg: #2c2c2c;
   --activitybar-color: rgba(255, 255, 255, 0.6);
+
   --sidebar-bg: #f3f3f3;
   --sidebar-color: #6f6f6f;
+
   --statusbar-bg: #007acc;
-  --statusbar-color: #fff;
+  --statusbar-color: #ffffff;
 }
