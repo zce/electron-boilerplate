@@ -14,6 +14,5 @@ notifications:
     on_failure: change
 
 script:
-  - yarn format
   - yarn lint
-  - yarn dist
+  - yarn build
