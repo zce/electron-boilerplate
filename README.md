@@ -63,7 +63,14 @@
 - https://github.com/mawie81/electron-window-state
 - https://github.com/sindresorhus/electron-boilerplate
 - https://github.com/sindresorhus/electron-util
+- https://github.com/sindresorhus/electron-store
 - https://github.com/sindresorhus/electron-context-menu
+- https://github.com/sindresorhus/electron-dl
+- https://github.com/sindresorhus/electron-debug
+- https://github.com/sindresorhus/electron-unhandled
+- https://github.com/sindresorhus/electron-reloader
+- https://github.com/sindresorhus/electron-serve
+- https://github.com/sindresorhus/np
 
 ## Contributing
 
