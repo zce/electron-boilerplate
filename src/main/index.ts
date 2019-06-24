@@ -24,6 +24,9 @@ if (isDevelopment) {
   autoUpdater.checkForUpdates()
 }
 
+// Note: Must match `build.appId` in package.json
+app.setAppUserModelId('me.zce.electron-boilerplate')
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow: BrowserWindow | null
