@@ -28,6 +28,7 @@
     "compile:dll": "yarn compile dll",
     "build": "yarn compile:dll && yarn compile && electron-builder",
     "build:dir": "yarn build --dir -c.compression=store -c.mac.identity=null",
+    "build:all": "yarn build --macos --linux --windows",
     "dev": "electron-webpack dev",
     "commit": "git-cz",
     "release": "standard-version"

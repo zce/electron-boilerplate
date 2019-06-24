@@ -1,4 +1,19 @@
 productName: "Electron Boilerplate"
-appId: "me.zce.electron-boilerplate"
+appId: me.zce.electron-boilerplate
 mac:
-  category: "public.app-category.developer-tools"
+  category: public.app-category.developer-tools
+  darkModeSupport: true
+dmg:
+  iconSize: 160
+  contents:
+  - x: 180
+    y: 170
+  - x: 480
+    y: 170
+    type: link
+    path: "/Applications"
+linux:
+  target:
+  - AppImage
+  - deb
+  category: Network;Chat
