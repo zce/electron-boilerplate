@@ -7,11 +7,47 @@
 [![devDependency Status][devdependency-image]][devdependency-url]
 [![Code Style][style-image]][style-url]
 
-> A boilerplate application with Vue.js framework for Electron runtime.
+> A boilerplate application with Vue.js framework for [Electron](https://electronjs.org) runtime.
 
 ## Usage
 
-CI Token
+Click the "Use this template" button.
+
+Alternatively, create a new directory and then run:
+
+```sh
+$ mkdir my-project
+$ cd my-project
+$ curl -fsSL https://github.com/zce/electron-boilerplate/archive/master.tar.gz | tar -xz --strip-components 1
+```
+
+Or git clone:
+
+```sh
+$ git clone https://github.com/zce/electron-boilerplate.git --depth 1 my-project
+```
+
+Active Travis CI
+
+Create new GitHub token with public_repo scope: https://github.com/settings/tokens，Set in travis-ci.org dashboard
+
+```
+GH_TOKEN=<your github token>
+```
+
+After Travis finishes building your app, open the release draft it created and click "Publish".
+
+## Features
+
+- [`electron-builder`](https://www.electron.build) fully set up to create cross-platform builds
+- [Builds the app on Travis](https://www.electron.build/multi-platform-build#sample-travisyml-to-build-electron-app-for-macos-linux-and-windows)
+- [Silent auto-updates](https://www.electron.build/auto-update)
+- App menu that adheres to the system user interface guidelines
+- [Config handling](https://github.com/sindresorhus/electron-store)
+- [Context menu](https://github.com/sindresorhus/electron-context-menu)
+- [User-friendly handling of unhandled errors](https://github.com/sindresorhus/electron-unhandled)
+- Easily publish new versions to GitHub Releases
+- And much more!
 
 ## Todos
 

@@ -1,3 +1,7 @@
+# https://www.electron.build/multi-platform-build
+# https://www.mokkapps.de/blog/run-automated-electron-app-tests-using-travis-ci/
+# https://juejin.im/entry/5995599a6fb9a0249f6a131b
+
 sudo: false
 
 os: osx
@@ -6,11 +10,20 @@ osx_image: xcode10.2
 
 language: node_js
 
+env:
+  - ELECTRON_CACHE=$HOME/.cache/electron
+  - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+
 node_js:
   - lts/*
 
 cache:
   yarn: true
+  directories:
+    - node_modules
+    - $ELECTRON_CACHE
+    - $ELECTRON_BUILDER_CACHE
+
 
 notifications:
   email:
