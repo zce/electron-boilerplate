@@ -1,0 +1,19 @@
+{
+  "name": "electron-boilerplate",
+  "version": "1.0.0",
+  "main": "./main/index.js",
+  "private": true,
+  "scripts": {
+    "dev": "neutron",
+    "build": "neutron build"
+  },
+  "dependencies": {
+    "neutron": "latest"
+  },
+  "devDependencies": {
+    "electron": "latest",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  }
+}
