@@ -91,12 +91,12 @@ CI Token
 
 [MIT](LICENSE) &copy; [汪磊](https://zce.me)
 
-[travis-image]: https://img.shields.io/travis/zce/electron-boilerplate/next.svg
+[travis-image]: https://img.shields.io/travis/zce/electron-boilerplate.svg
 [travis-url]: https://travis-ci.org/zce/electron-boilerplate
-[codecov-image]: https://img.shields.io/codecov/c/github/zce/electron-boilerplate/next.svg
+[codecov-image]: https://img.shields.io/codecov/c/github/zce/electron-boilerplate.svg
 [codecov-url]: https://codecov.io/gh/zce/electron-boilerplate
-[license-image]: https://img.shields.io/github/license/zce/pages-boilerplate.svg
-[license-url]: https://github.com/zce/electron-boilerplate/blob/next/LICENSE
+[license-image]: https://img.shields.io/github/license/zce/electron-boilerplate.svg
+[license-url]: https://github.com/zce/electron-boilerplate/blob/master/LICENSE
 [dependency-image]: https://img.shields.io/david/zce/electron-boilerplate.svg
 [dependency-url]: https://david-dm.org/zce/electron-boilerplate
 [devdependency-image]: https://img.shields.io/david/dev/zce/electron-boilerplate.svg
