@@ -6,12 +6,22 @@
 
 // Modules to control application life and create native browser window
 import { app, BrowserWindow } from 'electron'
+import { autoUpdater } from 'electron-updater'
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // Disable security warnings for development
 if (isDevelopment) {
   process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = '1'
+} else {
+  // Uncomment this before publishing your first version.
+  // It's commented out as it throws an error if there are no published versions.
+  const FOUR_HOURS = 1000 * 60 * 60 * 4
+  setInterval(() => {
+    autoUpdater.checkForUpdates()
+  }, FOUR_HOURS)
+
+  autoUpdater.checkForUpdates()
 }
 
 // Keep a global reference of the window object, if you don't, the window will

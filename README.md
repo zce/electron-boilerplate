@@ -111,6 +111,7 @@ After Travis finishes building your app, open the release draft it created and c
 - https://github.com/sindresorhus/electron-reloader
 - https://github.com/sindresorhus/electron-serve
 - https://github.com/sindresorhus/np
+- https://github.com/iffy/electron-updater-example
 
 ## Contributing
 
