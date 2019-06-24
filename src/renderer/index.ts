@@ -3,13 +3,13 @@ import Vue from 'vue'
 import i18n from './i18n'
 import store from './store'
 import router from './router'
-import plugins from './plugins'
+import plugin from './plugin'
 import App from './App.vue'
 
 import './assets/global.scss'
 
 // plugins
-Vue.use(plugins)
+Vue.use(plugin)
 
 // Vue.config.productionTip = false
 
