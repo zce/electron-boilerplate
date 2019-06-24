@@ -3,6 +3,7 @@
 
 html {
   font-size: 20px;
+  -webkit-user-select: none;
 }
 
 body {
@@ -20,6 +21,51 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+// Visual DOM
+// --------------------------------------------------
+
+::selection {
+  color: #fff;
+  background: #bee4fd;
+  text-shadow: none;
+}
+
+::-webkit-scrollbar {
+  width: .3rem;
+  height: .3rem;
+  -webkit-appearance: none;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: .3rem;
+  background-color: rgba(100, 100, 100, .5);
+}
+
+// Common functional class
+// --------------------------------------------------
+
+.drag {
+  -webkit-app-region: drag;
+}
+
+.no-drag {
+  -webkit-app-region: no-drag;
+}
+
+.select {
+  -webkit-user-select: all;
+  cursor: text;
+}
+
+.no-select {
+  -webkit-user-select: none;
+  cursor: default;
 }
 
 // Themes
