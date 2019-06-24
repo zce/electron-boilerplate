@@ -1,5 +1,9 @@
 sudo: false
 
+os: osx
+
+osx_image: xcode10.2
+
 language: node_js
 
 node_js:
