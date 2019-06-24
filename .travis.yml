@@ -15,4 +15,4 @@ notifications:
 
 script:
   - yarn lint
-  - yarn build:all
+  - yarn build:all --publish onTag

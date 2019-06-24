@@ -9,6 +9,10 @@
 
 > A boilerplate application with Vue.js framework for Electron runtime.
 
+## Usage
+
+CI Token
+
 ## Todos
 
 - [ ] Something
