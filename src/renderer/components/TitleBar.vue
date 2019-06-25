@@ -1,5 +1,6 @@
 <template>
-  <div class="titlebar" :class="{ inactive: !isActive }">{{ title }}</div>
+  <!-- https://github.com/Menci/electron-titlebar -->
+  <header class="titlebar" :class="{ inactive: !isActive }" @dblclick="handleToggle">{{ title }}</header>
 </template>
 
 <script lang="ts">
@@ -13,32 +14,41 @@ export default class TitleBar extends Vue {
   isActive: boolean = true
 
   created () {
-    this.window.on('blur', this.onBlur)
-    this.window.on('focus', this.onFocus)
+    this.window.on('blur', this.handleBlur)
+    this.window.on('focus', this.handleFocus)
   }
 
   destroyed () {
-    this.window.removeListener('blur', this.onBlur)
-    this.window.removeListener('focus', this.onFocus)
+    this.window.removeListener('blur', this.handleBlur)
+    this.window.removeListener('focus', this.handleFocus)
   }
 
-  onBlur () {
+  handleBlur () {
     this.isActive = false
   }
 
-  onFocus () {
+  handleFocus () {
     this.isActive = true
+  }
+
+  handleToggle () {
+    if (this.window.isMaximized()) {
+      this.window.unmaximize()
+    } else {
+      this.window.maximize()
+    }
   }
 }
 </script>
 
 <style lang="scss">
 .titlebar {
-  height: 1.1rem;
+  flex: 0 0 1.375rem;
+  height: 1.375rem;
   color: var(--titlebar-color);
   background: var(--titlebar-bg);
-  font-size: 0.6rem;
-  line-height: 1.1rem;
+  font-size: 0.75rem;
+  line-height: 1.375rem;
   text-align: center;
 
   -webkit-user-select: none;

@@ -1,4 +1,9 @@
 {
   "name": "日本語",
-  "hello": "こんにちは、世界！"
+  "hello": "こんにちは、世界！",
+  "settings": "設定",
+  "language": "言語",
+  "theme": "テーマ",
+  "titlebarstyle": "タイバーバースタイル",
+  "about": "について"
 }

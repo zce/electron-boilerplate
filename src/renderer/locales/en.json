@@ -1,4 +1,9 @@
 {
   "name": "English",
-  "hello": "Hello world!"
+  "hello": "Hello world!",
+  "settings": "Settings",
+  "language": "Language",
+  "theme": "Theme",
+  "titlebarstyle": "Titlebar Style",
+  "about": "About"
 }

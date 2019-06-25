@@ -1,7 +1,7 @@
 <template>
-  <div class="statusbar">
+  <footer class="statusbar">
     <span>StatusBar</span>
-  </div>
+  </footer>
 </template>
 
 <script lang="ts">
@@ -13,11 +13,16 @@ export default class StatusBar extends Vue {}
 
 <style lang="scss">
 .statusbar {
-  height: 1.1rem;
+  flex: 0 0 1.375rem;
+  height: 1.375rem;
   background: var(--statusbar-bg);
   color: var(--statusbar-color);
-  font-size: 0.6rem;
-  line-height: 1.1rem;
+  font-size: 0.75rem;
+  line-height: 1.375rem;
   text-align: center;
+
+  span {
+    opacity: 0.3;
+  }
 }
 </style>

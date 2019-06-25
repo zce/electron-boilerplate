@@ -1,28 +1,3 @@
-// Reboot
-// --------------------------------------------------
-
-html {
-  font-size: 20px;
-  -webkit-user-select: none;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-}
-
-// Typography
-// --------------------------------------------------
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-  font-size: 0.8rem;
-  font-feature-settings: 'liga', 'clig', 'kern';
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 // Visual DOM
 // --------------------------------------------------
 
@@ -32,19 +7,217 @@ body {
   text-shadow: none;
 }
 
-::-webkit-scrollbar {
-  width: .3rem;
-  height: .3rem;
-  -webkit-appearance: none;
+// ::-webkit-scrollbar {
+//   width: .3rem;
+//   height: .3rem;
+//   -webkit-appearance: none;
+// }
+
+// ::-webkit-scrollbar-track {
+//   background-color: transparent;
+// }
+
+// ::-webkit-scrollbar-thumb {
+//   border-radius: .3rem;
+//   background-color: rgba(100, 100, 100, .5);
+// }
+
+// Base Reboot
+// --------------------------------------------------
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-::-webkit-scrollbar-track {
+html {
+  font-size: 16px;
+  -webkit-user-select: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-size: 1rem;
+  font-feature-settings: 'liga', 'clig', 'kern';
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Typography
+// --------------------------------------------------
+
+b,
+strong {
+  font-weight: bold;
+}
+
+p {
+  margin-top: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.0625rem;
+  font-weight: 300;
+}
+
+h1 {
+  font-size: 2.875rem;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 2.25rem;
+  line-height: 1.25;
+}
+
+h3 {
+  font-size: 1.75rem;
+  line-height: 1.3;
+}
+
+h4 {
+  letter-spacing: -0.05rem;
+  font-size: 1.375rem;
+  line-height: 1.35;
+}
+
+h5 {
+  letter-spacing: -0.05rem;
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+h6 {
+  letter-spacing: 0;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+// Link
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+
+  &:focus,
+  &:hover {
+    color: var(--secondary);
+  }
+}
+
+// List
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+
+dl,
+ol,
+ul {
+  margin-top: 0;
+  padding-left: 0;
+  list-style: none;
+
+  dl,
+  ol,
+  ul {
+    margin: 1rem 0 1rem 2rem;
+    font-size: 90%;
+  }
+}
+
+ol {
+  list-style: decimal inside;
+}
+
+ul {
+  list-style: circle inside;
+}
+
+// Form
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+
+/* stylelint-disable no-descending-specificity */
+
+input[type='email'],
+input[type='number'],
+input[type='password'],
+input[type='search'],
+input[type='tel'],
+input[type='text'],
+input[type='url'],
+input[type='color'],
+input[type='date'],
+input[type='month'],
+input[type='week'],
+input[type='datetime'],
+input[type='datetime-local'],
+input:not([type]),
+textarea,
+select {
+  box-sizing: inherit;
+  padding: 0.375rem 0.625rem;
+  // width: 100%;
+  height: 2rem;
+  border: 0.0625rem solid var(--control-border);
+  border-radius: 0.25rem;
   background-color: transparent;
+  box-shadow: none;
+  color: var(--global-color);
+  font-size: 0.6875rem;
+
+  -webkit-appearance: none;
+
+  &:focus {
+    outline: 0;
+    border-color: var(--control-border-active);
+  }
 }
 
-::-webkit-scrollbar-thumb {
-  border-radius: .3rem;
-  background-color: rgba(100, 100, 100, .5);
+select {
+  padding-right: 2rem;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 14" height="14" width="29"><path fill="%23cecece" d="M9.37727 3.625l5.08154 6.93523L19.54036 3.625"/></svg>') center right no-repeat;
+
+  &:focus {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 14" height="14" width="29"><path fill="%23bbbbbb" d="M9.37727 3.625l5.08154 6.93523L19.54036 3.625"/></svg>');
+  }
+}
+
+textarea {
+  min-height: 4rem;
+}
+
+label,
+legend {
+  display: block;
+  margin-bottom: 0.3125rem;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+fieldset {
+  padding: 0;
+  border-width: 0;
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  display: inline;
+}
+
+.label-inline {
+  display: inline-block;
+  margin-left: 0.3125rem;
+  font-weight: normal;
 }
 
 // Common functional class
@@ -75,6 +248,9 @@ body {
   --primary: #f03e3e;
   --secondary: #868e96;
 
+  --control-border: #cecece;
+  --control-border-active: #bbbbbb;
+
   --global-bg: #495057;
   --global-color: #dee2e6;
 
@@ -85,7 +261,7 @@ body {
 
   --activitybar-bg: #212529;
   --activitybar-color: #ffffff99;
-  --activitybar-hover-color: #ffffff;
+  --activitybar-active-color: #ffffff;
 
   --sidebar-bg: #343a40;
   --sidebar-color: #ffffff;
@@ -98,8 +274,11 @@ body {
   --primary: #007acc;
   --secondary: #495057;
 
+  --control-border: #cecece;
+  --control-border-active: #bbbbbb;
+
   --global-bg: #ffffff;
-  --global-color: #000000;
+  --global-color: #333333;
 
   --titlebar-bg: #dddddd;
   --titlebar-color: #333333;
@@ -108,7 +287,7 @@ body {
 
   --activitybar-bg: #2c2c2c;
   --activitybar-color: #ffffff99;
-  --activitybar-hover-color: #ffffff;
+  --activitybar-active-color: #ffffff;
 
   --sidebar-bg: #f3f3f3;
   --sidebar-color: #6f6f6f;

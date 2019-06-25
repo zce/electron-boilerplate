@@ -3,6 +3,8 @@ import Router from 'vue-router'
 
 import Home from './views/Home.vue'
 import Settings from './views/Settings.vue'
+import About from './views/About.vue'
+import Vuex from './views/Vuex.vue'
 
 Vue.use(Router)
 
@@ -14,13 +16,24 @@ export default new Router({
   routes: [
     {
       name: 'home',
-      path: '/home',
+      path: '/',
       component: Home
     },
     {
       name: 'settings',
       path: '/settings',
       component: Settings
+    },
+    {
+      name: 'about',
+      path: '/about',
+      component: About
+    },
+    // ===== Demo page
+    {
+      name: 'vuex',
+      path: '/vuex',
+      component: Vuex
     }
     // {
     //   name: 'about',

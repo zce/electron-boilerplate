@@ -1,21 +1,22 @@
 <template>
   <div class="settings">
+    <h1>{{ $t('settings') }}</h1>
     <p>
-      <small>Language: </small>
-      <select v-model="locale">
+      <label for="setting_locale">{{ $t('language') }}</label>
+      <select id="setting_locale" v-model="locale">
         <option v-for="(value, key) in locales" :value="key" :key="key">{{ value }}</option>
       </select>
     </p>
     <p>
-      <small>Theme: </small>
-      <select v-model="theme">
+      <label for="setting_theme">{{ $t('theme') }}</label>
+      <select id="setting_theme" v-model="theme">
         <option value="dark">Dark</option>
         <option value="light">Light</option>
       </select>
     </p>
     <p>
-      <small>TitleBarStyle: </small>
-      <select v-model="titleBarStyle">
+      <label for="setting_title_bar_style">{{ $t('titlebarstyle') }}</label>
+      <select id="setting_title_bar_style" v-model="titleBarStyle">
         <option value="custom">Custom</option>
         <option value="native">Native</option>
       </select>
@@ -32,6 +33,7 @@ export default class Settings extends Vue {
   get locale () {
     return this.$store.getters.settings.locale
   }
+
   set locale (value: string) {
     this.$i18n.locale = value
     this.$store.dispatch('updateSettings', { locale: value })
@@ -40,6 +42,7 @@ export default class Settings extends Vue {
   get theme () {
     return this.$store.getters.settings.theme
   }
+
   set theme (value: string) {
     this.$store.dispatch('updateSettings', { theme: value })
   }
@@ -47,6 +50,7 @@ export default class Settings extends Vue {
   get titleBarStyle () {
     return this.$store.getters.settings.titleBarStyle
   }
+
   set titleBarStyle (value: string) {
     if (confirm('A restart is required for the change in titleBarStyle to take effect.')) {
       this.$store.dispatch('updateSettings', { titleBarStyle: value })
@@ -70,9 +74,16 @@ export default class Settings extends Vue {
 
 <style lang="scss">
 .settings {
-  flex-grow: 1;
-  padding: 5rem;
-  text-align: center;
-  font-size: 1rem;
+  label {
+    display: inline-block;
+    width: 10rem;
+    margin: 0 1rem 0 0;
+    font-weight: normal;
+    text-align: right;
+  }
+
+  select {
+    width: 20rem;
+  }
 }
 </style>

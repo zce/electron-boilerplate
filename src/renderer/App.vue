@@ -1,14 +1,10 @@
 <template>
   <div class="workbench" :data-theme="settings.theme">
-    <TitleBar
-      title="Electron Boilerplate"
-      v-if="settings.titleBarStyle === 'custom'"/>
+    <TitleBar title="Electron Boilerplate" v-if="settings.titleBarStyle === 'custom'"/>
     <div class="wrapper">
       <ActivityBar />
       <SideBar />
-      <div class="container">
-        <router-view></router-view>
-      </div>
+      <main class="container"><router-view></router-view></main>
     </div>
     <StatusBar />
   </div>
@@ -42,12 +38,14 @@ export default class App extends Vue {
 
 .wrapper {
   display: flex;
-  flex-grow: 1;
+  flex: 1 0%;
 }
 
 .container {
-  display: flex;
   flex: 1 0%;
   flex-direction: column;
+  padding: 1rem;
+  overflow-y: auto;
+  max-height: 100%;
 }
 </style>

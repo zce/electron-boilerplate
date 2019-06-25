@@ -1,7 +1,7 @@
 <template>
-  <div class="sidebar">
+  <aside class="sidebar">
     <span>SideBar</span>
-  </div>
+  </aside>
 </template>
 
 <script lang="ts">
@@ -13,12 +13,17 @@ export default class SideBar extends Vue {}
 
 <style lang="scss">
 .sidebar {
-  width: 10rem;
+  flex: 0 0 12.5rem;
+  width: 12.5rem;
   background: var(--sidebar-bg);
   color: var(--sidebar-color);
-  font-size: 0.6rem;
-  line-height: 10rem;
+  font-size: 0.75rem;
+  line-height: 12.5rem;
   text-align: center;
   writing-mode: vertical-rl;
+
+  span {
+    opacity: 0.3;
+  }
 }
 </style>
