@@ -4,18 +4,22 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator'
+import { Vue, Component } from 'vue-property-decorator'
 
 @Component
 export default class TitleBar extends Vue {
-  @Prop() title!: string
-
   window = this.$electron.remote.getCurrentWindow()
+
+  title = this.$electron.remote.app.getName()
   isActive: boolean = true
 
   created () {
     this.window.on('blur', this.handleBlur)
     this.window.on('focus', this.handleFocus)
+  }
+
+  mounted () {
+    document.title = this.title
   }
 
   destroyed () {
