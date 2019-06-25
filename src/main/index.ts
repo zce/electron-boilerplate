@@ -29,8 +29,8 @@ app.setAppUserModelId('me.zce.electron-boilerplate')
 // It's commented out as it throws an error if there are no published versions.
 if (!isDevelopment) {
   const FOUR_HOURS = 1000 * 60 * 60 * 4
-  setInterval(() => autoUpdater.checkForUpdates(), FOUR_HOURS)
-  autoUpdater.checkForUpdates()
+  setInterval(() => autoUpdater.checkForUpdatesAndNotify(), FOUR_HOURS)
+  autoUpdater.checkForUpdatesAndNotify()
 }
 
 // Keep a global reference of the window object, if you don't, the window will
