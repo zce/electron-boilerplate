@@ -98,7 +98,6 @@ After Travis finishes building your app, open the release draft it created and c
 
 > Helpful links
 
-- https://github.com/zeng450026937/RTVC
 - https://github.com/electron/electron-quick-start/blob/master/main.js
 - https://github.com/mawie81/electron-window-state
 - https://github.com/sindresorhus/electron-boilerplate
@@ -110,7 +109,6 @@ After Travis finishes building your app, open the release draft it created and c
 - https://github.com/sindresorhus/electron-unhandled
 - https://github.com/sindresorhus/electron-reloader
 - https://github.com/sindresorhus/electron-serve
-- https://github.com/sindresorhus/np
 - https://github.com/iffy/electron-updater-example
 
 ## Contributing

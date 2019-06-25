@@ -1,6 +1,6 @@
 appId: me.zce.electron-boilerplate
 productName: "Electron Boilerplate"
-copyright: Copyright © 2019 zce <w@zce.me> (https://zce.me)
+# copyright: Copyright © 2019 zce <w@zce.me> (https://zce.me)
 asar: true
 directories:
   buildResources: build

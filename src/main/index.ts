@@ -7,40 +7,55 @@
 // Modules to control application life and create native browser window
 import { app, BrowserWindow } from 'electron'
 import { autoUpdater } from 'electron-updater'
+import unhandled from 'electron-unhandled'
+
+import { state, preferences } from 'common/store'
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // Disable security warnings for development
-if (isDevelopment) {
-  process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = '1'
-} else {
-  // Uncomment this before publishing your first version.
-  // It's commented out as it throws an error if there are no published versions.
-  const FOUR_HOURS = 1000 * 60 * 60 * 4
-  setInterval(() => {
-    autoUpdater.checkForUpdates()
-  }, FOUR_HOURS)
+process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = isDevelopment ? '1' : undefined
 
-  autoUpdater.checkForUpdates()
-}
+// Catch unhandled errors and promise rejections
+unhandled()
+
+// Prevent multiple instances of the app
+if (!app.requestSingleInstanceLock()) app.quit()
 
 // Note: Must match `build.appId` in package.json
 app.setAppUserModelId('me.zce.electron-boilerplate')
+
+// Uncomment this before publishing your first version.
+// It's commented out as it throws an error if there are no published versions.
+if (!isDevelopment) {
+  const FOUR_HOURS = 1000 * 60 * 60 * 4
+  setInterval(() => autoUpdater.checkForUpdates(), FOUR_HOURS)
+  autoUpdater.checkForUpdates()
+}
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow: BrowserWindow | null
 
 const createWindow = () => {
+  const lastWindowState = state.get('lastWindowState')
+  const darkMode = preferences.get('darkMode')
+
   // Create the browser window.
   mainWindow = new BrowserWindow({
+    width: lastWindowState.width,
+    height: lastWindowState.height,
+    x: lastWindowState.x,
+    y: lastWindowState.y,
+    // center: true,
+    title: app.getName(),
+    show: false,
     frame: false,
+    backgroundColor: darkMode ? '#000' : '#fff',
+    darkTheme: darkMode,
     titleBarStyle: 'hidden',
-    center: true,
-    width: 1280,
-    height: 720,
-    backgroundColor: '#fff',
     webPreferences: {
+      devTools: isDevelopment,
       nodeIntegration: true
     }
   })
@@ -57,6 +72,16 @@ const createWindow = () => {
     mainWindow.loadFile('index.html')
   }
 
+  // Emitted when the renderer process has rendered.
+  mainWindow.once('ready-to-show', () => {
+    // http://electronjs.org/docs/api/browser-window#using-ready-to-show-event
+    // While loading the page, the ready-to-show event will be emitted
+    // when the renderer process has rendered the page for the first time
+    // if the window has not been shown yet.
+    // Showing the window after this event will have no visual flash:
+    mainWindow && mainWindow.show()
+  })
+
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
     // Dereference the window object, usually you would store windows
@@ -71,6 +96,13 @@ const createWindow = () => {
 // Some APIs can only be used after this event occurs.
 app.on('ready', createWindow)
 
+// Emitted when the app activate.
+app.on('activate', () => {
+  // On macOS it's common to re-create a window in the app when the
+  // dock icon is clicked and there are no other windows open.
+  if (mainWindow === null) createWindow()
+})
+
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
   // On macOS it is common for applications and their menu bar
@@ -78,10 +110,20 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
 })
 
-app.on('activate', () => {
-  // On macOS it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
-  if (mainWindow === null) createWindow()
+// Emitted when the app before quit.
+app.on('before-quit', () => {
+  // save window state
+  mainWindow && state.set('lastWindowState', mainWindow.getNormalBounds())
+})
+
+// Restore window when open second instance
+app.on('second-instance', () => {
+  if (!mainWindow) return
+
+  if (mainWindow.isMinimized()) {
+    mainWindow.restore()
+  }
+  mainWindow.show()
 })
 
 // In this file you can include the rest of your app's specific main process
