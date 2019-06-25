@@ -39,13 +39,14 @@ After Travis finishes building your app, open the release draft it created and c
 
 ## Features
 
-- [`electron-builder`](https://www.electron.build) fully set up to create cross-platform builds
+- [electron-builder](https://www.electron.build) fully set up to create cross-platform builds
 - [Builds the app on Travis](https://www.electron.build/multi-platform-build#sample-travisyml-to-build-electron-app-for-macos-linux-and-windows)
 - [Silent auto-updates](https://www.electron.build/auto-update)
-- App menu that adheres to the system user interface guidelines
-- [Config handling](https://github.com/sindresorhus/electron-store)
-- [Context menu](https://github.com/sindresorhus/electron-context-menu)
+- Custom title bar
+- [State & Settings store](https://github.com/sindresorhus/electron-store)
 - [User-friendly handling of unhandled errors](https://github.com/sindresorhus/electron-unhandled)
+- [Useful utilities for Electron apps and modules](https://github.com/sindresorhus/electron-util)
+- App menu that adheres to the system user interface guidelines
 - Easily publish new versions to GitHub Releases
 - And much more!
 

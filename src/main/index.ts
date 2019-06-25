@@ -9,12 +9,14 @@ import { app, BrowserWindow } from 'electron'
 import { autoUpdater } from 'electron-updater'
 import unhandled from 'electron-unhandled'
 
-import { state, preferences } from 'common/store'
+import { state, settings } from 'common/store'
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // Disable security warnings for development
-process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = isDevelopment ? '1' : undefined
+if (isDevelopment) {
+  process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = '1'
+}
 
 // Catch unhandled errors and promise rejections
 unhandled()
@@ -39,7 +41,8 @@ let mainWindow: BrowserWindow | null
 
 const createWindow = () => {
   const lastWindowState = state.get('lastWindowState')
-  const darkMode = preferences.get('darkMode')
+  const darkMode = settings.get('theme') === 'dark'
+  const frame = settings.get('titleBarStyle') === 'native'
 
   // Create the browser window.
   mainWindow = new BrowserWindow({
@@ -47,13 +50,12 @@ const createWindow = () => {
     height: lastWindowState.height,
     x: lastWindowState.x,
     y: lastWindowState.y,
-    // center: true,
     title: app.getName(),
     show: false,
-    frame: false,
+    frame: frame,
     backgroundColor: darkMode ? '#000' : '#fff',
     darkTheme: darkMode,
-    titleBarStyle: 'hidden',
+    titleBarStyle: frame ? 'default' : 'hidden',
     webPreferences: {
       devTools: isDevelopment,
       nodeIntegration: true

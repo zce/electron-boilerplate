@@ -1,4 +1,4 @@
-import { systemPreferences } from 'electron'
+import { api, darkMode } from 'electron-util'
 import Store from 'electron-store'
 
 export const state = new Store({
@@ -13,9 +13,11 @@ export const state = new Store({
   }
 })
 
-export const preferences = new Store({
-  name: 'preferences',
+export const settings = new Store({
+  name: 'settings',
   defaults: {
-    darkMode: systemPreferences.isDarkMode()
+    theme: darkMode.isEnabled ? 'dark' : 'light',
+    locale: api.app.getLocale(),
+    titleBarStyle: 'custom' as 'custom' | 'native'
   }
 })

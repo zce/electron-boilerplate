@@ -2,17 +2,25 @@
   <div class="home">
     <h1>{{ $t('hello') }}</h1>
     <p>
+      <small>Language: </small>
       <select v-model="locale">
         <option v-for="(value, key) in locales" :value="key" :key="key">{{
           value
         }}</option>
       </select>
-      <span>{{ $i18n.locale }}</span>
     </p>
     <p>
+      <small>Theme: </small>
       <select v-model="theme">
-        <option value="dark">暗色</option>
-        <option value="light">亮色</option>
+        <option value="dark">Dark</option>
+        <option value="light">Light</option>
+      </select>
+    </p>
+    <p>
+      <small>TitleBarStyle: </small>
+      <select v-model="titleBarStyle">
+        <option value="custom">Custom</option>
+        <option value="native">Native</option>
       </select>
     </p>
     <br />
@@ -66,6 +74,18 @@ export default class Home extends Vue {
   }
   set theme (value: string) {
     this.$store.dispatch('updateSettings', { theme: value })
+  }
+
+  get titleBarStyle () {
+    return this.$store.getters.settings.titleBarStyle
+  }
+  set titleBarStyle (value: string) {
+    if (confirm('A restart is required for the change in titleBarStyle to take effect.')) {
+      this.$store.dispatch('updateSettings', { titleBarStyle: value })
+      this.$electron.remote.app
+        .relaunch({ args: process.argv.slice(1).concat(['--relaunch']) })
+      this.$electron.remote.app.exit()
+    }
   }
 
   data () {

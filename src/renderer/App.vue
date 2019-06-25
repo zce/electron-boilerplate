@@ -1,6 +1,8 @@
 <template>
   <div class="workbench" :data-theme="settings.theme">
-    <TitleBar title="Electron Boilerplate" />
+    <TitleBar
+      title="Electron Boilerplate"
+      v-if="settings.titleBarStyle === 'custom'"/>
     <div class="wrapper">
       <ActivityBar />
       <SideBar />
