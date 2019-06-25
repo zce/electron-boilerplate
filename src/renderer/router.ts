@@ -2,17 +2,25 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Home from './views/Home.vue'
+import Settings from './views/Settings.vue'
 
 Vue.use(Router)
 
 export default new Router({
   mode: 'hash',
   // base: process.env.BASE_URL,
+  linkActiveClass: 'active',
+  linkExactActiveClass: 'exact-active',
   routes: [
     {
       name: 'home',
-      path: '/',
+      path: '/home',
       component: Home
+    },
+    {
+      name: 'settings',
+      path: '/settings',
+      component: Settings
     }
     // {
     //   name: 'about',
