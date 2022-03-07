@@ -68,7 +68,7 @@
     "commitizen": "^3.1.1",
     "cz-conventional-changelog": "^2.1.0",
     "electron": "^5.0.5",
-    "electron-builder": "^20.44.4",
+    "electron-builder": "22.14.13",
     "electron-store": "^4.0.0",
     "electron-unhandled": "^2.2.0",
     "electron-updater": "^4.0.12",
