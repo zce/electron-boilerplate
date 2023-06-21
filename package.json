@@ -72,7 +72,7 @@
     "electron-store": "^4.0.0",
     "electron-unhandled": "^2.2.0",
     "electron-updater": "^4.0.12",
-    "electron-util": "^0.12.1",
+    "electron-util": "^0.17.0",
     "electron-webpack": "^2.7.2",
     "eslint": "^6.0.0",
     "eslint-friendly-formatter": "^4.0.1",
