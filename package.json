@@ -67,7 +67,7 @@
     "@vue/eslint-config-typescript": "^4.0.0",
     "commitizen": "^3.1.1",
     "cz-conventional-changelog": "^2.1.0",
-    "electron": "^5.0.5",
+    "electron": "^18.3.7",
     "electron-builder": "^20.44.4",
     "electron-store": "^4.0.0",
     "electron-unhandled": "^2.2.0",
